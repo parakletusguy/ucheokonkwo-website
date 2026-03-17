@@ -3,6 +3,10 @@ const nextConfig = {
   // ── Security ──────────────────────────────────────────────────────────────
   poweredByHeader: false,
 
+  // ── Dev Origins ───────────────────────────────────────────────────────────
+  // Allow admin.localhost to load /_next/* assets in development
+  allowedDevOrigins: ["admin.localhost"],
+
   // ── Optimization ──────────────────────────────────────────────────────────
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",

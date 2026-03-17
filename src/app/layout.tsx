@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Noto_Serif } from "next/font/google";
 import "./globals.css";
+import DomainInterceptor from "@/lib/domainInterceptor";
 
 const outfit = Outfit({ 
   subsets: ["latin"],
@@ -37,16 +38,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body
         className={`antialiased selection:bg-[var(--midnight-green)] selection:text-[var(--sunlight-yellow)] ${outfit.variable} ${cormorantGaramond.variable} ${notoSerif.variable}`}
       >
-        {children}
+        <DomainInterceptor>{children}</DomainInterceptor>
       </body>
     </html>
   );

@@ -29,7 +29,7 @@ const LANG_LABELS: Record<LanguageCode, string> = {
 export default function ArticlePage() {
   const params = useParams();
   const router = useRouter();
-  const { currentLanguage } = useLanguageStore();
+  const { currentLanguage, setLanguage } = useLanguageStore();
   const [article, setArticle] = useState<ArticleDetail | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -62,7 +62,6 @@ export default function ArticlePage() {
           {/* Language selector inline */}
           <div className="flex items-center bg-white/50 backdrop-blur-sm border border-gray-200/50 rounded-full p-1 shadow-sm">
             {(Object.keys(LANG_LABELS) as LanguageCode[]).map((lang) => {
-              const { setLanguage } = useLanguageStore.getState();
               const isActive = currentLanguage === lang;
               return (
                 <button
