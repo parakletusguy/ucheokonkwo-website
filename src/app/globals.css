@@ -3,25 +3,192 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --midnight-green: #06402B;
+  --off-white: #F9F9F7;
+  --sunlight-yellow: #FFD166;
+  --obsidian: #111513;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--off-white);
+  color: var(--obsidian);
+  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+h1, h2, h3, .serif-font {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.hero-portrait-mask {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--midnight-green);
+  color: var(--off-white);
+  padding-left: 100%;
+  box-sizing: content-box;
+}
+
+.ticker {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 100%;
+  box-sizing: content-box;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: ticker;
+  animation-duration: 40s;
+  /* GPU compositing hint — avoids main-thread layout on animation */
+  will-change: transform;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
   }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.map-ward:hover {
+  fill: rgba(255, 209, 102, 0.4);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  stroke: var(--sunlight-yellow);
+  stroke-width: 2;
+}
+
+.hotspot {
+  transform-origin: center;
+  animation: pulse-glow 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  will-change: transform, opacity;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(255, 209, 102, 0.8));
+  }
+  50% {
+    opacity: .7;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 12px rgba(255, 209, 102, 1));
+  }
+}
+
+/* ── 3G / Low-Power Device Optimizations ──────────────────────────────────
+   Respects the OS "Reduce Motion" setting which many users enable on older 
+   phones to save battery. Disables all animations that run continuously.     */
+@media (prefers-reduced-motion: reduce) {
+  .ticker {
+    animation: none;
+    /* Show a static truncated update when animation is off */
+    padding-left: 1rem;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hotspot {
+    animation: none;
+    filter: none;
+  }
+
+  .marquee-card {
+    transition: none;
+  }
+
+  /* Disable all transitions for a snappier experience on slow CPUs */
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+.marquee-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.marquee-container::-webkit-scrollbar {
+  display: none;
+}
+.marquee-card {
+  scroll-snap-align: start;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Reduced animation complexity on hover for 3G performance target */
+.marquee-card:hover {
+  transform: perspective(1000px) scale(1.02);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 30px 60px -15px rgba(0,0,0,0.3);
+}
+
+.gradient-border-card {
+  background: linear-gradient(var(--obsidian), var(--obsidian)) padding-box,
+              linear-gradient(135deg, var(--midnight-green), var(--sunlight-yellow)) border-box;
+  border: 1px solid transparent;
+  border-radius: 1.5rem;
+}
+
+.glass-panel {
+  background: rgba(26, 30, 28, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.audio-btn {
+  background: linear-gradient(145deg, #1f2522, #161a18);
+  box-shadow: 4px 4px 10px #0e110f, -4px -4px 10px #242b27;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.audio-btn:hover {
+  background: linear-gradient(145deg, #242b27, #1f2522);
+}
+
+.audio-btn:active {
+  box-shadow: inset 4px 4px 10px #0e110f, inset -4px -4px 10px #242b27;
+}
+
+.form-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0;
+  padding: 0.75rem 0;
+  color: white;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-bottom-color: var(--sunlight-yellow);
+  box-shadow: none;
+}
+
+.texture-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.soft-shadow {
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
 }
