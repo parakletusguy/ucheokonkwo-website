@@ -17,23 +17,16 @@ const HandshakeEmblem = () => (
   </svg>
 );
 
-const NAV_LINKS = [
-  { en: 'Vision',    pcm: 'Wetin We Want', ig: 'Ọzụzụ Anyị',  ha: 'Hangenta',          yo: 'Iran'         },
-  { en: 'Map',       pcm: 'Locate Project', ig: 'Maapụ',        ha: 'Taswira',            yo: 'Maapu'        },
-  { en: 'Agenda',    pcm: 'Our Plan',       ig: 'Atụmatụ',      ha: 'Ajanda',             yo: 'Eto'          },
-  { en: 'Town Hall', pcm: 'Meeting Point',  ig: 'Ụlọ Nzukọ',   ha: 'Dakin Taron Gari',  yo: 'Gbọngàn Ilu'  },
-];
-
 export default function Header() {
   const { t } = useLanguageStore();
 
   return (
-    <header className="fixed w-full top-0 bg-white/90 backdrop-blur-2xl z-50 border-b border-[var(--integrity-navy)]/10 shadow-sm">
+    <header className="fixed w-full top-0 bg-white/90 backdrop-blur-2xl z-50 border-b border-[var(--midnight-green)]/10 shadow-sm">
       {/* ADC tricolor accent stripe */}
       <div className="h-1 w-full flex">
-        <div className="flex-1 bg-[var(--constituency-green)]"/>
-        <div className="flex-1 bg-[var(--adc-yellow)]"/>
-        <div className="flex-1 bg-[var(--vanguard-red)]"/>
+        <div className="flex-1 bg-[var(--midnight-green)]"/>
+        <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
+        <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
       </div>
 
       <div className="max-w-[90rem] mx-auto px-6 lg:px-12">
@@ -43,28 +36,34 @@ export default function Header() {
           <div className="flex items-center gap-3 group cursor-pointer">
             <HandshakeEmblem />
             <div className="flex flex-col leading-none">
-              <span className="font-bold text-lg tracking-[0.12em] uppercase text-[var(--integrity-navy)]">
+              <span className="font-bold text-lg tracking-[0.12em] uppercase text-[var(--midnight-green)]">
                 Uche Okonkwo
               </span>
-              <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[var(--constituency-green)]">
+              <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[var(--midnight-green)]">
                 {t({ en: 'Idemili North & South', pcm: 'Idemili North & South', ig: 'Idemili Ọ̀gbà & Ọ̀gbà South', ha: 'Idemili Arewa & Kudu', yo: 'Idemili Àríwá & Gúúsù' })}
               </span>
             </div>
           </div>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex space-x-12">
-            {NAV_LINKS.map((link, i) => (
-              <a key={i} href="#" className="text-xs font-bold tracking-[0.15em] uppercase text-gray-500 hover:text-[var(--integrity-navy)] transition-colors">
-                {t(link)}
-              </a>
-            ))}
-          </nav>
+          {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-10">
+          {[
+            { label: t({ en: 'Home', pcm: 'Main Page', ig: 'Isi Ibe', ha: 'Shafin Farko', yo: 'Oju-ile' }), href: '/' },
+            { label: t({ en: 'About Hon. Harris', pcm: 'Who Be Our Guy', ig: 'Banyere Onye Nsọpụrụ', ha: 'Game da Hon. Harris', yo: 'Nipa Hon. Harris' }), href: '/about' },
+            { label: t({ en: 'The Constituency', pcm: 'Our Area', ig: 'Mpaghara Anyị', ha: 'Mazabar Mu', yo: 'Agbegbe Wa' }), href: '/constituency' },
+            { label: t({ en: 'Media & Blog', pcm: 'Tori & News', ig: 'Mgbasa Ozi na Akụkọ', ha: 'Labarai da Shafin yanar gizo', yo: 'Iroyin & Buloogi' }), href: '/media' },
+            { label: t({ en: 'Admin Portal', pcm: 'Admin Block', ig: 'Nchịkwa', ha: 'Gudanarwa', yo: 'Ibudo Abojuto' }), href: '/admin' }
+          ].map((item, i) => (
+            <a key={i} href={item.href} className="text-xs font-bold tracking-[0.15em] uppercase text-gray-500 hover:text-[var(--midnight-green)] transition-colors">
+              {item.label}
+            </a>
+          ))}
+        </nav>
 
           {/* Right side: language switcher + CTA */}
           <div className="flex items-center gap-4">
             <LanguageSwitcher variant="bar" />
-            <button className="hidden md:flex items-center gap-2 bg-[var(--integrity-navy)] text-[var(--adc-yellow)] px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all group">
+            <button className="hidden md:flex items-center gap-2 bg-[var(--midnight-green)] text-[var(--sunlight-yellow)] px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all group">
               {t({ en: 'Get Involved', pcm: 'Join Us', ig: 'Soro Anyị', ha: 'Shiga Ciki', yo: 'Dara Pọ Mọ Wa' })}
               <span className="material-symbols-outlined text-sm transform group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
             </button>

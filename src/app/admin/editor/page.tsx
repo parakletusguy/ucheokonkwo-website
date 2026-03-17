@@ -97,11 +97,11 @@ function EditorForm() {
             <span className="material-symbols-outlined">arrow_back</span>
           </button>
           <div className="flex items-center gap-3">
-            <span className={`text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${isDraftSaved ? 'text-[var(--constituency-green)] opacity-100' : 'opacity-0'}`}>✓ Saved</span>
+            <span className={`text-[10px] font-bold uppercase tracking-widest transition-all duration-300 ${isDraftSaved ? 'text-[var(--midnight-green)] opacity-100' : 'opacity-0'}`}>✓ Saved</span>
             <button onClick={handleSaveDraft} disabled={isPublishing} className="text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-[var(--obsidian)] px-3 py-2 disabled:opacity-40">
               Save Draft
             </button>
-            <button onClick={handleRequestTranslations} disabled={isPublishing} className="bg-[var(--integrity-navy)] text-[var(--adc-yellow)] px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm active:scale-95 transition-all disabled:opacity-50 flex items-center gap-2">
+            <button onClick={handleRequestTranslations} disabled={isPublishing} className="bg-[var(--midnight-green)] text-[var(--sunlight-yellow)] px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm active:scale-95 transition-all disabled:opacity-50 flex items-center gap-2">
               {isPublishing ? (
                 <><span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin"/><span>Translating...</span></>
               ) : (
@@ -119,9 +119,9 @@ function EditorForm() {
           </div>
         )}
         {isPublishing && (
-          <div className="mx-4 mt-4 bg-[var(--integrity-navy)]/5 border border-[var(--integrity-navy)]/10 rounded-xl px-4 py-3">
-            <p className="text-xs text-[var(--integrity-navy)] font-medium flex items-center gap-2">
-              <span className="material-symbols-outlined text-sm text-[var(--adc-yellow)]">auto_awesome</span>
+          <div className="mx-4 mt-4 bg-[var(--midnight-green)]/5 border border-[var(--midnight-green)]/10 rounded-xl px-4 py-3">
+            <p className="text-xs text-[var(--midnight-green)] font-medium flex items-center gap-2">
+              <span className="material-symbols-outlined text-sm text-[var(--sunlight-yellow)]">auto_awesome</span>
               Generating Pidgin, Igbo, Hausa & Yoruba translations…
             </p>
           </div>
@@ -137,7 +137,7 @@ function EditorForm() {
             className="w-full text-3xl font-bold font-serif text-[var(--obsidian)] placeholder-gray-200 border-none outline-none focus:ring-0 px-0 bg-transparent"
             lang="en"
           />
-          <div className="w-12 h-[1px] bg-[var(--adc-yellow)]"/>
+          <div className="w-12 h-[1px] bg-[var(--sunlight-yellow)]"/>
           <textarea
             placeholder="Write in English. We'll auto-translate to Pidgin, Igbo, Hausa & Yoruba…"
             value={content}
@@ -167,12 +167,12 @@ function EditorForm() {
   /* ── Step 3: Done ──────────────────────────────────────────────────────── */
   return (
     <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-6 p-8">
-      <div className="w-20 h-20 rounded-full bg-[var(--constituency-green)]/10 flex items-center justify-center">
-        <span className="material-symbols-outlined text-4xl text-[var(--constituency-green)]">check_circle</span>
+      <div className="w-20 h-20 rounded-full bg-[var(--midnight-green)]/10 flex items-center justify-center">
+        <span className="material-symbols-outlined text-4xl text-[var(--midnight-green)]">check_circle</span>
       </div>
       <h2 className="text-2xl font-bold serif-font text-[var(--obsidian)]">Published!</h2>
       <p className="text-sm text-gray-500 text-center max-w-xs">Your article is now live in all confirmed languages.</p>
-      <button onClick={() => router.push('/admin')} className="bg-[var(--integrity-navy)] text-[var(--adc-yellow)] px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-sm">
+      <button onClick={() => router.push('/admin')} className="bg-[var(--midnight-green)] text-[var(--sunlight-yellow)] px-6 py-3 text-xs font-bold uppercase tracking-widest rounded-sm">
         Back to Dashboard
       </button>
     </div>
@@ -245,9 +245,9 @@ function TranslationReview({
         </button>
         <div className="text-center">
           <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Review Step</p>
-          <p className="text-xs font-bold text-[var(--integrity-navy)]">{confirmedCount}/4 confirmed</p>
+          <p className="text-xs font-bold text-[var(--midnight-green)]">{confirmedCount}/4 confirmed</p>
         </div>
-        <button onClick={handlePublish} disabled={publishing || confirmedCount === 0} className="bg-[var(--constituency-green)] text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest disabled:opacity-40 flex items-center gap-2">
+        <button onClick={handlePublish} disabled={publishing || confirmedCount === 0} className="bg-[var(--midnight-green)] text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest disabled:opacity-40 flex items-center gap-2">
           {publishing ? <span className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"/> : <span className="material-symbols-outlined text-sm">publish</span>}
           Publish
         </button>
@@ -258,15 +258,15 @@ function TranslationReview({
       )}
 
       <div className="p-4 max-w-lg mx-auto w-full space-y-4 mt-4">
-        <div className="bg-[var(--integrity-navy)]/5 border border-[var(--integrity-navy)]/10 rounded-xl p-4">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--integrity-navy)] mb-1">Review Instructions</p>
+        <div className="bg-[var(--midnight-green)]/5 border border-[var(--midnight-green)]/10 rounded-xl p-4">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--midnight-green)] mb-1">Review Instructions</p>
           <p className="text-xs text-gray-600 leading-relaxed">
             Review each translation for political accuracy. Tap <strong>Confirm</strong> to approve for publishing, or <strong>Edit</strong> to correct it. Only confirmed translations will go live.
           </p>
         </div>
 
         {translations.map((t, i) => (
-          <div key={t.lang} className={`bg-white rounded-xl border-2 transition-all ${t.confirmed ? 'border-[var(--constituency-green)]' : 'border-gray-100'}`}>
+          <div key={t.lang} className={`bg-white rounded-xl border-2 transition-all ${t.confirmed ? 'border-[var(--midnight-green)]' : 'border-gray-100'}`}>
             <div className="flex items-center justify-between p-4 border-b border-gray-50">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{t.flag}</span>
@@ -276,10 +276,10 @@ function TranslationReview({
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <button onClick={() => setEditingIndex(editingIndex === i ? null : i)} className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-3 py-1.5 rounded-full border border-gray-200 hover:border-[var(--integrity-navy)] hover:text-[var(--integrity-navy)] transition-all">
+                <button onClick={() => setEditingIndex(editingIndex === i ? null : i)} className="text-[10px] font-bold uppercase tracking-widest text-gray-400 px-3 py-1.5 rounded-full border border-gray-200 hover:border-[var(--midnight-green)] hover:text-[var(--midnight-green)] transition-all">
                   {editingIndex === i ? 'Done' : 'Edit'}
                 </button>
-                <button onClick={() => toggleConfirm(i)} className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full transition-all ${t.confirmed ? 'bg-[var(--constituency-green)] text-white' : 'bg-gray-100 text-gray-500 hover:bg-[var(--constituency-green)]/10 hover:text-[var(--constituency-green)]'}`}>
+                <button onClick={() => toggleConfirm(i)} className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full transition-all ${t.confirmed ? 'bg-[var(--midnight-green)] text-white' : 'bg-gray-100 text-gray-500 hover:bg-[var(--midnight-green)]/10 hover:text-[var(--midnight-green)]'}`}>
                   {t.confirmed ? '✓ Confirmed' : 'Confirm'}
                 </button>
               </div>
@@ -287,7 +287,7 @@ function TranslationReview({
             <div className="p-4">
               {editingIndex === i ? (
                 <textarea
-                  className="w-full text-sm text-gray-700 leading-relaxed border border-gray-200 rounded-lg p-3 resize-none focus:outline-none focus:border-[var(--integrity-navy)] min-h-[120px]"
+                  className="w-full text-sm text-gray-700 leading-relaxed border border-gray-200 rounded-lg p-3 resize-none focus:outline-none focus:border-[var(--midnight-green)] min-h-[120px]"
                   value={t.text}
                   onChange={(e) => updateText(i, e.target.value)}
                   lang={t.lang}

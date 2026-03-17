@@ -28,11 +28,11 @@ export default function InboxPage() {
   return (
     <div className="min-h-screen bg-[var(--off-white)] pb-24">
       {/* Header */}
-      <div className="bg-[var(--integrity-navy)] text-white px-4 pt-8 pb-6">
+      <div className="bg-[var(--midnight-green)] text-white px-4 pt-8 pb-6">
         <div className="h-1 w-full flex mb-6 rounded-full overflow-hidden">
-          <div className="flex-1 bg-[var(--constituency-green)]"/>
-          <div className="flex-1 bg-[var(--adc-yellow)]"/>
-          <div className="flex-1 bg-[var(--vanguard-red)]"/>
+          <div className="flex-1 bg-[var(--midnight-green)]"/>
+          <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
+          <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
         </div>
         <div className="flex items-center justify-between">
           <div>
@@ -52,7 +52,7 @@ export default function InboxPage() {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <p className="font-bold text-lg serif-font text-[var(--obsidian)]">{selected.name}</p>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--constituency-green)]">{selected.ward}</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--midnight-green)]">{selected.ward}</p>
               </div>
               <button onClick={() => setSelected(null)} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
                 <span className="material-symbols-outlined text-sm">close</span>
@@ -67,7 +67,7 @@ export default function InboxPage() {
       <div className="px-4 pt-5 max-w-2xl mx-auto">
         {loading ? (
           <div className="flex justify-center py-20">
-            <span className="w-8 h-8 border-2 border-[var(--integrity-navy)] border-t-transparent rounded-full animate-spin"/>
+            <span className="w-8 h-8 border-2 border-[var(--midnight-green)] border-t-transparent rounded-full animate-spin"/>
           </div>
         ) : messages.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
@@ -77,14 +77,14 @@ export default function InboxPage() {
         ) : (
           <div className="space-y-2">
             {messages.map((m) => (
-              <button key={m.id} onClick={() => setSelected(m)} className={`w-full text-left bg-white rounded-xl border p-4 flex items-start gap-3 transition-all hover:shadow-sm ${!m.read ? 'border-[var(--vanguard-red)]/30' : 'border-gray-100'}`}>
-                <div className={`w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0 ${!m.read ? 'bg-[var(--vanguard-red)]' : 'bg-transparent border border-gray-200'}`}/>
+              <button key={m.id} onClick={() => setSelected(m)} className={`w-full text-left bg-white rounded-xl border p-4 flex items-start gap-3 transition-all hover:shadow-sm ${!m.read ? 'border-[var(--sunlight-yellow)]/30' : 'border-gray-100'}`}>
+                <div className={`w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0 ${!m.read ? 'bg-[var(--sunlight-yellow)]' : 'bg-transparent border border-gray-200'}`}/>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <p className="font-bold text-sm text-[var(--obsidian)] truncate">{m.name}</p>
                     <p className="text-[9px] text-gray-300 flex-shrink-0">{new Date(m.createdAt).toLocaleDateString()}</p>
                   </div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--constituency-green)] mb-1">{m.ward}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--midnight-green)] mb-1">{m.ward}</p>
                   <p className="text-xs text-gray-400 truncate">{m.message}</p>
                 </div>
               </button>

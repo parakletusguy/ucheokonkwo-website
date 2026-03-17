@@ -39,8 +39,8 @@ export default function LanguageSwitcher({ variant = 'bar' }: Props) {
             onClick={() => handleSwitch(lang.code)}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-sm text-sm font-bold transition-all ${
               currentLanguage === lang.code
-                ? 'bg-[var(--integrity-navy)] text-[var(--adc-yellow)]'
-                : 'bg-gray-100 text-gray-600 hover:bg-[var(--integrity-navy)]/10 hover:text-[var(--integrity-navy)]'
+                ? 'bg-[var(--midnight-green)] text-[var(--sunlight-yellow)]'
+                : 'bg-gray-100 text-gray-600 hover:bg-[var(--midnight-green)]/10 hover:text-[var(--midnight-green)]'
             }`}
           >
             <span className="text-lg leading-none">{lang.flag}</span>
@@ -67,8 +67,8 @@ export default function LanguageSwitcher({ variant = 'bar' }: Props) {
           aria-pressed={currentLanguage === lang.code}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider transition-all ${
             currentLanguage === lang.code
-              ? 'bg-[var(--integrity-navy)] text-[var(--adc-yellow)] shadow-sm'
-              : 'text-gray-400 hover:text-[var(--integrity-navy)]'
+              ? 'bg-[var(--midnight-green)] text-[var(--sunlight-yellow)] shadow-sm'
+              : 'text-gray-400 hover:text-[var(--midnight-green)]'
           }`}
         >
           <span className="text-sm leading-none">{lang.flag}</span>

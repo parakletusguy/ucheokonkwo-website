@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { useLanguageStore } from '@/store/useLanguageStore';
 
 export default function TerritoryTracker() {
@@ -12,7 +13,7 @@ export default function TerritoryTracker() {
         <div className="grid lg:grid-cols-2 gap-20 items-center">
 
           {/* Map visual */}
-          <div className="relative bg-[var(--off-white)] rounded-sm p-12 border border-[var(--constituency-green)]/10 aspect-square flex items-center justify-center group soft-shadow">
+          <div className="relative bg-[var(--off-white)] rounded-sm p-12 border border-[var(--midnight-green)]/10 aspect-square flex items-center justify-center group soft-shadow">
             <svg className="w-full h-full drop-shadow-sm" fill="none" stroke="#008751" strokeWidth="1" viewBox="0 0 400 400">
               {/* Ward shapes — constituency green strokes on hover (via .map-ward CSS) */}
               <path className="map-ward fill-green-50 transition-all duration-300" d="M140,40 L160,30 L260,70 L280,90 L310,170 L290,190 L210,230 L180,210 L110,160 L90,140 Z"/>
@@ -21,27 +22,30 @@ export default function TerritoryTracker() {
 
               {/* ADC Yellow hotspots */}
               <g className="hotspot" style={{ transform: 'translate(210px, 140px)' }}>
-                <circle className="fill-[var(--adc-yellow)]" cx="0" cy="0" r="5"/>
-                <circle className="stroke-[var(--adc-yellow)] fill-none" cx="0" cy="0" opacity="0.5" r="12" strokeWidth="1"/>
+                <circle className="fill-[var(--sunlight-yellow)]" cx="0" cy="0" r="5"/>
+                <circle className="stroke-[var(--sunlight-yellow)] fill-none" cx="0" cy="0" opacity="0.5" r="12" strokeWidth="1"/>
               </g>
               <g className="hotspot" style={{ transform: 'translate(280px, 260px)', animationDelay: '0.5s' }}>
-                <circle className="fill-[var(--adc-yellow)]" cx="0" cy="0" r="5"/>
-                <circle className="stroke-[var(--adc-yellow)] fill-none" cx="0" cy="0" opacity="0.5" r="12" strokeWidth="1"/>
+                <circle className="fill-[var(--sunlight-yellow)]" cx="0" cy="0" r="5"/>
+                <circle className="stroke-[var(--sunlight-yellow)] fill-none" cx="0" cy="0" opacity="0.5" r="12" strokeWidth="1"/>
               </g>
               <g className="hotspot" style={{ transform: 'translate(120px, 250px)', animationDelay: '1s' }}>
-                <circle className="fill-[var(--adc-yellow)]" cx="0" cy="0" r="5"/>
-                <circle className="stroke-[var(--adc-yellow)] fill-none" cx="0" cy="0" opacity="0.5" r="12" strokeWidth="1"/>
+                <circle className="fill-[var(--sunlight-yellow)]" cx="0" cy="0" r="5"/>
+                <circle className="stroke-[var(--sunlight-yellow)] fill-none" cx="0" cy="0" opacity="0.5" r="12" strokeWidth="1"/>
               </g>
             </svg>
 
             {/* Hover tooltip */}
-            <div className="absolute top-1/4 left-1/2 bg-white/95 backdrop-blur-md p-5 rounded-sm shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-[var(--constituency-green)]/20 w-72 pointer-events-none transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 translate-y-4 group-hover:translate-y-[-50%]">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW8Ne1N5fTgZrjj_oohTSfM6xL899KZov3Ol4TfZyUaHfUpDQApkOKEnG25_PU5kLgjPqP8a48UcSQLA8XVWWC9hUm2lpbfvLRr6fI3EVAN77aaXQDfs7_sWOFuOgOQIeIkfu1zRbVJA3uKu3gJcDBhiDDwFk0ygiODx3aKds3-3IpGwy53czHt_UI6aXQO9Uny42KJ72mRrpABkj52xz8TCZLUJM7CXC9K3rblshBqDpTCLAtC2ONdL9hbfgeIL9kNgPLRQcZte4"
-                alt="Nkpor Secondary School Site"
-                className="w-full h-32 object-cover rounded-sm mb-4 grayscale-[0.5] contrast-125"
-                loading="lazy"
-              />
+            <div className="absolute top-1/4 left-1/2 bg-white/95 backdrop-blur-md p-5 rounded-sm shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-[var(--midnight-green)]/20 w-72 pointer-events-none transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 translate-y-4 group-hover:translate-y-[-50%]">
+              <div className="relative w-full h-32 rounded-sm mb-4 overflow-hidden grayscale-[0.5] contrast-125">
+                <Image
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW8Ne1N5fTgZrjj_oohTSfM6xL899KZov3Ol4TfZyUaHfUpDQApkOKEnG25_PU5kLgjPqP8a48UcSQLA8XVWWC9hUm2lpbfvLRr6fI3EVAN77aaXQDfs7_sWOFuOgOQIeIkfu1zRbVJA3uKu3gJcDBhiDDwFk0ygiODx3aKds3-3IpGwy53czHt_UI6aXQO9Uny42KJ72mRrpABkj52xz8TCZLUJM7CXC9K3rblshBqDpTCLAtC2ONdL9hbfgeIL9kNgPLRQcZte4"
+                  alt="Nkpor Secondary School Site"
+                  fill
+                  sizes="288px"
+                  className="object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
               <div className="flex items-center gap-2 mb-2">
                 <span className="badge-project">In Progress</span>
               </div>
@@ -51,19 +55,19 @@ export default function TerritoryTracker() {
               </p>
               {/* Constituency Green progress bar */}
               <div className="w-full bg-gray-100 h-1.5 mb-2 rounded-full">
-                <div className="bg-[var(--constituency-green)] h-1.5 rounded-full" style={{ width: '65%' }}/>
+                <div className="bg-[var(--midnight-green)] h-1.5 rounded-full" style={{ width: '65%' }}/>
               </div>
               <div className="flex justify-between text-[10px] font-bold text-[var(--obsidian)] uppercase tracking-wider">
                 <span>{t({ en: 'IN PROGRESS', pcm: 'WE DEY DO AM', ig: 'Ọ NAA EME', ha: 'A NA\'I AIKI', yo: 'NI ILỌSIWAJU' })}</span>
-                <span className="text-[var(--constituency-green)]">65%</span>
+                <span className="text-[var(--midnight-green)]">65%</span>
               </div>
             </div>
           </div>
 
           {/* Text / project list */}
           <div className="space-y-8">
-            <p className="text-[var(--constituency-green)] font-bold tracking-[0.3em] uppercase text-[10px] flex items-center gap-4">
-              <span className="w-8 h-[1px] bg-[var(--constituency-green)]"/>
+            <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-[10px] flex items-center gap-4">
+              <span className="w-8 h-[1px] bg-[var(--midnight-green)]"/>
               {t({ en: 'Interactive Map', pcm: 'Look Di Map', ig: 'Maapụ Na-arụ Ọrụ', ha: 'Taswira', yo: 'Maapu' })}
             </p>
             <h2 className="text-5xl lg:text-[5.5rem] font-bold leading-[0.9] tracking-tighter serif-font text-[var(--obsidian)]">
@@ -90,14 +94,14 @@ export default function TerritoryTracker() {
                 <div key={i} className="group cursor-pointer">
                   <div className="flex items-center justify-between py-6 border-b border-gray-100">
                     <div>
-                      <h4 className="font-bold text-xl serif-font text-[var(--obsidian)] group-hover:text-[var(--constituency-green)] transition-colors">
+                      <h4 className="font-bold text-xl serif-font text-[var(--obsidian)] group-hover:text-[var(--midnight-green)] transition-colors">
                         {project.title}
                       </h4>
                       <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-1">
                         {project.count} {t({ en: 'Active Sites', pcm: 'Places Wey Work Dey', ig: 'Ebe Ọrụ Na-aga N\'ihu', ha: 'Wuraren Aiki', yo: 'Awọn Aaye Ṣiṣẹ' })}
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[var(--constituency-green)] group-hover:border-[var(--constituency-green)] group-hover:text-white transition-all">
+                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[var(--midnight-green)] group-hover:border-[var(--midnight-green)] group-hover:text-white transition-all">
                       <span className="material-symbols-outlined text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </div>
                   </div>

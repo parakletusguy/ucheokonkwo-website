@@ -44,7 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`antialiased selection:bg-[var(--integrity-navy)] selection:text-[var(--adc-yellow)] ${outfit.variable} ${cormorantGaramond.variable} ${notoSerif.variable}`}
+        className={`antialiased selection:bg-[var(--midnight-green)] selection:text-[var(--sunlight-yellow)] ${outfit.variable} ${cormorantGaramond.variable} ${notoSerif.variable}`}
       >
         {children}
       </body>

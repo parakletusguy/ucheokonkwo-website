@@ -7,7 +7,7 @@ const agendaItems = [
   {
     num: '01',
     tag: 'Igbo Audio',
-    tagColor: 'bg-[var(--vanguard-red)]/20 text-[var(--vanguard-red)]',
+    tagColor: 'bg-[var(--sunlight-yellow)]/20 text-[var(--sunlight-yellow)]',
     title: 'Healthcare\nAccess',
     desc: 'Equipping general hospitals and establishing primary care centers in every ward.',
     urgent: true,
@@ -23,7 +23,7 @@ const agendaItems = [
   {
     num: '03',
     tag: 'Eng Audio',
-    tagColor: 'bg-[var(--integrity-navy)]/20 text-[var(--integrity-navy)]',
+    tagColor: 'bg-[var(--midnight-green)]/20 text-[var(--midnight-green)]',
     title: 'Trade &\nCommerce',
     desc: 'Revitalizing local markets and securing micro-credit facilities for traders.',
     urgent: false,
@@ -43,14 +43,14 @@ export default function LegislativeAgenda() {
   const { t } = useLanguageStore();
 
   return (
-    <section className="py-32 bg-[var(--integrity-navy)] text-[var(--off-white)] overflow-hidden relative">
+    <section className="py-32 bg-[var(--midnight-green)] text-[var(--off-white)] overflow-hidden relative">
       {/* Texture overlay */}
       <div className="absolute inset-0 texture-overlay opacity-30 pointer-events-none z-0"/>
 
       <div className="max-w-[90rem] mx-auto px-6 lg:px-12 mb-20 flex justify-between items-end relative z-10">
         <div>
-          <p className="text-[var(--adc-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 flex items-center gap-4">
-            <span className="w-8 h-[1px] bg-[var(--adc-yellow)]"/>
+          <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 flex items-center gap-4">
+            <span className="w-8 h-[1px] bg-[var(--sunlight-yellow)]"/>
             {t({ en: 'The Pillars', pcm: 'Di Main Things', ig: 'Ogidi Nke', ha: 'Ginshikan', yo: 'Awọn Ọwọn' })}
           </p>
           <h2 className="text-5xl lg:text-[6rem] font-bold leading-[0.9] tracking-tighter text-white serif-font">
@@ -61,10 +61,10 @@ export default function LegislativeAgenda() {
           </h2>
         </div>
         <div className="hidden md:flex gap-4">
-          <button className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--adc-yellow)] hover:text-[var(--integrity-navy)] hover:border-[var(--adc-yellow)] transition-all">
+          <button className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--sunlight-yellow)] hover:text-[var(--midnight-green)] hover:border-[var(--sunlight-yellow)] transition-all">
             <span className="material-symbols-outlined text-lg">west</span>
           </button>
-          <button className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--adc-yellow)] hover:text-[var(--integrity-navy)] hover:border-[var(--adc-yellow)] transition-all">
+          <button className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--sunlight-yellow)] hover:text-[var(--midnight-green)] hover:border-[var(--sunlight-yellow)] transition-all">
             <span className="material-symbols-outlined text-lg">east</span>
           </button>
         </div>
@@ -76,22 +76,22 @@ export default function LegislativeAgenda() {
             key={item.num}
             className={`marquee-card min-w-[320px] md:min-w-[420px] p-10 rounded-sm flex-shrink-0 relative overflow-hidden group ${
               item.highlighted
-                ? 'bg-[var(--adc-yellow)] text-[var(--obsidian)] border-none'
+                ? 'bg-[var(--sunlight-yellow)] text-[var(--obsidian)] border-none'
                 : 'text-white'
             }`}
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-bl-full -z-0 transition-transform group-hover:scale-125 duration-700"/>
             <div className="relative z-10 flex flex-col h-full justify-between min-h-[350px]">
               <div className="flex justify-between items-start mb-12">
-                <span className={`text-7xl font-serif font-light italic ${item.highlighted ? 'text-[var(--integrity-navy)]/20' : 'text-white/20'}`}>
+                <span className={`text-7xl font-serif font-light italic ${item.highlighted ? 'text-[var(--midnight-green)]/20' : 'text-white/20'}`}>
                   {item.num}
                 </span>
                 <button className={`w-14 h-14 rounded-full flex items-center justify-center transition-all group/btn ${
                   item.highlighted
-                    ? 'bg-[var(--integrity-navy)] shadow-xl hover:bg-[var(--obsidian)]'
+                    ? 'bg-[var(--midnight-green)] shadow-xl hover:bg-[var(--obsidian)]'
                     : 'audio-btn'
                 }`}>
-                  <span className="material-symbols-outlined text-xl text-[var(--adc-yellow)] group-hover/btn:scale-110 transition-transform">play_arrow</span>
+                  <span className="material-symbols-outlined text-xl text-[var(--sunlight-yellow)] group-hover/btn:scale-110 transition-transform">play_arrow</span>
                 </button>
               </div>
               <div>
@@ -107,11 +107,11 @@ export default function LegislativeAgenda() {
                 <h3 className={`text-4xl font-bold mb-4 serif-font leading-tight whitespace-pre-line`}>
                   {item.title}
                 </h3>
-                <p className={`text-sm mb-8 font-light leading-relaxed ${item.highlighted ? 'text-[var(--integrity-navy)]/80' : 'text-gray-400'}`}>
+                <p className={`text-sm mb-8 font-light leading-relaxed ${item.highlighted ? 'text-[var(--midnight-green)]/80' : 'text-gray-400'}`}>
                   {item.desc}
                 </p>
                 <a href="#" className={`inline-flex items-center text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-3 transition-all ${
-                  item.highlighted ? 'text-[var(--integrity-navy)]' : 'text-[var(--adc-yellow)]'
+                  item.highlighted ? 'text-[var(--midnight-green)]' : 'text-[var(--sunlight-yellow)]'
                 }`}>
                   Read Policy <span className="material-symbols-outlined ml-2 text-sm">arrow_right_alt</span>
                 </a>
