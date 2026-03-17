@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
+<<<<<<< HEAD
   const host = request.headers.get('host') || '';
   // Strip port number (e.g. "admin.localhost:3000" → "admin.localhost")
   const hostname = host.split(':')[0];
@@ -36,4 +37,24 @@ export function middleware(request: NextRequest) {
 export const config = {
   // Run on all routes except Next.js internals and static files
   matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
+=======
+  const { pathname } = request.nextUrl;
+
+  // Only protect /admin routes except the login page itself
+  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+    const session = request.cookies.get('admin_session');
+    if (!session || session.value !== 'authenticated') {
+      // Redirect to login, preserving where they wanted to go
+      const loginUrl = new URL('/admin/login', request.url);
+      loginUrl.searchParams.set('from', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ['/admin/:path*'],
+>>>>>>> dc74661fbd1f5bd18ad9b5bfd5c28acbedc8e8c7
 };
