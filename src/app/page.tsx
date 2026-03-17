@@ -1,9 +1,11 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import TerritoryTracker from '@/components/TerritoryTracker';
-import LegislativeAgenda from '@/components/LegislativeAgenda';
-import TownHall from '@/components/TownHall';
-import Footer from '@/components/Footer';
+import dynamic from 'next/dynamic';
+
+const TerritoryTracker = dynamic(() => import('@/components/TerritoryTracker'));
+const LegislativeAgenda = dynamic(() => import('@/components/LegislativeAgenda'));
+const TownHall = dynamic(() => import('@/components/TownHall'));
+const Footer = dynamic(() => import('@/components/Footer'));
 
 export default function Home() {
   return (

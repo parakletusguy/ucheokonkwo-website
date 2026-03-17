@@ -1,0 +1,75 @@
+
+
+PRODUCT REQUIREMENTS DOCUMENT + Sitemap: Hon. Harris Uchenna 
+Okonkwo Official Website 
+ 
+1. Project Vision 
+To create a "Constituency-First" digital platform for Hon. Harris Uchenna Okonkwo that 
+breaks the barrier between the representative and the represented. By utilizing automated 
+multilingual technology, the platform will ensure that every resident of Idemili North and 
+South—regardless of literacy level or language preference—can engage with his legislative 
+progress and campaign promises. 
+2. Target Audience 
+● Primary: Constituents of Idemili North & South (Igbo, English, Pidgin). 
+● Secondary: Political stakeholders, ADC party leadership, and the Nigerian Diaspora. 
+● Tertiary: Media houses and political analysts. 
+3. Key Functional Requirements 
+3.1 Multilingual Content Engine (The Core) 
+● Input: Admin enters content in English. 
+● Processing: Integrated linguistic engine generates versions in Igbo, Yoruba, Hausa, 
+and Nigerian Pidgin. 
+● Output: A frontend toggle that switches the entire content of the post without 
+reloading the page. 
+● Benefit: Allows Hon. Harris to reach the "unreached" in the markets and rural areas 
+who prefer Pidgin or Igbo. 
+3.2 Constituent Engagement Module 
+● Project Tracker: A visual map or list showing projects completed/ongoing in Idemili 
+North and South. 
+● Digital Town Hall: A form for constituents to submit "Constituency Petitions" or 
+feedback directly to the office. 
+3.3 Campaign & Volunteer Management 
+● Volunteer Portal: Simple onboarding for supporters to join the ADC campaign trail. 
+● Resource Center: Downloadable campaign posters and manifestos. 
+3.4 Admin Control Panel (The "Command Center") 
+● Secure Login: Role-based access for the media team. 
+● Review Workflow: Admin must be able to "Confirm" the Igbo or Pidgin translation 
+before it goes live to ensure political correctness. 
+ 
+
+4. Non-Functional Requirements 
+● Mobile Optimization: Must be ultra-lightweight. Many constituents will access this 
+via mid-range Android devices with limited data. 
+● Security: High-level protection against "Defacement" or hacking (crucial for political 
+figures). 
+● Speed: Page load time < 2 seconds on 3G connections. 
+5. Success Metrics 
+● Accessibility: At least 30% of traffic coming from non-English language toggles. 
+● Engagement: Number of volunteer signups via the portal. 
+● Inclusion: Feedback from constituents feeling "heard" in their native tongue. 
+ 
+SITEMAP 
+1. Home Page (The Vision) 
+a. Hero Section (Hon. Harris Image + ADC Branding) 
+b. Quick "Translate Site" Toggle 
+c. Latest News/Blog Slider 
+d. Key Achievements (Idemili North/South) 
+2. About Hon. Harris 
+a. Biography & Track Record 
+b. The ADC Philosophy 
+c. Legislative Agenda 
+3. The Constituency (Idemili North & South) 
+a. Map & Projects by Ward 
+b. Town Hall Meeting Schedule 
+4. Media & Blog (Multilingual Hub) 
+a. Category: Press Releases 
+b. Category: Grassroots Impact 
+c. Category: Legislative Updates 
+5. Get Involved (Conversion) 
+a. Volunteer Signup 
+b. Join ADC 
+c. Contact/Constituency Office Locations 
+6. Admin Dashboard (Private) 
+a. Content Management System (CMS) with Translation Engine 
+b. Constituent Message Inbox 
+c. Volunteer Database 
+ 

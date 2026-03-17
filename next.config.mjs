@@ -3,6 +3,11 @@ const nextConfig = {
   // ── Security ──────────────────────────────────────────────────────────────
   poweredByHeader: false,
 
+  // ── Optimization ──────────────────────────────────────────────────────────
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+
   // ── Compression ───────────────────────────────────────────────────────────
   compress: true,
 
