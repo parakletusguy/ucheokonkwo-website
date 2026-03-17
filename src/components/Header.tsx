@@ -3,19 +3,8 @@
 import React from 'react';
 import { useLanguageStore } from '@/store/useLanguageStore';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import AdcLogo from '@/components/AdcLogo';
 
-/* ── ADC Handshake Emblem (SVG inline) ─────────────────────────────────── */
-const HandshakeEmblem = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ADC Handshake Emblem">
-    <circle cx="16" cy="16" r="15" fill="#002D62" stroke="#FFD700" strokeWidth="1.5"/>
-    <path d="M5 18 C7 14, 11 13, 13 15 L16 17" stroke="#FFD700" strokeWidth="2" strokeLinecap="round" fill="none"/>
-    <path d="M27 18 C25 14, 21 13, 19 15 L16 17" stroke="#FFD700" strokeWidth="2" strokeLinecap="round" fill="none"/>
-    <circle cx="16" cy="17" r="2" fill="#FFD700"/>
-    <rect x="10" y="24" width="4" height="3" rx="1" fill="#008751"/>
-    <rect x="14" y="24" width="4" height="3" rx="1" fill="#FFD700"/>
-    <rect x="18" y="24" width="4" height="3" rx="1" fill="#D20D13"/>
-  </svg>
-);
 
 export default function Header() {
   const { t } = useLanguageStore();
@@ -33,8 +22,8 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
 
           {/* Wordmark + Emblem */}
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <HandshakeEmblem />
+          <a href="/" className="flex items-center gap-3 group cursor-pointer">
+            <AdcLogo size={44} />
             <div className="flex flex-col leading-none">
               <span className="font-bold text-lg tracking-[0.12em] uppercase text-[var(--midnight-green)]">
                 Uche Okonkwo
@@ -43,7 +32,7 @@ export default function Header() {
                 {t({ en: 'Idemili North & South', pcm: 'Idemili North & South', ig: 'Idemili Ọ̀gbà & Ọ̀gbà South', ha: 'Idemili Arewa & Kudu', yo: 'Idemili Àríwá & Gúúsù' })}
               </span>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-10">

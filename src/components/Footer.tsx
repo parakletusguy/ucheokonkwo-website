@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useLanguageStore } from '@/store/useLanguageStore';
+import AdcLogo from '@/components/AdcLogo';
 
 export default function Footer() {
   const { t } = useLanguageStore();
@@ -37,9 +38,7 @@ export default function Footer() {
           {/* Brand block */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-[var(--sunlight-yellow)] flex items-center justify-center rounded-sm">
-                <span className="text-[var(--midnight-green)] font-bold text-lg tracking-tight">ADC</span>
-              </div>
+              <AdcLogo size={52} />
               <div>
                 <span className="font-bold text-xl tracking-[0.15em] uppercase text-white block">Uche Okonkwo</span>
                 <span className="text-[10px] text-[var(--sunlight-yellow)] tracking-[0.2em] uppercase">African Democratic Congress</span>

@@ -1,4 +1,5 @@
 import BottomNav from "@/components/admin/BottomNav";
+import AdcLogo from "@/components/AdcLogo";
 
 export default function AdminLayout({
   children,
@@ -11,9 +12,7 @@ export default function AdminLayout({
       <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="flex justify-between items-center h-14 px-4 max-w-md mx-auto">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[var(--midnight-green)] flex items-center justify-center text-[var(--off-white)] font-serif text-sm tracking-tighter rounded-sm">
-              ADC
-            </div>
+            <AdcLogo size={32} />
             <span className="font-bold text-xs tracking-widest uppercase text-[var(--obsidian)]">Portal</span>
           </div>
           <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200">
