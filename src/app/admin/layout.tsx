@@ -1,3 +1,4 @@
+import Link from "next/link";
 import BottomNav from "@/components/admin/BottomNav";
 import AdcLogo from "@/components/AdcLogo";
 
@@ -11,13 +12,17 @@ export default function AdminLayout({
       {/* Mobile-first top header for admin */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="flex justify-between items-center h-14 px-4 max-w-md mx-auto">
-          <div className="flex items-center gap-2">
+          <Link href="/admin" className="flex items-center gap-2">
             <AdcLogo size={32} />
             <span className="font-bold text-xs tracking-widest uppercase text-[var(--obsidian)]">Portal</span>
-          </div>
-          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200">
-            <span className="material-symbols-outlined text-sm text-gray-600">person</span>
-          </div>
+          </Link>
+          <Link
+            href="/admin/settings"
+            className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200 hover:bg-[var(--midnight-green)] hover:border-[var(--midnight-green)] hover:text-white transition-all group"
+            aria-label="Account & Settings"
+          >
+            <span className="material-symbols-outlined text-sm text-gray-600 group-hover:text-white">person</span>
+          </Link>
         </div>
       </header>
 
