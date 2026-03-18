@@ -26,6 +26,11 @@ const nextConfig = {
         hostname: 'lh3.googleusercontent.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
     ],
     // Reduce quality slightly for much smaller file sizes on mobile
     deviceSizes: [375, 640, 750, 828, 1080],
