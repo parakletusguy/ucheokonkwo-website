@@ -1,29 +1,33 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// Known root domains that support subdomains.
+// Vercel preview URLs, .vercel.app, etc. are NOT in this list and pass through freely.
+const ROOT_DOMAINS = ["ucheokonkwo.com", "localhost"];
+
+function getSubdomain(hostname: string): string | null {
+  for (const root of ROOT_DOMAINS) {
+    if (hostname === root) return null; // exact match — no subdomain
+    if (hostname.endsWith("." + root)) {
+      // e.g. "admin.localhost" → "admin", "admin.ucheokonkwo.com" → "admin"
+      return hostname.slice(0, hostname.length - root.length - 1).split(".")[0];
+    }
+  }
+  return null; // unknown domain (Vercel preview, etc.) — pass through
+}
+
 export function middleware(request: NextRequest) {
   const host = request.headers.get("host") || "";
-  // Strip port number (e.g. "admin.localhost:3000" → "admin.localhost")
-  const hostname = host.split(":")[0];
-  const domainArray = hostname.split(".");
-  const tld = domainArray[domainArray.length - 1];
+  const hostname = host.split(":")[0]; // strip port
+  const subdomain = getSubdomain(hostname);
 
-  // Detect subdomain:
-  // - "admin.localhost" → length 2, tld = "localhost"
-  // - "admin.example.com" → length >= 3
-  const hasSubdomain =
-    (domainArray.length === 2 && tld === "localhost") ||
-    domainArray.length >= 3;
+  // No subdomain or unrecognised host — pass through
+  if (!subdomain) return NextResponse.next();
 
-  if (!hasSubdomain) return NextResponse.next();
-
-  const subdomain = domainArray[0];
   const { pathname } = request.nextUrl;
 
   if (subdomain === "admin") {
-    // Already on an /admin route — let it through
     if (pathname.startsWith("/admin")) return NextResponse.next();
-    // Redirect to the admin portal
     const url = request.nextUrl.clone();
     url.pathname = "/admin";
     return NextResponse.redirect(url);
@@ -34,6 +38,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Run on all routes except Next.js internals and static files
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
