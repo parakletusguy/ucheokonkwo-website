@@ -26,6 +26,8 @@ export function middleware(request: NextRequest) {
 
   const { pathname } = request.nextUrl;
 
+  if (subdomain === "www") return NextResponse.next();
+
   if (subdomain === "admin") {
     if (pathname.startsWith("/admin")) return NextResponse.next();
     const url = request.nextUrl.clone();
