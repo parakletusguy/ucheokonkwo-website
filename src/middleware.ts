@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 // Known root domains that support subdomains.
 // Vercel preview URLs, .vercel.app, etc. are NOT in this list and pass through freely.
-const ROOT_DOMAINS = ["ucheokonkwo.com", "localhost"];
+const ROOT_DOMAINS = ["uchennaokonkwo.com", "ucheokonkwo.com", "localhost"];
 
 function getSubdomain(hostname: string): string | null {
   for (const root of ROOT_DOMAINS) {
