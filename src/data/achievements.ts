@@ -6,6 +6,7 @@ export type Achievement = {
   desc: string;
   urgent: boolean;
   highlighted?: boolean;
+  lga: 'north' | 'south' | 'general';
 };
 
 export const agendaItems: Achievement[] = [
@@ -17,6 +18,7 @@ export const agendaItems: Achievement[] = [
     title: 'Entrepreneurship\nCollege, Ogidi',
     desc: 'Federal College of Entrepreneurship and Skills acquisition (Establishment) Bill.',
     urgent: true,
+    lga: 'north',
   },
   {
     num: '02',
@@ -25,6 +27,7 @@ export const agendaItems: Achievement[] = [
     title: 'Medical Centre\nAwka-Etiti',
     desc: 'Federal Medical Centre Act (Amendment) Bill to upgrade healthcare in Idemili.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '03',
@@ -34,6 +37,7 @@ export const agendaItems: Achievement[] = [
     desc: 'Federal Polytechnic Act (Amendment) Bill for educational expansion in Oba community.',
     urgent: false,
     highlighted: true,
+    lga: 'south',
   },
   {
     num: '04',
@@ -42,6 +46,7 @@ export const agendaItems: Achievement[] = [
     title: 'Agric Research\nNnobi',
     desc: 'Agricultural Research Council of Nigeria Act (Amendment) Bill for Nnobi.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '05',
@@ -50,6 +55,7 @@ export const agendaItems: Achievement[] = [
     title: 'Police College\nUmuoji',
     desc: 'The Nigerian Police Training College (Amendment) Bill to secure our communities.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '06',
@@ -58,6 +64,7 @@ export const agendaItems: Achievement[] = [
     title: 'Mining Security\nPPP',
     desc: 'Mining Intelligence and Security Through Public-Private Partnership (Amendment) Bill.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '07',
@@ -66,6 +73,7 @@ export const agendaItems: Achievement[] = [
     title: 'Sustainable\nMining Infra',
     desc: 'Sustainable Mining Infrastructure Development Bill for resource optimization.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '08',
@@ -74,6 +82,7 @@ export const agendaItems: Achievement[] = [
     title: 'Mining Dev\nBank (NMDB)',
     desc: 'The Nigerian Mining Development Bank NMDB (Establishment) Bill.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '09',
@@ -82,6 +91,7 @@ export const agendaItems: Achievement[] = [
     title: 'Labour Act\nAmendment',
     desc: 'Comprehensive Labour Act (Amendment) Bill to protect Nigerian workers.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '10',
@@ -90,6 +100,7 @@ export const agendaItems: Achievement[] = [
     title: 'Vocational College\nOjoto',
     desc: 'Federal College of Vocational and Skill Acquisition, Ojoto (Establishment) Bill.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '11',
@@ -98,6 +109,7 @@ export const agendaItems: Achievement[] = [
     title: 'Teaching Hospital\nOba',
     desc: 'Federal Teaching Hospital, Oba (Establishment) Bill for advanced healthcare.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '12',
@@ -106,6 +118,7 @@ export const agendaItems: Achievement[] = [
     title: 'Nursing College\nOjoto',
     desc: 'Federal College of Nursing and midwifery, Ojoto (Establishment) Bill.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '13',
@@ -114,6 +127,7 @@ export const agendaItems: Achievement[] = [
     title: 'Training Centre\nOjoto',
     desc: 'Federal Vocational and Entrepreneurship Training Centre, Ojoto (Establishment) Bill.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '14',
@@ -122,6 +136,7 @@ export const agendaItems: Achievement[] = [
     title: 'Women\'s Health\n& Surrogacy',
     desc: 'Women\'s Health and Surrogacy Protection Bill to safeguard maternal rights.',
     urgent: true,
+    lga: 'general',
   },
   {
     num: '15',
@@ -131,6 +146,7 @@ export const agendaItems: Achievement[] = [
     desc: 'Alteration of 1999 Constitution for the Creation of Obosi Local Government Council.',
     urgent: false,
     highlighted: true,
+    lga: 'north',
   },
   // --- MOTIONS ---
   {
@@ -140,6 +156,7 @@ export const agendaItems: Achievement[] = [
     title: 'Enekwasumpu\nBridge',
     desc: 'Motion for the construction of a Pedestrian bridge along Onitsha-Expressway.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '17',
@@ -148,6 +165,7 @@ export const agendaItems: Achievement[] = [
     title: 'Electricity\nMetering Program',
     desc: 'Investigation into funds disbursed to DisCos by CBN under Mass Metering loans.',
     urgent: true,
+    lga: 'general',
   },
   {
     num: '18',
@@ -156,6 +174,7 @@ export const agendaItems: Achievement[] = [
     title: 'Heritage Bank\nCrisis',
     desc: 'Urgent Need to investigate Heritage Bank Crisis and Protect depositors interest.',
     urgent: true,
+    lga: 'general',
   },
   {
     num: '19',
@@ -164,6 +183,7 @@ export const agendaItems: Achievement[] = [
     title: 'NIRSAL Agric\nLending',
     desc: 'Repositioning Nigeria Incentive-Based Risk Sharing System for agricultural lending.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '20',
@@ -172,6 +192,7 @@ export const agendaItems: Achievement[] = [
     title: 'Abatete Security\nIntervention',
     desc: 'Urgent motion to checkmate attacks by unknown gunmen in Idemili North.',
     urgent: true,
+    lga: 'north',
   },
   // --- PETITIONS ---
   {
@@ -181,6 +202,7 @@ export const agendaItems: Achievement[] = [
     title: 'Umuota Obosi\nErosion (NEWMAP)',
     desc: 'Petition on abandoned erosion project at Umuota village by NEWMAP.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '22',
@@ -189,6 +211,7 @@ export const agendaItems: Achievement[] = [
     title: 'Property\nRights Defense',
     desc: 'Petition on Illegal Sale of Bequeathed Property in Idemili South.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '23',
@@ -197,6 +220,7 @@ export const agendaItems: Achievement[] = [
     title: 'Port Consumption\nCosts',
     desc: 'Petition on high cost of importing consumer goods and shipping interventions.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '24',
@@ -205,8 +229,9 @@ export const agendaItems: Achievement[] = [
     title: 'Citizen Justice\nDubai Death',
     desc: 'Petition on the mysterious death and burial of Mr. Ibeh Maxwell Onyeka in Dubai.',
     urgent: true,
+    lga: 'north',
   },
-  // --- INFRASTRUCTURE (01-08) ---
+  // --- INFRASTRUCTURE ---
   {
     num: '25',
     tag: 'Infrastructure',
@@ -214,6 +239,7 @@ export const agendaItems: Achievement[] = [
     title: 'Abatete\nCommunity Road',
     desc: 'Construction and rehabilitation of community road at Abatete (ongoing).',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '26',
@@ -222,6 +248,7 @@ export const agendaItems: Achievement[] = [
     title: 'UPS Amafor\nNkpor',
     desc: 'Construction of a brand new six-classroom block at UPS Amafor Nkpor.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '27',
@@ -230,6 +257,7 @@ export const agendaItems: Achievement[] = [
     title: 'Notre Dame\nAbatete',
     desc: 'Renovation of Block C building at Notre Dame High School, Abatete.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '28',
@@ -238,6 +266,7 @@ export const agendaItems: Achievement[] = [
     title: 'CPS Obosi\nMaintenance',
     desc: 'Scheduled maintenance of the Administrative Block at Community Primary School, Obosi.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '29',
@@ -246,6 +275,7 @@ export const agendaItems: Achievement[] = [
     title: 'CPS Oba\nArena',
     desc: 'Construction of a modern recreation arena for Community Primary School, Oba.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '30',
@@ -254,6 +284,7 @@ export const agendaItems: Achievement[] = [
     title: 'Cassava Plant\nOjoto',
     desc: 'Construction of a state-of-the-art Cassava Processing Plant at Ojoto.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '31',
@@ -262,6 +293,7 @@ export const agendaItems: Achievement[] = [
     title: 'Ojoto-Oba\nLink Road',
     desc: 'Construction of strategic Ojoto Road linking to Oba community.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '32',
@@ -270,8 +302,9 @@ export const agendaItems: Achievement[] = [
     title: 'Nnobi Solar\nBorehole',
     desc: 'Construction of solar powered borehole at Nnobi to provide clean water.',
     urgent: false,
+    lga: 'south',
   },
-  // --- EDUCATION (09-12) ---
+  // --- EDUCATION ---
   {
     num: '33',
     tag: 'Education',
@@ -279,6 +312,7 @@ export const agendaItems: Achievement[] = [
     title: 'JAMB Fees\nSponsorship',
     desc: 'Full payment of registration fees for 250 JAMB candidates.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '34',
@@ -287,6 +321,7 @@ export const agendaItems: Achievement[] = [
     title: 'Anambra Student\nScholarships',
     desc: 'Merit-based scholarships for 500 bright Anambra students.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '35',
@@ -295,6 +330,7 @@ export const agendaItems: Achievement[] = [
     title: 'ICT Centre\nOjoto',
     desc: 'Attraction of a modern ICT centre at Boys Secondary School, Ojoto.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '36',
@@ -303,8 +339,9 @@ export const agendaItems: Achievement[] = [
     title: 'University\nGrants',
     desc: 'Successful attraction of student grants for university undergraduates.',
     urgent: false,
+    lga: 'general',
   },
-  // --- SOCIAL AMENITIES (13-20) ---
+  // --- SOCIAL AMENITIES ---
   {
     num: '37',
     tag: 'Amenities',
@@ -312,6 +349,7 @@ export const agendaItems: Achievement[] = [
     title: 'Solar Street\nLights',
     desc: 'Installation of solar street lights across Ogidi, Nkpor, Obosi, Ojoto, Oba, etc.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '38',
@@ -320,6 +358,7 @@ export const agendaItems: Achievement[] = [
     title: 'Food Supply\nSocial Safety',
     desc: 'Food items delivered to 5,000 households (elderly, widows, and PWDs).',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '39',
@@ -328,6 +367,7 @@ export const agendaItems: Achievement[] = [
     title: 'Nnobi Water\nReticulation',
     desc: 'Reticulation of solar-powered borehole in three villages at Nnobi.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '40',
@@ -336,6 +376,7 @@ export const agendaItems: Achievement[] = [
     title: 'Shuttle Bus\nDonation',
     desc: 'Donation of a Shuttle bus to Idemili South L.G.A workers.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '41',
@@ -344,6 +385,7 @@ export const agendaItems: Achievement[] = [
     title: 'Oba Community\nHall',
     desc: 'Financial and administrative support for rebuilding the community hall at Oba.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '42',
@@ -352,6 +394,7 @@ export const agendaItems: Achievement[] = [
     title: 'Ogidi Transformer\nMaintenance',
     desc: 'Successful repair and maintenance of electricity transformers at Ogidi.',
     urgent: true,
+    lga: 'north',
   },
   {
     num: '43',
@@ -360,6 +403,7 @@ export const agendaItems: Achievement[] = [
     title: 'Amafor Nkpor\nWater',
     desc: 'Reticulation of borehole water at the Health Centre, Amafor Nkpor.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '44',
@@ -368,8 +412,9 @@ export const agendaItems: Achievement[] = [
     title: 'Flood & Erosion\nRelief',
     desc: 'Attraction of relief materials for people affected by floods and gully erosion.',
     urgent: true,
+    lga: 'general',
   },
-  // --- EMPOWERMENT (21-34) ---
+  // --- EMPOWERMENT ---
   {
     num: '45',
     tag: 'Empowerment',
@@ -377,6 +422,7 @@ export const agendaItems: Achievement[] = [
     title: 'Renewable Energy\nTraining',
     desc: 'Training for women and youths on solar, biomass, and wind energy.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '46',
@@ -385,6 +431,7 @@ export const agendaItems: Achievement[] = [
     title: 'Nnokwa Energy\nSkills',
     desc: 'Empowerment of women and youths with strategic energy skills in Nnokwa.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '47',
@@ -393,6 +440,7 @@ export const agendaItems: Achievement[] = [
     title: 'Eziowelle Bio-gas\nTraining',
     desc: 'Bio-gas production training for Eziowelle youths and women.',
     urgent: false,
+    lga: 'north',
   },
   {
     num: '48',
@@ -402,6 +450,7 @@ export const agendaItems: Achievement[] = [
     desc: 'Sewing, grinding, POS machines, and cash grants for local artisans.',
     urgent: false,
     highlighted: true,
+    lga: 'general',
   },
   {
     num: '49',
@@ -410,6 +459,7 @@ export const agendaItems: Achievement[] = [
     title: 'Fertilizer\nDistribution',
     desc: 'Empowerment of farmers with 50kg bags of urea fertilisers.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '50',
@@ -418,6 +468,7 @@ export const agendaItems: Achievement[] = [
     title: 'SME Business\nGrants',
     desc: 'Direct business grants to 100 SME owners for local growth.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '51',
@@ -426,6 +477,7 @@ export const agendaItems: Achievement[] = [
     title: 'Digital Skills\nAcquisition',
     desc: 'Training program for Idemili youths on modern digital skills.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '52',
@@ -434,6 +486,7 @@ export const agendaItems: Achievement[] = [
     title: 'Climate Adaptation\nSensitization',
     desc: 'Climate adaptation, resilience, and peace-building awareness.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '53',
@@ -442,6 +495,7 @@ export const agendaItems: Achievement[] = [
     title: 'Federal Job\nFacilitation',
     desc: 'Facilitation of federal government employment for local professionals.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '54',
@@ -450,6 +504,7 @@ export const agendaItems: Achievement[] = [
     title: 'China Tech\nTraining',
     desc: 'Facilitation of Trade and tech training for Idemili youths in China.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '55',
@@ -458,6 +513,7 @@ export const agendaItems: Achievement[] = [
     title: 'Awka-Etiti Youth\nGrants',
     desc: 'Empowerment of five Awka-Etiti youths with 5 Million Naira.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '56',
@@ -466,6 +522,7 @@ export const agendaItems: Achievement[] = [
     title: 'UAO Football\nLeague 2025',
     desc: 'Youth Empowerment through Sponsorship of UAO Football League.',
     urgent: false,
+    lga: 'general',
   },
   {
     num: '57',
@@ -474,6 +531,7 @@ export const agendaItems: Achievement[] = [
     title: 'Nnokwa Women\nDonation',
     desc: 'Direct donation of one million Naira to Nnokwa women.',
     urgent: false,
+    lga: 'south',
   },
   {
     num: '58',
@@ -482,5 +540,6 @@ export const agendaItems: Achievement[] = [
     title: 'Eziowelle Skill\nCentre',
     desc: 'Donation of Sewing Machines and 500k to Skill acquisition Centre.',
     urgent: false,
+    lga: 'north',
   },
 ];

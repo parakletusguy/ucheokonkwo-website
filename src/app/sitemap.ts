@@ -65,5 +65,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...townPages, ...blogPages, ...policyPages];
+  return [...staticPages, ...townPages, ...blogPages,    ...policyPages,
+    {
+      url: `${BASE_URL}/projects/idemili-north`,
+      lastModified: NOW,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/projects/idemili-south`,
+      lastModified: NOW,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+  ];
 }

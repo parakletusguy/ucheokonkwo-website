@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useLanguageStore } from '@/store/useLanguageStore';
 
 export default function TerritoryTracker() {
@@ -88,10 +89,10 @@ export default function TerritoryTracker() {
 
             <div className="space-y-2 pt-8">
               {[
-                { title: 'Idemili North Projects', count: '12' },
-                { title: 'Idemili South Projects', count: '8' },
+                { title: 'Idemili North Projects', count: '12', href: '/projects/idemili-north' },
+                { title: 'Idemili South Projects', count: '8', href: '/projects/idemili-south' },
               ].map((project, i) => (
-                <div key={i} className="group cursor-pointer">
+                <Link key={i} href={project.href} className="group block cursor-pointer">
                   <div className="flex items-center justify-between py-6 border-b border-gray-100">
                     <div>
                       <h4 className="font-bold text-xl serif-font text-[var(--obsidian)] group-hover:text-[var(--midnight-green)] transition-colors">
@@ -105,7 +106,7 @@ export default function TerritoryTracker() {
                       <span className="material-symbols-outlined text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
