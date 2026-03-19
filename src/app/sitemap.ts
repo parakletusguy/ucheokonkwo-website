@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { agendaItems } from '@/data/achievements';
 
 /**
  * Auto-generated sitemap for www.uchennaokonkwo.com
@@ -56,5 +57,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...townPages, ...blogPages];
+  // Policy detail pages (58 items)
+  const policyPages: MetadataRoute.Sitemap = agendaItems.map((item) => ({
+    url: `${BASE_URL}/policy/${item.num}`,
+    lastModified: NOW,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...townPages, ...blogPages, ...policyPages];
 }

@@ -61,11 +61,38 @@ export default function TownHall() {
                    <div className="relative group">
                      <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">{t({ en: 'Your Location', pcm: 'Your Area', ig: 'Ebe Ị Nọ' })}</label>
                      <select className="form-input w-full bg-transparent text-sm appearance-none cursor-pointer">
-                       <option className="bg-[var(--obsidian)] text-white">Select Ward...</option>
-                       <option className="bg-[var(--obsidian)] text-white">Obosi</option>
-                       <option className="bg-[var(--obsidian)] text-white">Nkpor</option>
-                       <option className="bg-[var(--obsidian)] text-white">Ogidi</option>
-                     </select>
+                        <option className="bg-[var(--obsidian)] text-white" value="">Select Ward...</option>
+                        
+                        <optgroup label="Idemili North" className="bg-[var(--obsidian)] text-[var(--sunlight-yellow)] font-bold italic">
+                          <option className="bg-[var(--obsidian)] text-white">Abatete</option>
+                          <option className="bg-[var(--obsidian)] text-white">Abacha</option>
+                          <option className="bg-[var(--obsidian)] text-white">Eziowelle</option>
+                          <option className="bg-[var(--obsidian)] text-white">Ideani</option>
+                          <option className="bg-[var(--obsidian)] text-white">Nkpor I</option>
+                          <option className="bg-[var(--obsidian)] text-white">Nkpor II</option>
+                          <option className="bg-[var(--obsidian)] text-white">Obosi</option>
+                          <option className="bg-[var(--obsidian)] text-white">Ogidi I</option>
+                          <option className="bg-[var(--obsidian)] text-white">Ogidi II</option>
+                          <option className="bg-[var(--obsidian)] text-white">Oraukwu</option>
+                          <option className="bg-[var(--obsidian)] text-white">Uke</option>
+                          <option className="bg-[var(--obsidian)] text-white">Umuoji</option>
+                        </optgroup>
+
+                        <optgroup label="Idemili South" className="bg-[var(--obsidian)] text-[var(--sunlight-yellow)] font-bold italic">
+                          <option className="bg-[var(--obsidian)] text-white">Akwu-Ukwu</option>
+                          <option className="bg-[var(--obsidian)] text-white">Alor I</option>
+                          <option className="bg-[var(--obsidian)] text-white">Alor II</option>
+                          <option className="bg-[var(--obsidian)] text-white">Awka-Etiti I</option>
+                          <option className="bg-[var(--obsidian)] text-white">Awka-Etiti II</option>
+                          <option className="bg-[var(--obsidian)] text-white">Nnobi I</option>
+                          <option className="bg-[var(--obsidian)] text-white">Nnobi II</option>
+                          <option className="bg-[var(--obsidian)] text-white">Nnobi III</option>
+                          <option className="bg-[var(--obsidian)] text-white">Nnokwa</option>
+                          <option className="bg-[var(--obsidian)] text-white">Oba I</option>
+                          <option className="bg-[var(--obsidian)] text-white">Oba II</option>
+                          <option className="bg-[var(--obsidian)] text-white">Ojoto</option>
+                        </optgroup>
+                      </select>
                      <span className="material-symbols-outlined absolute right-0 bottom-3 text-gray-500 text-sm pointer-events-none group-focus-within:text-[var(--sunlight-yellow)] transition-colors">expand_more</span>
                    </div>
                    <div className="relative group">
