@@ -38,6 +38,13 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Global SEO Robots Tag
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+        ],
+      },
+      {
         // Cache all static assets aggressively (JS, CSS, fonts)
         source: '/_next/static/(.*)',
         headers: [

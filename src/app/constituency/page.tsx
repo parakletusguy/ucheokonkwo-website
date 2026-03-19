@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TerritoryTracker from '@/components/TerritoryTracker';
 import TownHall from '@/components/TownHall';
+import FAQSchema, { DEFAULT_FAQS } from '@/components/FAQSchema';
 import { useLanguageStore } from '@/store/useLanguageStore';
 
 export default function ConstituencyPage() {
@@ -43,11 +44,30 @@ export default function ConstituencyPage() {
         {/* Bring in the interactive Territory Tracker component */}
         <TerritoryTracker />
 
+        {/* Constituency Map Embed for Local SEO */}
+        <div className="max-w-7xl mx-auto px-6 mt-16">
+          <h2 className="text-3xl font-bold font-serif text-[var(--obsidian)] mb-8 text-center">Interactive Constituency Map</h2>
+          <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm h-96 grayscale contrast-125 hover:grayscale-0 transition-all duration-500">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126839.29742691866!2d6.86558531776953!3d6.1558223611116245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1043936c53fa1109%3A0xe5a3ebce58428ea8!2sIdemili%20North%2C%20Anambra!5e0!3m2!1sen!2sng!4v1715093510000!5m2!1sen!2sng"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Constituency Boundaries Map"
+            ></iframe>
+          </div>
+        </div>
+
         {/* Bring in the Town Hall schedule component */}
         <div className="mt-24">
           <TownHall />
         </div>
 
+        {/* SEO FAQ schema block */}
+        <FAQSchema faqs={DEFAULT_FAQS} />
       </main>
       <Footer />
     </>

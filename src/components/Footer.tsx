@@ -104,7 +104,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row justify-between items-center mt-24 pt-8 border-t border-white/10 text-[10px] font-bold text-blue-300 tracking-[0.2em] uppercase">
-          <p>© 2025 HON. HARRIS OKONKWO. {t({ en: 'ALL RIGHTS RESERVED.', pcm: 'NA WE GET AM.', ig: 'IHE NILE BU NKE ANYỊ.', ha: 'HAƘƘIN KOWA NAMU NE.', yo: 'GBOGBO ENI NI AWA.' })}</p>
+          <p>© {new Date().getFullYear()} HON. HARRIS OKONKWO. {t({ en: 'ALL RIGHTS RESERVED.', pcm: 'NA WE GET AM.', ig: 'IHE NILE BU NKE ANYỊ.', ha: 'HAƘƘIN KOWA NAMU NE.', yo: 'GBOGBO ENI NI AWA.' })}</p>
           <div className="flex gap-8 mt-6 md:mt-0">
             <a href="#" className="hover:text-[var(--sunlight-yellow)] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[var(--sunlight-yellow)] transition-colors">Terms of Service</a>

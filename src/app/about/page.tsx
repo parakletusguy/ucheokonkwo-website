@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LegislativeAgenda from '@/components/LegislativeAgenda';
+import FAQSchema, { DEFAULT_FAQS } from '@/components/FAQSchema';
 import { useLanguageStore } from '@/store/useLanguageStore';
 import Image from 'next/image';
 
@@ -58,35 +59,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ADC Philosophy Section */}
-        <section className="bg-[var(--midnight-green)] text-[var(--off-white)] py-24 px-6 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-sm font-bold tracking-[0.3em] uppercase mb-4 text-[var(--sunlight-yellow)]">
-              {t({ en: "The ADC Philosophy", pcm: "Wetin ADC Stand For", ig: "Uche ADC", ha: "Tunanin ADC", yo: "Ilana ADC" })}
-            </h2>
-            <h3 className="text-4xl lg:text-5xl font-serif mb-10 leading-tight">
-              {t({
-                en: "A Promise of Trust, Progress, and Inclusivity",
-                pcm: "Promise to do better, move forward, and carry everybody along",
-                ig: "Nkwa nke Ntụkwasị Obi, Ọganihu, na Nsonye",
-                ha: "Alkawarin Gaskiya, Cigaba, da Sakasa kowa Ciki",
-                yo: "Ileri Igbẹkẹle, Ilọsiwaju, ati Ifaramọ"
-              })}
-            </h3>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto font-light leading-relaxed">
-              {t({
-                en: "The African Democratic Congress (ADC) is built on the foundation of character and integrity. We believe that true political power rests with the people, and qualitative representation is a right, not a privilege.",
-                pcm: "ADC stand on top good character. We believe say na people get power, and proper representation na everybody right.",
-                ig: "Eguzobere African Democratic Congress (ADC) na ntọala ezigbo agwa. Anyị kwenyere na ike ndọrọ ndọrọ ọchịchị dị n'aka ndị ọchịchị.",
-                ha: "An gina jam'iyyar ADC ne kan kyakkyawar dabi'a da mutunci. Mun yi imani cewa ikon siyasa gaskiya yana hannun mutane.",
-                yo: "Ẹgbẹ oṣelu African Democratic Congress (ADC) da lori iwa ati otitọ. A gbagbọ pe agbara oṣelu ti tootọ wa lọwọ awọn eeyan."
-              })}
-            </p>
-          </div>
-        </section>
+
 
         {/* Reusing existing component to flesh out the About page structure per sitemap */}
         <LegislativeAgenda />
+
+        {/* Global SEO FAQ block */}
+        <FAQSchema faqs={DEFAULT_FAQS} />
       </main>
       <Footer />
     </>
