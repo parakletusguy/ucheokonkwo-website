@@ -72,7 +72,7 @@ async function request<T>(
   // ── Error responses ───────────────────────────────────────────────────────
   if (!res.ok) {
     const errData = await res.json().catch(() => ({ message: res.statusText }));
-    // eslint-disable-next-line @typescript-eslint/no-throw-literal
+    // eslint-disable-next-line @typescript-eslint/only-throw-error
     throw { response: { status: res.status, data: errData } };
   }
 
