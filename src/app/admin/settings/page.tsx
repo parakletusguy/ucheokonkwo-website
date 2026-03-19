@@ -3,23 +3,39 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import AdcLogo from '@/components/AdcLogo';
+import { apiClient } from '@/lib/apiClient';
+import { tokenStore } from '@/lib/tokenStore';
+import { useAuthStore } from '@/store/useAuthStore';
 
 export default function AdminSettingsPage() {
   const router = useRouter();
+  const { user, clearAuth } = useAuthStore();
   const [loggingOut, setLoggingOut] = useState(false);
 
   const handleLogout = async () => {
     setLoggingOut(true);
-    await fetch('/api/admin/logout', { method: 'POST' });
-    router.replace('/admin/login');
+    try {
+      await apiClient.post('/auth/logout');
+    } finally {
+      tokenStore.clear();
+      clearAuth();
+      router.replace('/admin/login');
+    }
   };
+
+  const displayName = user
+    ? `${user.firstName} ${user.lastName}`
+    : 'Administrator';
+  const displayRole = user?.roles?.join(', ') ?? 'Editor & Publisher';
+  const displayEmail = user?.email ?? '';
 
   const settingGroups = [
     {
       label: 'Portal',
       items: [
-        { icon: 'person', label: 'Administrator', value: 'Hon. Harris Okonkwo', action: null },
-        { icon: 'badge', label: 'Role', value: 'Editor & Publisher', action: null },
+        { icon: 'person', label: 'Name', value: displayName, action: null },
+        { icon: 'alternate_email', label: 'Email', value: displayEmail, action: null },
+        { icon: 'badge', label: 'Role', value: displayRole, action: null },
         { icon: 'language', label: 'Site Languages', value: 'EN, PCM, IG, HA, YO', action: null },
       ],
     },
@@ -48,7 +64,7 @@ export default function AdminSettingsPage() {
       </div>
 
       <div className="px-4 pt-6 max-w-2xl mx-auto space-y-6">
-        
+
         {/* ADC Identity Card */}
         <div className="bg-[var(--midnight-green)] rounded-2xl p-5 flex items-center gap-4 shadow-sm">
           <AdcLogo size={52} />
@@ -100,7 +116,9 @@ export default function AdminSettingsPage() {
               disabled={loggingOut}
               className="w-full flex items-center gap-4 px-5 py-4 text-left hover:bg-red-50 transition-colors group"
             >
-              <span className="material-symbols-outlined text-xl text-red-400 group-hover:text-red-500">{loggingOut ? 'hourglass_top' : 'logout'}</span>
+              <span className="material-symbols-outlined text-xl text-red-400 group-hover:text-red-500">
+                {loggingOut ? 'hourglass_top' : 'logout'}
+              </span>
               <div className="flex-1">
                 <p className="text-sm font-bold text-red-500">{loggingOut ? 'Logging out…' : 'Log Out'}</p>
                 <p className="text-xs text-gray-400">End your admin session</p>

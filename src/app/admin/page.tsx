@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useAdminStore } from '@/store/useAdminStore';
+import { apiClient } from '@/lib/apiClient';
+import type { Post } from '@/lib/types';
 
 interface Stats {
   volunteers: number;
@@ -11,33 +12,44 @@ interface Stats {
 }
 
 export default function AdminDashboard() {
-  const { articles, deleteArticle } = useAdminStore();
-  const [mounted, setMounted] = useState(false);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
   const [stats, setStats] = useState<Stats>({ volunteers: 0, inbox: 0, unreadInbox: 0 });
   const [loadingStats, setLoadingStats] = useState(true);
 
   useEffect(() => {
-    setMounted(true);
-    // Fetch live stats from backend
+    // Fetch posts from backend
+    apiClient.get<Post[]>('/posts')
+      .then(({ data }) => setPosts(data))
+      .catch(() => setPosts([]))
+      .finally(() => setLoadingPosts(false));
+
+    // Fetch constituent stats from backend
     Promise.all([
-      fetch('/api/volunteers').then(r => r.json()).catch(() => ({ volunteers: [] })),
-      fetch('/api/messages').then(r => r.json()).catch(() => ({ messages: [] })),
-    ]).then(([volData, msgData]) => {
-      const vols = volData.volunteers || [];
-      const msgs = msgData.messages || [];
+      apiClient.get<unknown[]>('/volunteers').then(({ data }) => data).catch(() => []),
+      apiClient.get<unknown[]>('/petitions').then(({ data }) => data).catch(() => []),
+    ]).then(([vols, petitions]) => {
       setStats({
-        volunteers: vols.length,
-        inbox: msgs.length,
-        unreadInbox: msgs.filter((m: { read: boolean }) => !m.read).length,
+        volunteers: Array.isArray(vols) ? vols.length : 0,
+        inbox: Array.isArray(petitions) ? petitions.length : 0,
+        unreadInbox: 0,
       });
       setLoadingStats(false);
     });
   }, []);
 
-  if (!mounted) return null;
+  const handleDelete = async (id: string) => {
+    if (!confirm('Delete this post?')) return;
+    try {
+      await apiClient.delete(`/posts/${id}`);
+      setPosts((prev) => prev.filter((p) => p.id !== id));
+    } catch {
+      alert('Failed to delete post.');
+    }
+  };
 
-  const drafts = articles.filter(a => a.status === 'draft');
-  const published = articles.filter(a => a.status === 'published');
+  const drafts = posts.filter(p => p.status === 'DRAFT');
+  const published = posts.filter(p => p.status === 'PUBLISHED');
 
   const statCards = [
     {
@@ -60,7 +72,7 @@ export default function AdminDashboard() {
     {
       icon: 'article',
       label: 'Published',
-      value: published.length,
+      value: loadingPosts ? '…' : published.length,
       href: null,
       color: 'text-[var(--midnight-green)]',
       bg: 'bg-[var(--midnight-green)]/8',
@@ -68,7 +80,7 @@ export default function AdminDashboard() {
     {
       icon: 'draft',
       label: 'Drafts',
-      value: drafts.length,
+      value: loadingPosts ? '…' : drafts.length,
       href: null,
       color: 'text-amber-600',
       bg: 'bg-amber-50',
@@ -83,7 +95,7 @@ export default function AdminDashboard() {
         <div>
           <h1 className="text-2xl font-bold font-serif text-[var(--obsidian)]">My Desk</h1>
           <p className="text-xs text-gray-400 font-medium mt-0.5 uppercase tracking-widest">
-            {articles.length} Total Posts
+            {loadingPosts ? '…' : `${posts.length} Total Posts`}
           </p>
         </div>
         <Link
@@ -125,24 +137,28 @@ export default function AdminDashboard() {
       {/* Drafts section */}
       <div className="space-y-4">
         <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 border-b border-gray-200 pb-2">
-          Drafts ({drafts.length})
+          Drafts ({loadingPosts ? '…' : drafts.length})
         </h2>
-        {drafts.length === 0 ? (
+        {loadingPosts ? (
+          <div className="text-center py-8 text-gray-300">
+            <span className="w-6 h-6 border-2 border-gray-200 border-t-[var(--midnight-green)] rounded-full animate-spin block mx-auto mb-2" />
+          </div>
+        ) : drafts.length === 0 ? (
           <div className="text-center py-8 text-gray-300">
             <span className="material-symbols-outlined text-3xl block mb-2">edit_note</span>
             <p className="text-sm">No drafts yet. Tap + to start writing.</p>
           </div>
         ) : (
           <div className="grid gap-3">
-            {drafts.map(article => (
-              <div key={article.id} className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-2 relative group">
-                <Link href={`/admin/editor?id=${article.id}`} className="absolute inset-0 z-10" />
+            {drafts.map(post => (
+              <div key={post.id} className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-2 relative group">
+                <Link href={`/admin/editor?id=${post.id}`} className="absolute inset-0 z-10" />
                 <div className="flex justify-between items-start z-0">
                   <h3 className="font-bold text-sm text-[var(--obsidian)] line-clamp-2 leading-tight pr-8">
-                    {article.title || 'Untitled Post'}
+                    {post.title || 'Untitled Post'}
                   </h3>
                   <button
-                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); deleteArticle(article.id); }}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDelete(post.id); }}
                     className="z-20 text-gray-300 hover:text-red-500 transition-colors p-1 -m-1"
                   >
                     <span className="material-symbols-outlined text-[16px]">delete</span>
@@ -150,7 +166,8 @@ export default function AdminDashboard() {
                 </div>
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-2 z-0">
                   <span className="px-2 py-1 bg-amber-50 text-amber-700 rounded-sm">Draft</span>
-                  <span>{new Date(article.createdAt).toLocaleDateString()}</span>
+                  <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+                  <span className="ml-auto text-gray-300">{post.author.firstName} {post.author.lastName}</span>
                 </div>
               </div>
             ))}
@@ -161,24 +178,28 @@ export default function AdminDashboard() {
       {/* Published section */}
       <div className="space-y-4">
         <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 border-b border-gray-200 pb-2">
-          Published ({published.length})
+          Published ({loadingPosts ? '…' : published.length})
         </h2>
-        {published.length === 0 ? (
+        {loadingPosts ? (
+          <div className="text-center py-8 text-gray-300">
+            <span className="w-6 h-6 border-2 border-gray-200 border-t-[var(--midnight-green)] rounded-full animate-spin block mx-auto mb-2" />
+          </div>
+        ) : published.length === 0 ? (
           <div className="text-center py-8 text-gray-300">
             <span className="material-symbols-outlined text-3xl block mb-2">public</span>
             <p className="text-sm">No published articles yet.</p>
           </div>
         ) : (
           <div className="grid gap-3">
-            {published.map(article => (
-              <div key={article.id} className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-2 relative">
-                <Link href={`/admin/editor?id=${article.id}`} className="absolute inset-0 z-10" />
+            {published.map(post => (
+              <div key={post.id} className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-2 relative">
+                <Link href={`/admin/editor?id=${post.id}`} className="absolute inset-0 z-10" />
                 <div className="flex justify-between items-start z-0">
                   <h3 className="font-bold text-sm text-[var(--obsidian)] line-clamp-2 leading-tight pr-8">
-                    {article.title}
+                    {post.title}
                   </h3>
                   <button
-                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); deleteArticle(article.id); }}
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleDelete(post.id); }}
                     className="z-20 text-gray-300 hover:text-red-500 transition-colors p-1 -m-1"
                   >
                     <span className="material-symbols-outlined text-[16px]">delete</span>
@@ -186,11 +207,13 @@ export default function AdminDashboard() {
                 </div>
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-2 z-0">
                   <span className="px-2 py-1 bg-green-50 text-[var(--midnight-green)] rounded-sm">Published</span>
-                  <span>{new Date(article.createdAt).toLocaleDateString()}</span>
-                  <span className="ml-auto flex items-center gap-1 text-[var(--midnight-green)]">
-                    <span className="material-symbols-outlined text-[12px]">translate</span>
-                    5 Langs
-                  </span>
+                  <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+                  {post.multilingualContent && post.multilingualContent.length > 0 && (
+                    <span className="ml-auto flex items-center gap-1 text-[var(--midnight-green)]">
+                      <span className="material-symbols-outlined text-[12px]">translate</span>
+                      {post.multilingualContent.length} Langs
+                    </span>
+                  )}
                 </div>
               </div>
             ))}

@@ -1,10 +1,48 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguageStore } from '@/store/useLanguageStore';
+
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
 
 export default function TownHall() {
   const { t } = useLanguageStore();
+
+  const [name, setName]       = useState('');
+  const [ward, setWard]       = useState('');
+  const [topic, setTopic]     = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError]     = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !topic || !message) {
+      setError('Please fill in your name, topic, and message.');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch(`${API_BASE}/petitions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ constituentName: name, topic, message }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        const msg = Array.isArray(data.message) ? data.message.join(', ') : (data.message ?? 'Submission failed.');
+        throw new Error(msg);
+      }
+      setSuccess(true);
+      setName(''); setWard(''); setTopic(''); setMessage('');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not reach server.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="py-32 bg-[var(--off-white)] relative z-20">
@@ -13,7 +51,7 @@ export default function TownHall() {
           <div className="bg-[var(--obsidian)] rounded-[1.2rem] p-10 lg:p-20 text-white grid lg:grid-cols-2 gap-20 items-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.02\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] z-0 pointer-events-none"></div>
             <div className="absolute -top-40 -left-40 w-96 h-96 bg-[var(--midnight-green)] rounded-full blur-[100px] opacity-40 z-0"></div>
-            
+
             <div className="relative z-10">
               <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 flex items-center gap-4">
                 <span className="w-8 h-[1px] bg-[var(--sunlight-yellow)]"></span>
@@ -24,13 +62,13 @@ export default function TownHall() {
                 <span className="italic font-light text-[var(--sunlight-yellow)]">{t({ en: 'Is Open.', pcm: 'Don Open.', ig: 'Emegheela.', ha: 'A Bude Yake.', yo: 'Ti Ṣii.' })}</span>
               </h2>
               <p className="text-gray-400 text-lg mb-12 leading-relaxed font-light max-w-md">
-                {t({ 
+                {t({
                   en: 'Skip the bureaucracy. Send a direct message to the constituency office. We review and tag every submission for action.',
                   pcm: 'Write us directly, no protocol. We dey check everything wey concern you.',
                   ig: 'Ziga ozi n\'ọfịs obodo ozugbo. Anyị na-elegide anya n\'arịrịọ niile.'
                 })}
               </p>
-              
+
               <div className="flex items-center gap-6 text-sm font-medium text-gray-300">
                 <div className="flex -space-x-4">
                    <div className="w-12 h-12 rounded-full bg-gray-800 border-2 border-[var(--obsidian)] flex items-center justify-center shadow-lg">
@@ -56,13 +94,49 @@ export default function TownHall() {
                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-gray-300">Direct Line Active</span>
                </div>
 
-               <form className="space-y-8">
+               {success ? (
+                 <div className="flex flex-col items-center justify-center py-12 gap-4 text-center">
+                   <span className="material-symbols-outlined text-[var(--sunlight-yellow)] text-5xl">mark_email_read</span>
+                   <p className="font-bold text-white text-lg serif-font">
+                     {t({ en: 'Petition received!', pcm: 'We don receive am!', ig: 'Anyị natara nkwupụta gị!' })}
+                   </p>
+                   <p className="text-gray-400 text-sm">
+                     {t({ en: 'We\'ll review and respond within 48 hours.', pcm: 'We go check am within 48 hours.', ig: 'Anyị ga-enyocha ma zaa n\'ime awa 48.' })}
+                   </p>
+                   <button
+                     onClick={() => setSuccess(false)}
+                     className="mt-4 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors"
+                   >
+                     {t({ en: 'Send another', pcm: 'Send another one', ig: 'Zipu ọzọ' })}
+                   </button>
+                 </div>
+               ) : (
+               <form className="space-y-6" onSubmit={handleSubmit}>
+                 {/* Name */}
+                 <div className="relative group">
+                   <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">
+                     {t({ en: 'Your Name', pcm: 'Your Name', ig: 'Aha Gị' })}
+                   </label>
+                   <input
+                     type="text"
+                     required
+                     value={name}
+                     onChange={(e) => setName(e.target.value)}
+                     placeholder="Full name..."
+                     className="form-input w-full bg-transparent text-sm placeholder-gray-600"
+                   />
+                 </div>
+
                  <div className="grid grid-cols-2 gap-8">
                    <div className="relative group">
                      <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">{t({ en: 'Your Location', pcm: 'Your Area', ig: 'Ebe Ị Nọ' })}</label>
-                     <select className="form-input w-full bg-transparent text-sm appearance-none cursor-pointer">
+                     <select
+                       value={ward}
+                       onChange={(e) => setWard(e.target.value)}
+                       className="form-input w-full bg-transparent text-sm appearance-none cursor-pointer"
+                     >
                         <option className="bg-[var(--obsidian)] text-white" value="">Select Ward...</option>
-                        
+
                         <optgroup label="Idemili North" className="bg-[var(--obsidian)] text-[var(--sunlight-yellow)] font-bold italic">
                           <option className="bg-[var(--obsidian)] text-white">Abatete</option>
                           <option className="bg-[var(--obsidian)] text-white">Abacha</option>
@@ -97,8 +171,13 @@ export default function TownHall() {
                    </div>
                    <div className="relative group">
                      <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">{t({ en: 'Topic', pcm: 'Wetin Concern You', ig: 'Ihe Obu' })}</label>
-                     <select className="form-input w-full bg-transparent text-sm appearance-none cursor-pointer">
-                       <option className="bg-[var(--obsidian)] text-white">Select Topic...</option>
+                     <select
+                       required
+                       value={topic}
+                       onChange={(e) => setTopic(e.target.value)}
+                       className="form-input w-full bg-transparent text-sm appearance-none cursor-pointer"
+                     >
+                       <option className="bg-[var(--obsidian)] text-white" value="">Select Topic...</option>
                        <option className="bg-[var(--obsidian)] text-white">Project Suggestion</option>
                        <option className="bg-[var(--obsidian)] text-white">Urgent Infrastructure</option>
                        <option className="bg-[var(--obsidian)] text-white">General Inquiry</option>
@@ -109,15 +188,37 @@ export default function TownHall() {
 
                  <div className="relative group mt-8">
                    <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">{t({ en: 'Message', pcm: 'Message', ig: 'Ozi' })}</label>
-                   <textarea className="form-input w-full resize-none text-sm placeholder-gray-600" placeholder="Type your message here..." rows={3}></textarea>
+                   <textarea
+                     required
+                     value={message}
+                     onChange={(e) => setMessage(e.target.value)}
+                     className="form-input w-full resize-none text-sm placeholder-gray-600"
+                     placeholder="Type your message here..."
+                     rows={3}
+                   />
                  </div>
 
+                 {error && (
+                   <p className="text-xs text-red-400 flex items-center gap-1">
+                     <span className="material-symbols-outlined text-sm">error</span> {error}
+                   </p>
+                 )}
+
                  <div className="flex justify-end pt-6">
-                   <button className="bg-gradient-to-r from-[var(--sunlight-yellow)] to-[#e5bc5c] text-[var(--obsidian)] px-10 py-4 rounded-sm text-xs font-bold uppercase tracking-[0.2em] hover:shadow-[0_0_20px_rgba(255,209,102,0.4)] transition-all flex items-center gap-3 transform hover:-translate-y-1" type="button">
+                   <button
+                     type="submit"
+                     disabled={loading}
+                     className="bg-gradient-to-r from-[var(--sunlight-yellow)] to-[#e5bc5c] text-[var(--obsidian)] px-10 py-4 rounded-sm text-xs font-bold uppercase tracking-[0.2em] hover:shadow-[0_0_20px_rgba(255,209,102,0.4)] transition-all flex items-center gap-3 transform hover:-translate-y-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
+                   >
+                     {loading
+                       ? <span className="w-4 h-4 border-2 border-[var(--obsidian)] border-t-transparent rounded-full animate-spin"/>
+                       : null
+                     }
                      {t({ en: 'Send Message', pcm: 'Send Am', ig: 'Zipụ Ozi' })} <span className="material-symbols-outlined text-sm">send</span>
                    </button>
                  </div>
                </form>
+               )}
             </div>
           </div>
         </div>
