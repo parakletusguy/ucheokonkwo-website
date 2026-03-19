@@ -40,26 +40,26 @@ export default function TerritoryTracker() {
               <div className="relative w-full h-32 rounded-sm mb-4 overflow-hidden grayscale-[0.5] contrast-125">
                 <Image
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW8Ne1N5fTgZrjj_oohTSfM6xL899KZov3Ol4TfZyUaHfUpDQApkOKEnG25_PU5kLgjPqP8a48UcSQLA8XVWWC9hUm2lpbfvLRr6fI3EVAN77aaXQDfs7_sWOFuOgOQIeIkfu1zRbVJA3uKu3gJcDBhiDDwFk0ygiODx3aKds3-3IpGwy53czHt_UI6aXQO9Uny42KJ72mRrpABkj52xz8TCZLUJM7CXC9K3rblshBqDpTCLAtC2ONdL9hbfgeIL9kNgPLRQcZte4"
-                  alt="Nkpor Secondary School Site"
+                  alt="Abatete Community Road"
                   fill
                   sizes="288px"
                   className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="badge-project">In Progress</span>
+                <span className="badge-project">Ongoing</span>
               </div>
-              <h4 className="font-bold text-base mb-1 serif-font text-[var(--obsidian)]">Nkpor Secondary School</h4>
+              <h4 className="font-bold text-base mb-1 serif-font text-[var(--obsidian)]">Abatete Community Road</h4>
               <p className="text-[10px] font-mono uppercase tracking-widest text-gray-400 mb-4">
-                {t({ en: 'Education Infrastructure', pcm: 'School Building', ig: 'Ihe nrụbawanye Agụmakwụkwọ', ha: 'Kayan Ilimi', yo: 'Amayederun Eko' })}
+                {t({ en: 'Road Infrastructure', pcm: 'Road Work', ig: 'Mmepụta Okporo Ụzọ', ha: 'Hanyar Motoci', yo: 'Amayederun Popona' })}
               </p>
               {/* Constituency Green progress bar */}
               <div className="w-full bg-gray-100 h-1.5 mb-2 rounded-full">
-                <div className="bg-[var(--midnight-green)] h-1.5 rounded-full" style={{ width: '65%' }}/>
+                <div className="bg-[var(--midnight-green)] h-1.5 rounded-full" style={{ width: '85%' }}/>
               </div>
               <div className="flex justify-between text-[10px] font-bold text-[var(--obsidian)] uppercase tracking-wider">
-                <span>{t({ en: 'IN PROGRESS', pcm: 'WE DEY DO AM', ig: 'Ọ NAA EME', ha: 'A NA\'I AIKI', yo: 'NI ILỌSIWAJU' })}</span>
-                <span className="text-[var(--midnight-green)]">65%</span>
+                <span>{t({ en: 'REHABILITATION', pcm: 'WE DEY REPAIR AM', ig: 'Nrụzigharị', ha: 'Gyara', yo: 'Atunṣe' })}</span>
+                <span className="text-[var(--midnight-green)]">85%</span>
               </div>
             </div>
           </div>
