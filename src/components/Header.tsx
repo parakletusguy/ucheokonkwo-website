@@ -58,6 +58,7 @@ export default function Header() {
               textDecoration: "none",
             }}
           >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://res.cloudinary.com/djh9qeaf6/image/upload/v1773862953/WhatsApp_Image_2026-03-17_at_12.52.14_PM_ahquhm.jpg"
               alt="Logo"
