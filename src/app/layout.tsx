@@ -3,27 +3,27 @@ import { Cormorant_Garamond, Outfit, Noto_Serif } from "next/font/google";
 import "./globals.css";
 import PersonSchema from "../components/PersonSchema";
 
-const outfit = Outfit({ 
+const outfit = Outfit({
   subsets: ["latin"],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-outfit',
-  display: 'swap',
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-outfit",
+  display: "swap",
 });
 
-const cormorantGaramond = Cormorant_Garamond({ 
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ['400', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-  display: 'swap',
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
 });
 
 /* Noto Serif supports Igbo/Yoruba tonal marks (combining diacritics) */
 const notoSerif = Noto_Serif({
   subsets: ["latin"],
-  weight: ['400', '700'],
-  variable: '--font-noto',
-  display: 'swap',
+  weight: ["400", "700"],
+  variable: "--font-noto",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

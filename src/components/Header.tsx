@@ -1,64 +1,335 @@
 "use client";
 
-import React from 'react';
-import { useLanguageStore } from '@/store/useLanguageStore';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import AdcLogo from '@/components/AdcLogo';
+import React, { useState, useEffect } from "react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
+const NAV_ITEMS = [
+  { en: "Home", href: "/", icon: "home" },
+  { en: "About Hon. Harris", href: "/about", icon: "person" },
+  { en: "The Constituency", href: "/constituency", icon: "location_on" },
+  { en: "Media & Blog", href: "/media", icon: "newspaper" },
+  { en: "Admin Portal", href: "/admin", icon: "lock" },
+];
 
 export default function Header() {
-  const { t } = useLanguageStore();
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
-    <header className="fixed w-full top-0 bg-white/90 backdrop-blur-2xl z-50 border-b border-[var(--midnight-green)]/10 shadow-sm">
-      {/* ADC tricolor accent stripe */}
-      <div className="h-1 w-full flex">
-        <div className="flex-1 bg-[var(--midnight-green)]"/>
-        <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
-        <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
-      </div>
+    <>
+      {/* ─── Top bar ─────────────────────────────── */}
+      <header
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          background: "#fff",
+          boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        }}
+      >
+        {/* Tricolor stripe */}
+        <div style={{ display: "flex", height: 6 }}>
+          <div style={{ flex: 1, background: "var(--midnight-green)" }} />
+          <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
+          <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
+        </div>
 
-      <div className="max-w-[90rem] mx-auto px-6 lg:px-12">
-        <div className="flex justify-between items-center h-20">
-
-          {/* Wordmark + Emblem */}
-          <a href="/" className="flex items-center gap-3 group cursor-pointer">
-            <AdcLogo size={44} />
-            <div className="flex flex-col leading-none">
-              <span className="font-bold text-lg tracking-[0.12em] uppercase text-[var(--midnight-green)]">
+        <div
+          style={{
+            maxWidth: "90rem",
+            margin: "0 auto",
+            padding: "0 1.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: 80,
+          }}
+        >
+          {/* Logo */}
+          <a
+            href="/"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              textDecoration: "none",
+            }}
+          >
+            <img
+              src="https://res.cloudinary.com/djh9qeaf6/image/upload/v1773862953/WhatsApp_Image_2026-03-17_at_12.52.14_PM_ahquhm.jpg"
+              alt="Logo"
+              width={46}
+              height={46}
+            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                lineHeight: 1.2,
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: 800,
+                  fontSize: 18,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "var(--midnight-green)",
+                }}
+              >
                 Uche Okonkwo
               </span>
-              <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[var(--midnight-green)]">
-                {t({ en: 'Idemili North & South', pcm: 'Idemili North & South', ig: 'Idemili Ọ̀gbà & Ọ̀gbà South', ha: 'Idemili Arewa & Kudu', yo: 'Idemili Àríwá & Gúúsù' })}
+              <span
+                style={{
+                  fontSize: 9,
+                  fontWeight: 600,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "var(--midnight-green)",
+                  opacity: 0.7,
+                }}
+              >
+                Idemili North &amp; South
               </span>
             </div>
           </a>
 
-          {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-10">
-          {[
-            { label: t({ en: 'Home', pcm: 'Main Page', ig: 'Isi Ibe', ha: 'Shafin Farko', yo: 'Oju-ile' }), href: '/' },
-            { label: t({ en: 'About Hon. Harris', pcm: 'Who Be Our Guy', ig: 'Banyere Onye Nsọpụrụ', ha: 'Game da Hon. Harris', yo: 'Nipa Hon. Harris' }), href: '/about' },
-            { label: t({ en: 'The Constituency', pcm: 'Our Area', ig: 'Mpaghara Anyị', ha: 'Mazabar Mu', yo: 'Agbegbe Wa' }), href: '/constituency' },
-            { label: t({ en: 'Media & Blog', pcm: 'Tori & News', ig: 'Mgbasa Ozi na Akụkọ', ha: 'Labarai da Shafin yanar gizo', yo: 'Iroyin & Buloogi' }), href: '/media' },
-            { label: t({ en: 'Admin Portal', pcm: 'Admin Block', ig: 'Nchịkwa', ha: 'Gudanarwa', yo: 'Ibudo Abojuto' }), href: '/admin' }
-          ].map((item, i) => (
-            <a key={i} href={item.href} className="text-xs font-bold tracking-[0.15em] uppercase text-gray-500 hover:text-[var(--midnight-green)] transition-colors">
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-          {/* Right side: language switcher + CTA */}
-          <div className="flex items-center gap-4">
-            <LanguageSwitcher variant="bar" />
-            <button className="hidden md:flex items-center gap-2 bg-[var(--midnight-green)] text-[var(--sunlight-yellow)] px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all group">
-              {t({ en: 'Get Involved', pcm: 'Join Us', ig: 'Soro Anyị', ha: 'Shiga Ciki', yo: 'Dara Pọ Mọ Wa' })}
-              <span className="material-symbols-outlined text-sm transform group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
-            </button>
-          </div>
+          {/* MENU button */}
+          <button
+            onClick={() => setOpen(true)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "10px 18px",
+              border: "2px solid var(--midnight-green)",
+              background: "transparent",
+              color: "var(--midnight-green)",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              cursor: "pointer",
+              borderRadius: 4,
+            }}
+          >
+            <span style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              <span
+                style={{
+                  display: "block",
+                  width: 20,
+                  height: 2,
+                  background: "currentColor",
+                }}
+              />
+              <span
+                style={{
+                  display: "block",
+                  width: 20,
+                  height: 2,
+                  background: "currentColor",
+                }}
+              />
+              <span
+                style={{
+                  display: "block",
+                  width: 13,
+                  height: 2,
+                  background: "currentColor",
+                }}
+              />
+            </span>
+            Menu
+          </button>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* ─── Overlay + Sidebar (only mounted when open) ──── */}
+      {open && (
+        <>
+          {/* Backdrop */}
+          <div
+            onClick={() => setOpen(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.5)",
+              zIndex: 9998,
+            }}
+          />
+
+          {/* Sidebar */}
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              right: 0,
+              width: "min(340px, 90vw)",
+              height: "100%",
+              background: "#fff",
+              zIndex: 9999,
+              display: "flex",
+              flexDirection: "column",
+              boxShadow: "-8px 0 40px rgba(0,0,0,0.25)",
+              overflowY: "auto",
+            }}
+          >
+            {/* Stripe */}
+            <div style={{ display: "flex", height: 6, flexShrink: 0 }}>
+              <div style={{ flex: 1, background: "var(--midnight-green)" }} />
+              <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
+              <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
+            </div>
+
+            {/* Sidebar header */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "20px 24px",
+                borderBottom: "1px solid #f0f0f0",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: "0.3em",
+                  textTransform: "uppercase",
+                  color: "#aaa",
+                }}
+              >
+                Navigation
+              </span>
+              <button
+                onClick={() => setOpen(false)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 4,
+                  color: "var(--midnight-green)",
+                  fontWeight: 700,
+                  fontSize: 10,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                }}
+              >
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 20 }}
+                >
+                  close
+                </span>
+                Close
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav
+              style={{
+                flex: 1,
+                padding: "16px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 4,
+              }}
+            >
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 16,
+                    padding: "16px",
+                    borderRadius: 8,
+                    textDecoration: "none",
+                    color: "#444",
+                    fontWeight: 700,
+                    fontSize: 13,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    transition: "background 0.15s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background =
+                      "var(--midnight-green)";
+                    (e.currentTarget as HTMLElement).style.color = "#fff";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background =
+                      "transparent";
+                    (e.currentTarget as HTMLElement).style.color = "#444";
+                  }}
+                >
+                  <span
+                    className="material-symbols-outlined"
+                    style={{ fontSize: 22, color: "inherit", flexShrink: 0 }}
+                  >
+                    {item.icon}
+                  </span>
+                  {item.en}
+                  <span
+                    className="material-symbols-outlined"
+                    style={{ fontSize: 18, marginLeft: "auto", opacity: 0.3 }}
+                  >
+                    chevron_right
+                  </span>
+                </a>
+              ))}
+            </nav>
+
+            {/* Language switcher + CTA */}
+            <div
+              style={{
+                padding: "24px",
+                borderTop: "1px solid #f0f0f0",
+                display: "flex",
+                flexDirection: "column",
+                gap: 16,
+              }}
+            >
+              {mounted && <LanguageSwitcher variant="dropdown" />}
+              <a
+                href="/get-involved"
+                onClick={() => setOpen(false)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                  background: "var(--midnight-green)",
+                  color: "var(--sunlight-yellow)",
+                  padding: "16px 24px",
+                  fontWeight: 700,
+                  fontSize: 11,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  borderRadius: 4,
+                }}
+              >
+                Get Involved
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 18 }}
+                >
+                  arrow_right_alt
+                </span>
+              </a>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 }
