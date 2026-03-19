@@ -8,7 +8,7 @@ export default function Hero() {
   const { t } = useLanguageStore();
 
   return (
-    <section className="relative pt-32 lg:pt-0 min-h-screen flex items-center bg-[var(--off-white)] overflow-hidden">
+    <section className="relative pt-32 min-h-screen flex items-center bg-[var(--off-white)] overflow-hidden">
       <div className="absolute top-0 right-0 w-3/4 h-full bg-gradient-to-bl from-[var(--midnight-green)]/10 to-transparent -z-10"></div>
       <div className="absolute bottom-0 right-20 w-[50vw] h-[50vw] bg-[var(--midnight-green)] rounded-full blur-[160px] opacity-15 -z-10"></div>
 
