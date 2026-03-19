@@ -61,6 +61,35 @@ export default function AboutPage() {
 
 
 
+        {/* Awards Section */}
+        <section className="bg-[var(--off-white)] py-24 px-6 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-4xl lg:text-5xl font-serif font-bold text-[var(--obsidian)] mb-12 text-center">Awards & Recognition</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                <span className="material-symbols-outlined text-4xl text-[var(--sunlight-yellow)]">workspace_premium</span>
+                <p className="text-gray-700 font-light text-sm leading-relaxed"><strong className="font-bold text-[var(--midnight-green)] block mb-1">Best Performing First-Time Lawmaker (2023)</strong> By the United Business Women Association of Nigeria and Diaspora.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                <span className="material-symbols-outlined text-4xl text-[var(--sunlight-yellow)]">workspace_premium</span>
+                <p className="text-gray-700 font-light text-sm leading-relaxed"><strong className="font-bold text-[var(--midnight-green)] block mb-1">LEE Leadership Excellence Award</strong> First-time House of Representatives member of the year (2023).</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                <span className="material-symbols-outlined text-4xl text-[var(--sunlight-yellow)]">workspace_premium</span>
+                <p className="text-gray-700 font-light text-sm leading-relaxed"><strong className="font-bold text-[var(--midnight-green)] block mb-1">ICON of Youth Empowerment</strong> By Youth Assembly Of Nigeria (YAN).</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">
+                <span className="material-symbols-outlined text-4xl text-[var(--sunlight-yellow)]">workspace_premium</span>
+                <p className="text-gray-700 font-light text-sm leading-relaxed"><strong className="font-bold text-[var(--midnight-green)] block mb-1">Integrity Icon of Nigeria (IION) Award</strong> For Ethical Leadership by the Centre for Ethics and Self-Value Orientation.</p>
+              </div>
+              <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4 md:col-span-2">
+                <span className="material-symbols-outlined text-4xl text-[var(--sunlight-yellow)]">workspace_premium</span>
+                <p className="text-gray-700 font-light text-sm leading-relaxed"><strong className="font-bold text-[var(--midnight-green)] block mb-1">Dedicated Legislative Oversight & Public Health Advocacy Award</strong> By the Parliament Newspaper.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Reusing existing component to flesh out the About page structure per sitemap */}
         <LegislativeAgenda />
 
