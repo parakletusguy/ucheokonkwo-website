@@ -32,16 +32,15 @@ export default function InboxPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--off-white)] pb-24">
-      {/* Header */}
-      <div className="bg-[var(--midnight-green)] text-white px-4 pt-8 pb-6">
-        <div className="h-1 w-full flex mb-6 rounded-full overflow-hidden">
-          <div className="flex-1 bg-[var(--midnight-green)]"/>
-          <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
-          <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
+    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2]" style={{ top: 0, bottom: 0, left: 256, right: 0 }}>
+      {/* Sub-header */}
+      <div className="flex-shrink-0 bg-white border-b border-gray-200 shadow-sm px-4 lg:px-8 h-14 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <h1 className="font-bold text-sm text-[var(--obsidian)]">Constituent Inbox</h1>
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">
+            {loading ? "…" : petitions.length}
+          </span>
         </div>
-        <h1 className="text-2xl font-bold serif-font">Constituent Inbox</h1>
-        <p className="text-blue-200 text-sm mt-1">{petitions.length} petition{petitions.length !== 1 ? 's' : ''} received</p>
       </div>
 
       {/* Petition detail overlay */}
@@ -72,45 +71,49 @@ export default function InboxPage() {
         </div>
       )}
 
-      <div className="px-4 pt-5 max-w-2xl mx-auto">
-        {loading ? (
-          <div className="flex justify-center py-20">
-            <span className="w-8 h-8 border-2 border-[var(--midnight-green)] border-t-transparent rounded-full animate-spin"/>
-          </div>
-        ) : petitions.length === 0 ? (
-          <div className="text-center py-20 text-gray-400">
-            <span className="material-symbols-outlined text-4xl block mb-3">inbox</span>
-            <p className="text-sm">No constituency petitions yet.</p>
-          </div>
-        ) : (
-          <div className="space-y-2">
-            {petitions.map((p) => (
-              <div
-                key={p.id}
-                className="w-full text-left bg-white rounded-xl border border-gray-100 p-4 flex items-start gap-3 transition-all hover:shadow-sm"
-              >
-                <button
-                  onClick={() => setSelected(p)}
-                  className="flex-1 min-w-0 text-left"
-                >
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <p className="font-bold text-sm text-[var(--obsidian)] truncate">{p.constituentName}</p>
-                    <p className="text-[9px] text-gray-300 flex-shrink-0">{new Date(p.createdAt).toLocaleDateString()}</p>
-                  </div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--midnight-green)] mb-1">{p.topic}</p>
-                  <p className="text-xs text-gray-400 truncate">{p.message}</p>
-                </button>
-                <button
-                  onClick={() => handleDelete(p.id)}
-                  disabled={deleting === p.id}
-                  className="flex-shrink-0 text-gray-300 hover:text-red-500 transition-colors p-1 disabled:opacity-50"
-                >
-                  <span className="material-symbols-outlined text-[16px]">delete</span>
-                </button>
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-4 lg:px-8 py-5 max-w-3xl mx-auto">
+          {loading ? (
+            <div className="flex justify-center py-20">
+              <span className="w-8 h-8 border-2 border-[var(--midnight-green)] border-t-transparent rounded-full animate-spin"/>
+            </div>
+          ) : petitions.length === 0 ? (
+            <div className="text-center py-20 text-gray-400">
+              <div className="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
+                <span className="material-symbols-outlined text-gray-300 text-2xl">inbox</span>
               </div>
-            ))}
-          </div>
-        )}
+              <p className="text-sm font-semibold">No constituency petitions yet.</p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {petitions.map((p) => (
+                <div
+                  key={p.id}
+                  className="w-full text-left bg-white rounded-xl border border-gray-100 p-4 flex items-start gap-3 transition-all hover:shadow-sm"
+                >
+                  <button
+                    onClick={() => setSelected(p)}
+                    className="flex-1 min-w-0 text-left"
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <p className="font-bold text-sm text-[var(--obsidian)] truncate">{p.constituentName}</p>
+                      <p className="text-[9px] text-gray-300 flex-shrink-0">{new Date(p.createdAt).toLocaleDateString()}</p>
+                    </div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--midnight-green)] mb-1">{p.topic}</p>
+                    <p className="text-xs text-gray-400 truncate">{p.message}</p>
+                  </button>
+                  <button
+                    onClick={() => handleDelete(p.id)}
+                    disabled={deleting === p.id}
+                    className="flex-shrink-0 text-gray-300 hover:text-red-500 transition-colors p-1 disabled:opacity-50"
+                  >
+                    <span className="material-symbols-outlined text-[16px]">delete</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

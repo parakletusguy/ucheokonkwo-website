@@ -38,27 +38,29 @@ export default function VolunteersPage() {
   );
 
   return (
-    <div className="min-h-screen bg-[var(--off-white)] pb-24">
-      {/* Header */}
-      <div className="bg-[var(--midnight-green)] text-white px-4 pt-8 pb-6">
-        <div className="h-1 w-full flex mb-6 rounded-full overflow-hidden">
-          <div className="flex-1 bg-[var(--midnight-green)]"/>
-          <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
-          <div className="flex-1 bg-[var(--sunlight-yellow)]"/>
+    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2]" style={{ top: 0, bottom: 0, left: 256, right: 0 }}>
+      {/* Sub-header */}
+      <div className="flex-shrink-0 bg-white border-b border-gray-200 shadow-sm px-4 lg:px-8 h-14 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <h1 className="font-bold text-sm text-[var(--obsidian)]">Volunteer Database</h1>
+          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">
+            {loading ? "…" : volunteers.length}
+          </span>
         </div>
-        <h1 className="text-2xl font-bold serif-font">Volunteer Database</h1>
-        <p className="text-blue-200 text-sm mt-1">{volunteers.length} registered supporter{volunteers.length !== 1 ? 's' : ''}</p>
+        <div className="relative">
+          <span className="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-300 text-[16px]">search</span>
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search…"
+            className="w-48 bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-3 py-2 text-xs focus:outline-none focus:border-[var(--midnight-green)] transition-colors"
+          />
+        </div>
       </div>
 
-      <div className="px-4 pt-5 max-w-2xl mx-auto">
-        {/* Search */}
-        <input
-          type="search"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search by name, email, or LGA..."
-          className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--obsidian)] placeholder-gray-400 focus:outline-none focus:border-[var(--midnight-green)] mb-4"
-        />
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-4 lg:px-8 py-5 max-w-3xl mx-auto">
 
         {loading ? (
           <div className="flex justify-center py-20">
@@ -101,6 +103,7 @@ export default function VolunteersPage() {
             ))}
           </div>
         )}
+        </div>
       </div>
     </div>
   );

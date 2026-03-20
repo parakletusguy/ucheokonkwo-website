@@ -151,6 +151,33 @@ export interface CreateVolunteerPayload {
   interests?: string[];
 }
 
+// ─── Projects ─────────────────────────────────────────────────────────────────
+
+export type ProjectStatus = 'PLANNED' | 'ONGOING' | 'COMPLETED' | 'SUSPENDED';
+
+export interface Project {
+  id: string;
+  title: string;
+  description?: string | null;
+  status: ProjectStatus;
+  constituentName: string;
+  latitude: number;
+  longitude: number;
+  createdAt: string;
+  updatedAt: string;
+  Media: MediaItem[];
+}
+
+export interface CreateProjectPayload {
+  title: string;
+  status: ProjectStatus;
+  constituentName: string;
+  latitude: number;
+  longitude: number;
+  description?: string;
+  images?: File[];
+}
+
 // ─── API Error ────────────────────────────────────────────────────────────────
 
 export interface ApiError {
