@@ -17,15 +17,28 @@ const NAV_ITEMS = [
   { href: "/admin/settings",   icon: "tune",         label: "Settings"    },
 ];
 
-export default function AdminSidebar() {
+interface Props {
+  open: boolean;
+  onClose: () => void;
+}
+
+export default function AdminSidebar({ open, onClose }: Props) {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-64 bg-[var(--midnight-green)] flex flex-col z-50 shadow-xl">
-
+    <aside
+      className={`
+        fixed left-0 top-0 bottom-0 w-64
+        bg-[var(--midnight-green)] flex flex-col z-50 shadow-xl
+        transition-transform duration-300 ease-in-out
+        ${open ? "translate-x-0" : "-translate-x-full"}
+        lg:translate-x-0
+      `}
+    >
       {/* Brand */}
       <Link
         href="/admin"
+        onClick={onClose}
         className="flex items-center gap-3 px-5 h-16 border-b border-white/10 flex-shrink-0 hover:bg-white/5 transition-colors"
       >
         <AdcLogo size={32} />
@@ -33,6 +46,15 @@ export default function AdminSidebar() {
           <p className="font-bold text-xs tracking-widest uppercase text-white">Campaign</p>
           <p className="text-[10px] text-white/50 font-mono">Admin Portal</p>
         </div>
+
+        {/* Mobile close button */}
+        <button
+          className="lg:hidden ml-auto w-7 h-7 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
+          onClick={(e) => { e.preventDefault(); onClose(); }}
+          aria-label="Close menu"
+        >
+          <span className="material-symbols-outlined text-white/70 text-[18px]">close</span>
+        </button>
       </Link>
 
       {/* Nav */}
@@ -47,6 +69,7 @@ export default function AdminSidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                 isActive
                   ? "bg-white/15 text-white"

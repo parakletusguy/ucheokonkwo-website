@@ -207,7 +207,7 @@ function EditorForm() {
 
   if (step === 'done') {
     return (
-      <div className="fixed z-[35] flex flex-col items-center justify-center gap-6 p-8 bg-white" style={{ top: 0, bottom: 0, left: 256, right: 0 }}>
+      <div className="fixed z-[35] flex flex-col items-center justify-center gap-6 p-8 bg-white inset-x-0 bottom-0 top-14 lg:top-0 lg:left-64">
         <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[var(--midnight-green)]/20 to-[var(--midnight-green)]/5 flex items-center justify-center ring-4 ring-[var(--midnight-green)]/10">
           <span className="material-symbols-outlined text-5xl text-[var(--midnight-green)]">check_circle</span>
         </div>
@@ -228,7 +228,7 @@ function EditorForm() {
   /* ── Write step UI ───────────────────────────────────────────────────── */
   return (
     <>
-      <div className="fixed z-[35] flex flex-col bg-[#f4f4f2]" style={{ top: 0, bottom: 0, left: 256, right: 0 }}>
+      <div className="fixed z-[35] flex flex-col bg-[#f4f4f2] inset-x-0 bottom-0 top-14 lg:top-0 lg:left-64">
 
         {/* ── Action bar ──────────────────────────────────────────────── */}
         <div className="flex-shrink-0 bg-white border-b border-gray-200 px-4 lg:px-8 h-14 flex items-center justify-between shadow-sm">

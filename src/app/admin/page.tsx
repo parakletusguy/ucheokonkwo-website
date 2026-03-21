@@ -51,10 +51,10 @@ export default function AdminDashboard() {
     .slice(0, 6);
 
   return (
-    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2]" style={{ top: 0, bottom: 0, left: 256, right: 0 }}>
+    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2] inset-x-0 bottom-0 top-14 lg:top-0 lg:left-64">
 
-      {/* Top bar */}
-      <div className="flex-shrink-0 bg-white/80 backdrop-blur-xl border-b border-gray-200/60 px-8 h-16 flex items-center justify-between">
+      {/* Top bar — desktop only (mobile has the green header from layout) */}
+      <div className="flex-shrink-0 bg-white/80 backdrop-blur-xl border-b border-gray-200/60 px-4 lg:px-8 h-14 lg:flex items-center justify-between hidden">
         <div className="relative">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-[16px]">search</span>
           <input
@@ -74,8 +74,8 @@ export default function AdminDashboard() {
       </div>
 
       {/* Scroll area */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="max-w-6xl mx-auto p-5 lg:p-7">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="max-w-6xl mx-auto p-4 lg:p-7">
 
           {/* ── Hero header ─────────────────────────────────────────────── */}
           <header className="mb-6">
@@ -116,14 +116,14 @@ export default function AdminDashboard() {
                   </Link>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">Legal Name</label>
-                    <p className="font-semibold text-sm text-[var(--obsidian)]">{displayName}</p>
+                    <p className="font-semibold text-sm text-[var(--obsidian)] truncate">{displayName}</p>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-0.5">Email Address</label>
-                    <p className="font-semibold text-sm text-[var(--obsidian)]">{user?.email ?? '—'}</p>
+                    <p className="font-semibold text-sm text-[var(--obsidian)] truncate">{user?.email ?? '—'}</p>
                   </div>
                 </div>
 

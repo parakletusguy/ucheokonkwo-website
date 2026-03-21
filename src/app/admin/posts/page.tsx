@@ -61,7 +61,7 @@ export default function PostsManagementPage() {
   const FILTERS: Filter[] = ['All Posts', 'Published', 'Draft', 'Archived'];
 
   return (
-    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2]" style={{ top: 0, bottom: 0, left: 256, right: 0 }}>
+    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2] inset-x-0 bottom-0 top-14 lg:top-0 lg:left-64">
 
       {/* Sub-header */}
       <div className="flex-shrink-0 bg-white border-b border-gray-200 shadow-sm px-4 lg:px-8 h-14 flex items-center justify-between">
@@ -82,23 +82,23 @@ export default function PostsManagementPage() {
       </div>
 
       {/* Scroll area */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div className="px-4 lg:px-8 py-5 max-w-7xl mx-auto space-y-5">
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2 lg:gap-4">
             {[
-              { label: 'Published',     value: published.length, icon: 'public', color: 'text-[var(--midnight-green)]', bg: 'bg-[var(--midnight-green)]/8' },
-              { label: 'Active Drafts', value: drafts.length,    icon: 'draft',  color: 'text-amber-600',               bg: 'bg-amber-50'                  },
-              { label: 'Archived',      value: archived.length,  icon: 'archive', color: 'text-red-500',                bg: 'bg-red-50'                    },
+              { label: 'Published',     value: published.length, icon: 'public',  color: 'text-[var(--midnight-green)]', bg: 'bg-[var(--midnight-green)]/8' },
+              { label: 'Drafts',        value: drafts.length,    icon: 'draft',   color: 'text-amber-600',               bg: 'bg-amber-50'                  },
+              { label: 'Archived',      value: archived.length,  icon: 'archive', color: 'text-red-500',                 bg: 'bg-red-50'                    },
             ].map(card => (
-              <div key={card.label} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex items-center gap-4">
-                <div className={`w-9 h-9 rounded-xl ${card.bg} flex items-center justify-center flex-shrink-0`}>
-                  <span className={`material-symbols-outlined text-[18px] ${card.color}`}>{card.icon}</span>
+              <div key={card.label} className="bg-white rounded-xl border border-gray-100 shadow-sm p-3 lg:p-5 flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-4">
+                <div className={`w-7 h-7 lg:w-9 lg:h-9 rounded-lg ${card.bg} flex items-center justify-center flex-shrink-0`}>
+                  <span className={`material-symbols-outlined text-[15px] lg:text-[18px] ${card.color}`}>{card.icon}</span>
                 </div>
                 <div>
-                  <p className={`text-2xl font-bold ${card.color}`}>{loading ? '…' : card.value}</p>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-0.5">{card.label}</p>
+                  <p className={`text-xl lg:text-2xl font-bold ${card.color}`}>{loading ? '…' : card.value}</p>
+                  <p className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-gray-400">{card.label}</p>
                 </div>
               </div>
             ))}

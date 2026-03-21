@@ -334,12 +334,11 @@ export default function AdminProjectsPage() {
     }
   };
 
-  const OVERLAY = "fixed z-[35] flex flex-col bg-[#f4f4f2]";
-  const OVERLAY_STYLE = { top: 0, bottom: 0, left: 256, right: 0 };
+  const OVERLAY = "fixed z-[35] flex flex-col bg-[#f4f4f2] inset-x-0 bottom-0 top-14 lg:top-0 lg:left-64";
 
   if (view === "form") {
     return (
-      <div className={OVERLAY} style={OVERLAY_STYLE}>
+      <div className={OVERLAY} >
         {/* Form sub-header */}
         <div className="flex-shrink-0 bg-white border-b border-gray-200 shadow-sm px-4 lg:px-8 h-14 flex items-center gap-3">
           <button
@@ -366,7 +365,7 @@ export default function AdminProjectsPage() {
   }
 
   return (
-    <div className={OVERLAY} style={OVERLAY_STYLE}>
+    <div className={OVERLAY} >
       {/* Sub-header */}
       <div className="flex-shrink-0 bg-white border-b border-gray-200 shadow-sm px-4 lg:px-8 h-14 flex items-center justify-between">
         <div className="flex items-center gap-3">
