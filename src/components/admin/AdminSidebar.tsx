@@ -12,7 +12,8 @@ const NAV_ITEMS = [
   { href: "/admin/posts",      icon: "article",      label: "Posts"       },
   { href: "/admin/editor",     icon: "edit_square",  label: "New Post"    },
   { href: "/admin/projects",   icon: "construction", label: "Projects"    },
-  { href: "/admin/inbox",      icon: "inbox",        label: "Inbox"       },
+  { href: "/admin/inbox",      icon: "inbox",        label: "Petitions"   },
+  { href: "/admin/feedback",   icon: "chat_bubble",  label: "Feedback"    },
   { href: "/admin/volunteers", icon: "group",        label: "Volunteers"  },
   { href: "/admin/settings",   icon: "tune",         label: "Settings"    },
 ];

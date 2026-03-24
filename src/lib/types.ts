@@ -178,6 +178,18 @@ export interface CreateProjectPayload {
   images?: File[];
 }
 
+// ─── Feedback ─────────────────────────────────────────────────────────────────
+
+export type FeedbackType = 'SUGGESTION' | 'COMPLIMENT' | 'CRITICISM';
+
+export interface Feedback {
+  id: string;
+  type: FeedbackType;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // ─── API Error ────────────────────────────────────────────────────────────────
 
 export interface ApiError {

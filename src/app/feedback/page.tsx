@@ -5,16 +5,46 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import QRCodeComponent from '@/components/QRCodeComponent';
 import { useLanguageStore } from '@/store/useLanguageStore';
+import { apiClient } from '@/lib/apiClient';
+import type { FeedbackType } from '@/lib/types';
+
+const TYPE_OPTIONS: { label: string; value: FeedbackType; icon: string }[] = [
+  { label: 'Suggestion', value: 'SUGGESTION', icon: 'lightbulb' },
+  { label: 'Compliment', value: 'COMPLIMENT', icon: 'thumb_up'  },
+  { label: 'Criticism',  value: 'CRITICISM',  icon: 'flag'      },
+];
 
 export default function FeedbackPage() {
   const { t } = useLanguageStore();
-  const [type, setType] = useState('Suggestion');
-  const [message, setMessage] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [type,      setType]      = useState<FeedbackType>('SUGGESTION');
+  const [message,   setMessage]   = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted,  setSubmitted]  = useState(false);
+  const [error,      setError]      = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+
+    if (message.trim().length < 5) {
+      setError('Message must be at least 5 characters.');
+      return;
+    }
+    if (message.trim().length > 2000) {
+      setError('Message must be under 2000 characters.');
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await apiClient.post('/feedback', { type, message: message.trim() });
+      setSubmitted(true);
+      setMessage('');
+    } catch {
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -44,8 +74,8 @@ export default function FeedbackPage() {
                   </div>
                   <h2 className="text-2xl font-bold font-serif text-[var(--obsidian)] mb-2">Thank You!</h2>
                   <p className="text-gray-500 font-light mb-8">Your feedback has been received and will be reviewed by our team.</p>
-                  <button 
-                    onClick={() => setSubmitted(false)}
+                  <button
+                    onClick={() => { setSubmitted(false); setType('SUGGESTION'); }}
                     className="text-[var(--midnight-green)] font-bold uppercase tracking-widest text-xs hover:underline"
                   >
                     Send Another Response
@@ -53,23 +83,34 @@ export default function FeedbackPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
+                  {/* Type selector */}
                   <div className="grid grid-cols-3 gap-4">
-                    {['Suggestion', 'Compliment', 'Criticism'].map((t) => (
-                      <button 
-                        key={t}
+                    {TYPE_OPTIONS.map((opt) => (
+                      <button
+                        key={opt.value}
                         type="button"
-                        onClick={() => setType(t)}
-                        className={`py-3 rounded-xl border text-[10px] font-bold uppercase tracking-widest transition-all ${type === t ? 'bg-[var(--midnight-green)] text-white border-[var(--midnight-green)]' : 'border-gray-100 text-gray-400 hover:border-gray-200'}`}
+                        onClick={() => setType(opt.value)}
+                        className={`py-3 rounded-xl border text-[10px] font-bold uppercase tracking-widest transition-all flex flex-col items-center gap-1.5 ${
+                          type === opt.value
+                            ? 'bg-[var(--midnight-green)] text-white border-[var(--midnight-green)]'
+                            : 'border-gray-100 text-gray-400 hover:border-gray-200'
+                        }`}
                       >
-                        {t}
+                        <span className="material-symbols-outlined text-[18px]">{opt.icon}</span>
+                        {opt.label}
                       </button>
                     ))}
                   </div>
 
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-[10px] font-bold uppercase tracking-widest text-[#aaa] mb-2">Your Thoughts</label>
-                      <textarea 
+                      <label className="block text-[10px] font-bold uppercase tracking-widest text-[#aaa] mb-2">
+                        Your Thoughts
+                        <span className="ml-2 normal-case font-normal text-gray-300">
+                          ({message.length}/2000)
+                        </span>
+                      </label>
+                      <textarea
                         required
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
@@ -78,9 +119,26 @@ export default function FeedbackPage() {
                       />
                     </div>
 
-                    <button className="w-full bg-[var(--midnight-green)] text-white py-5 rounded-2xl text-xs font-bold uppercase tracking-widest hover:bg-[var(--obsidian)] transition-all shadow-lg flex items-center justify-center gap-3">
-                      Submit Feedback
-                      <span className="material-symbols-outlined text-sm">send</span>
+                    {error && (
+                      <p className="text-xs text-red-500 flex items-center gap-1.5">
+                        <span className="material-symbols-outlined text-[14px]">error</span>
+                        {error}
+                      </p>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full bg-[var(--midnight-green)] text-white py-5 rounded-2xl text-xs font-bold uppercase tracking-widest hover:bg-[var(--obsidian)] transition-all shadow-lg flex items-center justify-center gap-3 disabled:opacity-60"
+                    >
+                      {submitting ? (
+                        <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                      ) : (
+                        <>
+                          Submit Feedback
+                          <span className="material-symbols-outlined text-sm">send</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
@@ -88,8 +146,8 @@ export default function FeedbackPage() {
             </div>
 
             <div className="md:col-span-4 p-10 bg-gray-50 flex flex-col items-center justify-center text-center">
-              <QRCodeComponent 
-                value="https://www.uchennaokonkwo.com/feedback" 
+              <QRCodeComponent
+                value="https://www.uchennaokonkwo.com/feedback"
                 size={140}
                 label="Direct Feedback QR"
               />
