@@ -1,14 +1,146 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TerritoryTracker from '@/components/TerritoryTracker';
 import FAQSchema, { DEFAULT_FAQS } from '@/components/FAQSchema';
 import { useLanguageStore } from '@/store/useLanguageStore';
+import type { Project, ProjectStatus } from '@/lib/types';
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api/v1';
+
+const STATUS_COLORS: Record<ProjectStatus, string> = {
+  PLANNED: 'bg-blue-100 text-blue-700',
+  ONGOING: 'bg-amber-100 text-amber-700',
+  COMPLETED: 'bg-green-100 text-green-700',
+  SUSPENDED: 'bg-red-100 text-red-600',
+};
+
+const CONSTITUENCIES = ['All', 'Idemili North', 'Idemili South'];
+
+function ProjectCard({ project }: { project: Project }) {
+  const [imgIdx, setImgIdx] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+  const media = project.Media ?? [];
+
+  return (
+    <>
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-md transition-shadow">
+        {/* Image */}
+        {media.length > 0 ? (
+          <div
+            className="relative w-full cursor-pointer"
+            style={{ aspectRatio: '16/9' }}
+            onClick={() => setLightbox(true)}
+          >
+            <Image
+              src={media[imgIdx].url}
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            {media.length > 1 && (
+              <span className="absolute top-2 right-2 bg-black/60 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                {media.length} photos
+              </span>
+            )}
+            <span className={`absolute bottom-2 left-2 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${STATUS_COLORS[project.status]}`}>
+              {project.status}
+            </span>
+          </div>
+        ) : (
+          <div className="w-full bg-gray-50 flex items-center justify-center" style={{ aspectRatio: '16/9' }}>
+            <span className="material-symbols-outlined text-4xl text-gray-200">construction</span>
+          </div>
+        )}
+
+        {/* Thumbnails */}
+        {media.length > 1 && (
+          <div className="flex gap-1 px-3 pt-2 overflow-x-auto no-scrollbar">
+            {media.map((m, i) => (
+              <button
+                key={m.id}
+                onClick={() => setImgIdx(i)}
+                className={`flex-shrink-0 w-8 h-8 rounded overflow-hidden border-2 transition-colors ${i === imgIdx ? 'border-[var(--midnight-green)]' : 'border-transparent'}`}
+              >
+                <div className="relative w-full h-full">
+                  <Image src={m.url} alt="" fill className="object-cover" sizes="32px" />
+                </div>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Info */}
+        <div className="p-4 space-y-1">
+          <h3 className="font-bold text-[var(--obsidian)] text-sm leading-tight">{project.title}</h3>
+          {project.description && (
+            <p className="text-xs text-gray-500 line-clamp-2">{project.description}</p>
+          )}
+          <div className="flex items-center gap-1 text-[10px] text-gray-400 font-bold uppercase tracking-widest pt-1">
+            <span className="material-symbols-outlined text-[12px]">location_on</span>
+            {project.constituentName}
+          </div>
+        </div>
+      </div>
+
+      {/* Lightbox */}
+      {lightbox && media.length > 0 && (
+        <div
+          className="fixed inset-0 bg-black/90 z-[200] flex items-center justify-center"
+          onClick={() => setLightbox(false)}
+        >
+          <button className="absolute top-4 right-4 text-white z-10" onClick={() => setLightbox(false)}>
+            <span className="material-symbols-outlined text-3xl">close</span>
+          </button>
+          {imgIdx > 0 && (
+            <button
+              className="absolute left-4 text-white z-10"
+              onClick={e => { e.stopPropagation(); setImgIdx(i => i - 1); }}
+            >
+              <span className="material-symbols-outlined text-3xl">chevron_left</span>
+            </button>
+          )}
+          {imgIdx < media.length - 1 && (
+            <button
+              className="absolute right-4 text-white z-10"
+              onClick={e => { e.stopPropagation(); setImgIdx(i => i + 1); }}
+            >
+              <span className="material-symbols-outlined text-3xl">chevron_right</span>
+            </button>
+          )}
+          <div className="relative w-full max-w-3xl px-16" style={{ aspectRatio: '16/9' }}>
+            <Image src={media[imgIdx].url} alt={project.title} fill className="object-contain" sizes="100vw" />
+          </div>
+          <div className="absolute bottom-4 text-white text-xs font-bold opacity-60">
+            {imgIdx + 1} / {media.length}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
 export default function ProjectsPage() {
   const { t } = useLanguageStore();
+  const [backendProjects, setBackendProjects] = useState<Project[]>([]);
+  const [filter, setFilter] = useState('All');
+  const [loadingProjects, setLoadingProjects] = useState(true);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/projects`)
+      .then(r => r.ok ? r.json() : [])
+      .then(data => setBackendProjects(Array.isArray(data) ? data : []))
+      .catch(() => setBackendProjects([]))
+      .finally(() => setLoadingProjects(false));
+  }, []);
+
+  const filtered = filter === 'All'
+    ? backendProjects
+    : backendProjects.filter(p => p.constituentName === filter);
 
   return (
     <>
@@ -29,6 +161,61 @@ export default function ProjectsPage() {
 
         <TerritoryTracker />
 
+        {/* Backend Projects Section */}
+        <section className="py-16 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+              <h2 className="text-3xl font-serif font-bold text-[var(--obsidian)]">Active Projects</h2>
+
+              {/* Constituency filter */}
+              <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                {CONSTITUENCIES.map(c => (
+                  <button
+                    key={c}
+                    onClick={() => setFilter(c)}
+                    className={`flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest transition-colors ${
+                      filter === c
+                        ? 'bg-[var(--midnight-green)] text-white'
+                        : 'bg-white border border-gray-200 text-gray-400 hover:border-[var(--midnight-green)] hover:text-[var(--midnight-green)]'
+                    }`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {loadingProjects ? (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="bg-white rounded-2xl border border-gray-100 overflow-hidden animate-pulse">
+                    <div className="bg-gray-100" style={{ aspectRatio: '16/9' }} />
+                    <div className="p-4 space-y-2">
+                      <div className="h-4 bg-gray-100 rounded w-3/4" />
+                      <div className="h-3 bg-gray-100 rounded w-1/2" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : filtered.length === 0 ? (
+              <div className="text-center py-12 text-gray-300">
+                <span className="material-symbols-outlined text-5xl block mb-3">construction</span>
+                <p className="text-gray-400">
+                  {backendProjects.length === 0
+                    ? 'Projects will appear here once added.'
+                    : `No projects in ${filter} yet.`}
+                </p>
+              </div>
+            ) : (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filtered.map(project => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
         {/* 3 Years of Impact Section */}
         <section className="py-24 px-6 bg-[var(--off-white)]">
           <div className="max-w-7xl mx-auto">
@@ -36,7 +223,7 @@ export default function ProjectsPage() {
               <h2 className="text-4xl lg:text-5xl font-serif font-bold text-[var(--obsidian)] mb-4">Three Years of Tangible Impact</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">A comprehensive breakdown of Hon. Uchenna Harris Okonkwo&apos;s infrastructure, education, and empowerment initiatives across Idemili North and South.</p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-12">
               {/* Infrastructure */}
               <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">

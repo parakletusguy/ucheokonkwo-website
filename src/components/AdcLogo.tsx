@@ -10,6 +10,7 @@ const LOGO_URL =
 
 export default function AdcLogo({ size = 40, className = '' }: AdcLogoProps) {
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       src={LOGO_URL}
       alt="African Democratic Congress (ADC) Logo"

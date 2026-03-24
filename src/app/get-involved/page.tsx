@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { useLanguageStore } from '@/store/useLanguageStore';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
+
 const WARDS = [
   'Abatete Ward',
   'Ideani Ward',
@@ -40,8 +42,16 @@ export default function GetInvolvedPage() {
     e.preventDefault();
     setVLoading(true); setVError('');
     try {
-      const r = await fetch('/api/volunteers', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: vName, email: vEmail, phone: vPhone, ward: vWard }) });
-      if (!r.ok) { const d = await r.json(); throw new Error(d.error); }
+      const r = await fetch(`${API_BASE}/volunteers`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName: vName, email: vEmail, phone: vPhone || undefined, lga: vWard || undefined }),
+      });
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        const msg = Array.isArray(d.message) ? d.message.join(', ') : (d.message ?? 'Signup failed.');
+        throw new Error(msg);
+      }
       setVSuccess(true); setVName(''); setVEmail(''); setVPhone(''); setVWard('');
     } catch (err) { setVError(err instanceof Error ? err.message : 'Signup failed.'); }
     finally { setVLoading(false); }
@@ -51,8 +61,20 @@ export default function GetInvolvedPage() {
     e.preventDefault();
     setPLoading(true); setPError('');
     try {
-      const r = await fetch('/api/messages', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: pName, ward: pWard, message: pMessage }) });
-      if (!r.ok) { const d = await r.json(); throw new Error(d.error); }
+      const r = await fetch(`${API_BASE}/petitions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          constituentName: pName,
+          topic: 'General Inquiry',
+          message: pWard ? `[Ward: ${pWard}]\n${pMessage}` : pMessage,
+        }),
+      });
+      if (!r.ok) {
+        const d = await r.json().catch(() => ({}));
+        const msg = Array.isArray(d.message) ? d.message.join(', ') : (d.message ?? 'Submission failed.');
+        throw new Error(msg);
+      }
       setPSuccess(true); setPName(''); setPWard(''); setPMessage('');
     } catch (err) { setPError(err instanceof Error ? err.message : 'Submission failed.'); }
     finally { setPLoading(false); }

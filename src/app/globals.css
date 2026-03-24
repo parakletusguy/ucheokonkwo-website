@@ -125,6 +125,14 @@ h1, h2, h3, .serif-font {
 .marquee-container::-webkit-scrollbar {
   display: none;
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 .marquee-card {
   scroll-snap-align: start;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
