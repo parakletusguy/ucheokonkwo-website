@@ -4,6 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { useLanguageStore } from "@/store/useLanguageStore";
 
+import QRCodeComponent from "@/components/QRCodeComponent";
+
 export default function Hero() {
   const { t } = useLanguageStore();
 
@@ -64,7 +66,7 @@ export default function Hero() {
             })}
           </p>
 
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center gap-8">
             <button className="bg-[var(--midnight-green)] text-[var(--off-white)] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all flex items-center gap-3 group soft-shadow">
               {t({
                 en: "Explore Agenda",
@@ -73,10 +75,12 @@ export default function Hero() {
                 ha: "Bincika Ajanda",
                 yo: "Ṣawari Eto",
               })}
-              <span className="w-8 h-[1px] bg-white/30 group-hover:w-12 transition-all"></span>
+              <span className="w-8 h-px bg-white/30 group-hover:w-12 transition-all"></span>
             </button>
             <a
-              href="#"
+              href="https://youtube.com/@hon.uchennaharrisokonkwotv"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 font-medium text-[var(--obsidian)] uppercase tracking-widest text-xs hover:text-[var(--midnight-green)] transition-colors group"
             >
               <div className="w-10 h-10 rounded-full border border-[var(--obsidian)]/20 flex items-center justify-center group-hover:border-[var(--midnight-green)] transition-colors">
@@ -92,6 +96,14 @@ export default function Hero() {
                 yo: "Wo Fidio",
               })}
             </a>
+
+            <div className="ml-auto hidden xl:block">
+              <QRCodeComponent 
+                value="https://www.uchennaokonkwo.com" 
+                size={80}
+                label="Scan to Visit"
+              />
+            </div>
           </div>
         </div>
 

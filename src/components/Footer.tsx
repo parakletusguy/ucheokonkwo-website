@@ -65,6 +65,9 @@ export default function Footer() {
                 { label: { en: 'About', pcm: 'Who Be Our Guy', ig: 'Nkọwa Ndụ', ha: 'Tarihin Rayuwa', yo: 'Igbesi Aye' }, href: '/about' },
                 { label: { en: 'The Constituency', pcm: 'Our Area', ig: 'Mpaghara Anyị', ha: 'Mazabar Mu', yo: 'Agbegbe Wa' }, href: '/constituency' },
                 { label: { en: 'Media & Blog', pcm: 'Tori & News', ig: 'Mgbasa Ozi na Akụkọ', ha: 'Labarai da Shafin yanar gizo', yo: 'Iroyin & Buloogi' }, href: '/media' },
+                { label: { en: 'Resources', href: '/resources' }, href: '/resources' },
+                { label: { en: 'Support Us', href: '/support' }, href: '/support' },
+                { label: { en: 'Feedback', href: '/feedback' }, href: '/feedback' },
                 { label: { en: 'Get Involved', pcm: 'Join Us', ig: 'Soro Anyị', ha: 'Shiga Mu', yo: 'Dara Wa' }, href: '/get-involved' },
               ].map((item, i) => (
                 <li key={i}>
