@@ -1,7 +1,7 @@
-import { tokenStore } from './tokenStore';
+import { tokenStore } from "./tokenStore";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3000/api/v1';
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3000/api/v1";
 
 // ── Internal refresh state ────────────────────────────────────────────────────
 let isRefreshing = false;
@@ -12,11 +12,14 @@ async function doRefresh(): Promise<string | null> {
   if (!rt) return null;
   try {
     const res = await fetch(`${BASE_URL}/auth/refresh`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ refreshToken: rt }),
     });
-    if (!res.ok) { tokenStore.clear(); return null; }
+    if (!res.ok) {
+      tokenStore.clear();
+      return null;
+    }
     const json = await res.json();
     tokenStore.set(json.accessToken, json.refreshToken);
     return json.accessToken;
@@ -37,12 +40,13 @@ async function request<T>(
   // Build headers — don't set Content-Type for FormData (browser adds boundary)
   const extra: Record<string, string> = {};
   const token = tokenStore.getAccess();
-  if (token) extra['Authorization'] = `Bearer ${token}`;
-  if (!(init.body instanceof FormData)) extra['Content-Type'] = 'application/json';
+  if (token) extra["Authorization"] = `Bearer ${token}`;
+  if (!(init.body instanceof FormData))
+    extra["Content-Type"] = "application/json";
 
   const res = await fetch(url, {
     ...init,
-    headers: { ...extra, ...(init.headers as Record<string, string> ?? {}) },
+    headers: { ...extra, ...((init.headers as Record<string, string>) ?? {}) },
   });
 
   // ── 401: attempt token refresh, then retry once ───────────────────────────
@@ -62,8 +66,8 @@ async function request<T>(
     }
 
     if (!newToken) {
-      if (typeof window !== 'undefined') window.location.href = '/admin/login';
-      throw { response: { status: 401, data: { message: 'Session expired' } } };
+      if (typeof window !== "undefined") window.location.href = "/admin/login";
+      throw { response: { status: 401, data: { message: "Session expired" } } };
     }
 
     return request<T>(path, init, true);
@@ -86,22 +90,32 @@ async function request<T>(
 // ── Public API (axios-compatible shape: returns { data }) ─────────────────────
 export const apiClient = {
   get<T>(path: string) {
-    return request<T>(path, { method: 'GET' });
+    return request<T>(path, { method: "GET" });
   },
   post<T>(path: string, body?: unknown) {
     return request<T>(path, {
-      method: 'POST',
-      body: body instanceof FormData ? body : body ? JSON.stringify(body) : undefined,
+      method: "POST",
+      body:
+        body instanceof FormData
+          ? body
+          : body
+            ? JSON.stringify(body)
+            : undefined,
     });
   },
   patch<T>(path: string, body?: unknown) {
     return request<T>(path, {
-      method: 'PATCH',
-      body: body instanceof FormData ? body : body ? JSON.stringify(body) : undefined,
+      method: "PATCH",
+      body:
+        body instanceof FormData
+          ? body
+          : body
+            ? JSON.stringify(body)
+            : undefined,
     });
   },
   delete<T = void>(path: string) {
-    return request<T>(path, { method: 'DELETE' });
+    return request<T>(path, { method: "DELETE" });
   },
 };
 
@@ -115,13 +129,17 @@ export function buildPostFormData(payload: {
   images?: File[];
 }): FormData {
   const form = new FormData();
-  if (payload.title !== undefined) form.append('title', payload.title);
-  if (payload.content !== undefined) form.append('content', payload.content);
-  if (payload.subcontent !== undefined) form.append('subcontent', payload.subcontent);
-  if (payload.status !== undefined) form.append('status', payload.status);
+  if (payload.title !== undefined) form.append("title", payload.title);
+  if (payload.content !== undefined) form.append("content", payload.content);
+  if (payload.subcontent !== undefined)
+    form.append("subcontent", payload.subcontent);
+  if (payload.status !== undefined) form.append("status", payload.status);
   if (payload.multilingualContent !== undefined) {
-    form.append('multilingualContent', JSON.stringify(payload.multilingualContent));
+    form.append(
+      "multilingualContent",
+      JSON.stringify(payload.multilingualContent),
+    );
   }
-  payload.images?.forEach((file) => form.append('images', file));
+  payload.images?.forEach((file) => form.append("images", file));
   return form;
 }
