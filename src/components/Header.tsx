@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { en: "The Constituency", href: "/constituency", icon: "location_on" },
   { en: "Media & Blog", href: "/media", icon: "newspaper" },
   { en: "Resources", href: "/resources", icon: "folder_open" },
-  { en: "Support Us", href: "/support", icon: "volunteer_activism" },
+  { en: "Donate", href: "/donate", icon: "volunteer_activism" },
   { en: "Feedback", href: "/feedback", icon: "feedback" },
   { en: "Admin Portal", href: "/admin", icon: "lock" },
 ];
