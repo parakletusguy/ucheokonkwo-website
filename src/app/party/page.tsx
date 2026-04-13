@@ -16,7 +16,7 @@ export default function PartyPage() {
             ADC
           </div>
           <h1 className="text-5xl lg:text-7xl font-bold text-[var(--obsidian)] serif-font mb-6">
-            Action Democratic Congress
+            African Democratic Congress
           </h1>
           <p className="text-xl text-gray-500 font-light max-w-3xl mx-auto">
             A promise of trust, progress, and inclusivity. We believe true political power rests with the people of Idemili.

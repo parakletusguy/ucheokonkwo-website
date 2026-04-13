@@ -33,22 +33,22 @@ export const DEFAULT_FAQS: FAQ[] = [
   {
     question: 'Who is the federal representative for Idemili North and South?',
     answer:
-      "The current federal representative for Idemili North and South Federal Constituency is Hon. Uchenna 'Harris' Okonkwo of the Action Democratic Congress (ADC), serving in the 10th National Assembly of Nigeria.",
+      "The current federal representative for Idemili North and South Federal Constituency is Hon. Uchenna 'Harris' Okonkwo of the African Democratic Congress (ADC), serving in the 10th National Assembly of Nigeria.",
   },
   {
     question: 'Who is Uchenna Okonkwo?',
     answer:
-      'Uchenna Okonkwo, also known as Harris Okonkwo, is a Nigerian politician and Federal House of Representatives member representing Idemili North and South Federal Constituency in Anambra State. He serves under the Action Democratic Congress (ADC) in the 10th National Assembly.',
+      'Uchenna Okonkwo, also known as Uchenna Harris Okonkwo, is a Nigerian politician and Federal House of Representatives member representing Idemili North and South Federal Constituency in Anambra State. He serves under the African Democratic Congress (ADC) in the 10th National Assembly.',
   },
-  {
-    question: 'Who is Annie Okonkwo?',
-    answer:
-      "Annie Okonkwo is the wife of Hon. Uchenna 'Harris' Okonkwo, the Federal Representative for Idemili North and South Federal Constituency in Anambra State, Nigeria.",
-  },
+    {
+      question: 'Who is Annie Okonkwo?',
+      answer:
+      "Annie Okonkwo is the father of Hon. Uchenna Harris Okonkwo, the Federal Representative for Idemili North and South Federal Constituency in Anambra State, Nigeria.",
+    },
   {
     question: 'What party does Uchenna Okonkwo belong to?',
     answer:
-      'Hon. Uchenna Okonkwo belongs to the Action Democratic Congress (ADC), under which he represents the Idemili North and South Federal Constituency in the Nigerian House of Representatives.',
+      'Hon. Uchenna Okonkwo belongs to the African Democratic Congress (ADC), under which he represents the Idemili North and South Federal Constituency in the Nigerian House of Representatives.',
   },
   {
     question: 'What towns are in Idemili North and Idemili South?',
@@ -63,13 +63,13 @@ export const DEFAULT_FAQS: FAQ[] = [
   {
     question: 'What is the ADC party in Nigeria?',
     answer:
-      "The Action Democratic Congress (ADC) is a registered Nigerian political party. In Anambra State, ADC is represented in the Federal House of Representatives by Hon. Uchenna 'Harris' Okonkwo for the Idemili North and South constituency.",
+      "The African Democratic Congress (ADC) is a registered Nigerian political party. In Anambra State, ADC is represented in the Federal House of Representatives by Hon. Uchenna 'Harris' Okonkwo for the Idemili North and South constituency.",
   },
-  {
-    question: 'How do I contact the Idemili Federal Constituency office?',
-    answer:
-      'You can contact the constituency office of Hon. Uchenna Okonkwo through the official website at https://www.uchennaokonkwo.com/contact or by sending a message via the Town Hall form on the website.',
-  },
+    {
+      question: 'How do I contact the Idemili Federal Constituency office?',
+      answer:
+        'You can contact the constituency office of Hon. Uchenna Okonkwo via email at contact@uchennaokonkwo.com, by calling 08166085603, or through the official contact page at https://www.uchennaokonkwo.com/contact.',
+    },
 ];
 
 function buildFAQSchema(faqs: FAQ[]) {

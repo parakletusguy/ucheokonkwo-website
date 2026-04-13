@@ -5,7 +5,7 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const NAV_ITEMS = [
   { en: "Home", href: "/", icon: "home" },
-  { en: "About Hon. Harris", href: "/about", icon: "person" },
+  { en: "About Hon. Uchenna", href: "/about", icon: "person" },
   { en: "The Constituency", href: "/constituency", icon: "location_on" },
   { en: "Media & Blog", href: "/media", icon: "newspaper" },
   { en: "Resources", href: "/resources", icon: "folder_open" },
@@ -84,7 +84,7 @@ export default function Header() {
                   color: "var(--midnight-green)",
                 }}
               >
-                Uche Okonkwo
+                Hon. Uchenna Harris Okonkwo
               </span>
               <span
                 style={{

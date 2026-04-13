@@ -30,7 +30,7 @@ export default function AboutPage() {
             <h1 className="text-5xl lg:text-7xl font-bold text-[var(--obsidian)] mb-8 serif-font">
               {t({
                 en: "Biography & Track Record",
-                pcm: "Who Be Hon. Harris?",
+                pcm: "Who Be Hon. Uchenna?",
                 ig: "Nkọwa Ndụ na Ihe NDị Ọ Rụgoro",
                 ha: "Tarihin Rayuwa da Ayyukan Daya Gabata",
                 yo: "Igbesi Aye & Awọn Aṣeyọri Rẹ",
@@ -39,11 +39,11 @@ export default function AboutPage() {
             <div className="text-lg text-gray-600 space-y-6 font-light leading-relaxed">
               <p>
                 {t({
-                  en: "Hon. Harris Uchenna Okonkwo is a progressive statesman, entrepreneur, and dedicated public servant representing the resilient people of Idemili North and South.",
-                  pcm: "Hon. Harris Uchenna Okonkwo na correct leader and businessman wey dey represent the strong people of Idemili North and South.",
-                  ig: "Hon. Harris Uchenna Okonkwo bụ onye ndọrọ ndọrọ ọchịchị na onye achụmnta ego na anọchite anya ndị Idemili Ugwu na Ndịda.",
-                  ha: "Hon. Harris Uchenna Okonkwo babban dan siyasa ne, kuma dan kasuwa wanda ke wakiltar al'ummar Idemili Arewa da Kudu.",
-                  yo: "Hon. Harris Uchenna Okonkwo jẹ adari onitẹsiwaju, onisowo, ati aṣoju awon eeyan Idemili Ariwa ati Guusu.",
+                  en: "Hon. Uchenna Harris Okonkwo is a progressive statesman, entrepreneur, and dedicated public servant representing the resilient people of Idemili North and South.",
+                  pcm: "Hon. Uchenna Harris Okonkwo na correct leader and businessman wey dey represent the strong people of Idemili North and South.",
+                  ig: "Hon. Uchenna Harris Okonkwo bụ onye ndọrọ ndọrọ ọchịchị na onye achụmnta ego na anọchite anya ndị Idemili Ugwu na Ndịda.",
+                  ha: "Hon. Uchenna Harris Okonkwo babban dan siyasa ne, kuma dan kasuwa wanda ke wakiltar al'ummar Idemili Arewa da Kudu.",
+                  yo: "Hon. Uchenna Harris Okonkwo jẹ adari onitẹsiwaju, onisowo, ati aṣoju awon eeyan Idemili Ariwa ati Guusu.",
                 })}
               </p>
               <p>

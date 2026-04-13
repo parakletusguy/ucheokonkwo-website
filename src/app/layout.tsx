@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   keywords: [
     'Uchenna Okonkwo', 'Harris Okonkwo', 'reps in Nigeria', 'idemili reps',
     'idemili north and south federal constituency', 'idemili federal representative',
-    'ADC Nigeria', 'Action Democratic Congress', '10th assembly rep', 'best 10th assembly rep',
+    'ADC Nigeria', 'African Democratic Congress', '10th assembly rep', 'best 10th assembly rep',
     '2027 general elections idemili', 'Annie Okonkwo', 'towns in idemili',
     'idemili north', 'idemili south', 'Nkpor', 'Ogidi', 'Obosi', 'Alor',
     'Ideani', 'Nnewi', 'Anambra State', 'Nigeria House of Representatives',

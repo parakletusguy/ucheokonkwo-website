@@ -27,7 +27,7 @@ export default function Footer() {
           </p>
           <h2 className="text-7xl lg:text-[10rem] font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,215,0,0.3)] group-hover:text-[var(--sunlight-yellow)] group-hover:[-webkit-text-stroke:0px] transition-all duration-700 mb-2 uppercase flex justify-center items-center gap-8 serif-font leading-none">
             {t({ en: 'Join The', pcm: 'Join', ig: 'Soro', ha: 'Shiga', yo: 'Dara' })}
-            <span className="material-symbols-outlined text-[6rem] lg:text-[9rem] text-[var(--sunlight-yellow)] transform group-hover:rotate-45 group-hover:scale-110 transition-all duration-700 font-light">arrow_outward</span>
+            <span className="material-symbols-outlined text-[6rem] lg:text-[9rem] text-[var(--sunlight-yellow)] transform group-hover:-translate-y-4 group-hover:translate-x-4 group-hover:scale-110 transition-all duration-700 font-light">arrow_outward</span>
           </h2>
           <h2 className="text-7xl lg:text-[10rem] font-bold tracking-tighter text-white group-hover:text-[var(--sunlight-yellow)] transition-all duration-700 uppercase serif-font leading-none">
             {t({ en: 'Movement', pcm: 'Di Movement', ig: 'Nnọkọ', ha: 'Cunkoso', yo: 'Egbe' })}
@@ -40,7 +40,7 @@ export default function Footer() {
             <div className="flex items-center gap-4 mb-8">
               <AdcLogo size={52} />
               <div>
-                <span className="font-bold text-xl tracking-[0.15em] uppercase text-white block">Uche Okonkwo</span>
+                <span className="font-bold text-xl tracking-[0.15em] uppercase text-white block">Hon. Uchenna Harris Okonkwo</span>
                 <span className="text-[10px] text-[var(--sunlight-yellow)] tracking-[0.2em] uppercase">African Democratic Congress</span>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row justify-between items-center mt-24 pt-8 border-t border-white/10 text-[10px] font-bold text-blue-300 tracking-[0.2em] uppercase">
-          <p>© {new Date().getFullYear()} HON. HARRIS OKONKWO. {t({ en: 'ALL RIGHTS RESERVED.', pcm: 'NA WE GET AM.', ig: 'IHE NILE BU NKE ANYỊ.', ha: 'HAƘƘIN KOWA NAMU NE.', yo: 'GBOGBO ENI NI AWA.' })}</p>
+          <p>© {new Date().getFullYear()} HON. UCHENNA HARRIS OKONKWO. {t({ en: 'ALL RIGHTS RESERVED.', pcm: 'NA WE GET AM.', ig: 'IHE NILE BU NKE ANYỊ.', ha: 'HAƘƘIN KOWA NAMU NE.', yo: 'GBOGBO ENI NI AWA.' })}</p>
           <div className="flex gap-8 mt-6 md:mt-0">
             <a href="#" className="hover:text-[var(--sunlight-yellow)] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[var(--sunlight-yellow)] transition-colors">Terms of Service</a>

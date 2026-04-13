@@ -67,7 +67,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap items-center gap-8">
-            <button className="bg-[var(--midnight-green)] text-[var(--off-white)] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all flex items-center gap-3 group soft-shadow">
+            <a href="/resources" className="bg-[var(--midnight-green)] text-[var(--off-white)] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all flex items-center gap-3 group soft-shadow">
               {t({
                 en: "Explore Agenda",
                 pcm: "See Wetin We Get",
@@ -76,7 +76,7 @@ export default function Hero() {
                 yo: "Ṣawari Eto",
               })}
               <span className="w-8 h-px bg-white/30 group-hover:w-12 transition-all"></span>
-            </button>
+            </a>
             <a
               href="https://youtube.com/@hon.uchennaharrisokonkwotv"
               target="_blank"
@@ -116,7 +116,7 @@ export default function Hero() {
             */}
             <Image
               src="https://res.cloudinary.com/djh9qeaf6/image/upload/v1773862128/IMG_3165_gwdzkj.jpg"
-              alt="Hon. Harris Portrait"
+              alt="Hon. Uchenna Portrait"
               fill
               priority
               className="object-cover contrast-125 [object-position:30%_top]"

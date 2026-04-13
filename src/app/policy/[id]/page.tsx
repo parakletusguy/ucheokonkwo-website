@@ -48,7 +48,7 @@ export default function PolicyDetailPage({ params }: Props) {
         <section className="bg-[var(--off-white)] p-10 rounded-2xl border-l-8 border-[var(--midnight-green)]">
           <h2 className="text-3xl font-serif font-bold text-[var(--obsidian)] mb-6">2. Legislative & Community Context</h2>
           <p>
-            For decades, the people of Idemili North and South have navigated various developmental hurdles. {desc} This specific intervention was born out of extensive town hall consultations and field assessments. Hon. Harris Okonkwo recognized that without a targeted approach to {item.tag.toLowerCase()}, the constituency would continue to lag behind in national development indices.
+            For decades, the people of Idemili North and South have navigated various developmental hurdles. {desc} This specific intervention was born out of extensive town hall consultations and field assessments. Hon. Uchenna Okonkwo recognized that without a targeted approach to {item.tag.toLowerCase()}, the constituency would continue to lag behind in national development indices.
           </p>
           <p className="mt-4">
             The legislative context for this achievement involves multiple stages of advocacy, budgeting, and stakeholder engagement. In the 10th National Assembly, Hon. Okonkwo has been a vocal proponent of policies that bridge the gap between the federal government and the grassroots. This initiative is a direct result of that commitment, ensuring that federal resources are effectively channeled to the people who need them most.
@@ -137,7 +137,7 @@ export default function PolicyDetailPage({ params }: Props) {
             <div className="flex items-center gap-8 py-8 border-y border-gray-100">
                <div>
                   <p className="text-xs text-gray-400 uppercase tracking-widest mb-1 font-bold">Representative</p>
-                  <p className="font-serif italic text-[var(--midnight-green)]">Hon. Harris Okonkwo</p>
+                  <p className="font-serif italic text-[var(--midnight-green)]">Hon. Uchenna Okonkwo</p>
                </div>
                <div>
                   <p className="text-xs text-gray-400 uppercase tracking-widest mb-1 font-bold">Constituency</p>

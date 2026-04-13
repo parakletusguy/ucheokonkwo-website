@@ -60,6 +60,18 @@ export default function ContactPage() {
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
+                  <span className="material-symbols-outlined text-[var(--midnight-green)]">call</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-[var(--obsidian)]">Phone Number</h4>
+                  <p className="text-gray-500 font-light">
+                    08166085603
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center shrink-0">
                   <span className="material-symbols-outlined text-[var(--midnight-green)]">public</span>
                 </div>
                 <div>
