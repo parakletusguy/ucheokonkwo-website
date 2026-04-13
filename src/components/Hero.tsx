@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="absolute top-0 right-0 w-3/4 h-full bg-gradient-to-bl from-[var(--midnight-green)]/10 to-transparent -z-10"></div>
       <div className="absolute bottom-0 right-20 w-[50vw] h-[50vw] bg-[var(--midnight-green)] rounded-full blur-[160px] opacity-15 -z-10"></div>
 
-      <div className="max-w-[90rem] mx-auto w-full px-6 lg:px-12 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+      <div className="max-w-[90rem] mx-auto w-full px-6 lg:px-12 pb-24 relative z-10 grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7 lg:pr-10 relative z-20">
           <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-[10px] mb-8 flex items-center gap-4">
             <span className="w-8 h-[1px] bg-[var(--sunlight-yellow)]"></span>
