@@ -85,8 +85,9 @@ export default function DonatePage() {
 
       setIsSuccess(true);
       setStatusText("");
-    } catch (error: any) {
-      alert(error.message || "An error occurred");
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : "An error occurred";
+      alert(errorMessage);
       setStatusText("");
     } finally {
       setIsLoading(false);
@@ -315,6 +316,7 @@ export default function DonatePage() {
                       </div>
                     ) : (
                       <div className="relative rounded-xl overflow-hidden border border-gray-200 group">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={imagePreview}
                           alt="Preview"

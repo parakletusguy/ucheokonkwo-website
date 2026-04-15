@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 const TerritoryTracker = dynamic(() => import('@/components/TerritoryTracker'));
 const LegislativeAgenda = dynamic(() => import('@/components/LegislativeAgenda'));
 const TownHall = dynamic(() => import('@/components/TownHall'));
+const DonationCTA = dynamic(() => import('@/components/DonationCTA'));
 const Footer = dynamic(() => import('@/components/Footer'));
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <TerritoryTracker />
         <LegislativeAgenda />
         <TownHall />
+        <DonationCTA />
       </main>
       <Footer />
     </>
