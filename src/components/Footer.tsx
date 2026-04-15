@@ -21,15 +21,21 @@ export default function Footer() {
 
       <div className="max-w-[90rem] mx-auto px-6 lg:px-12 relative z-10">
         {/* Big CTA */}
-        <a href="/get-involved" className="text-center mb-32 group cursor-pointer inline-block w-full">
-          <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-8">
+        <a href="/get-involved" className="text-center mb-24 lg:mb-32 group cursor-pointer inline-block w-full overflow-hidden">
+          <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 lg:mb-8">
             {t({ en: 'Take Action', pcm: 'Do Something', ig: 'Mee Ihe Obu', ha: 'Yi Aiki', yo: 'Ṣe Nkan' })}
           </p>
-          <h2 className="text-7xl lg:text-[10rem] font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,215,0,0.3)] group-hover:text-[var(--sunlight-yellow)] group-hover:[-webkit-text-stroke:0px] transition-all duration-700 mb-2 uppercase flex justify-center items-center gap-8 serif-font leading-none">
+
+          {/* "Join The" + arrow — fluid font scales with viewport */}
+          <h2 className="font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,215,0,0.3)] group-hover:text-[var(--sunlight-yellow)] group-hover:[-webkit-text-stroke:0px] transition-all duration-700 mb-1 uppercase flex justify-center items-center gap-3 sm:gap-6 lg:gap-8 serif-font leading-none text-[clamp(2.8rem,11vw,10rem)]">
             {t({ en: 'Join The', pcm: 'Join', ig: 'Soro', ha: 'Shiga', yo: 'Dara' })}
-            <span className="material-symbols-outlined text-[6rem] lg:text-[9rem] text-[var(--sunlight-yellow)] transform group-hover:-translate-y-4 group-hover:translate-x-4 group-hover:scale-110 transition-all duration-700 font-light">arrow_outward</span>
+            <span className="material-symbols-outlined text-[clamp(2rem,8vw,9rem)] text-[var(--sunlight-yellow)] transform group-hover:-translate-y-3 group-hover:translate-x-3 group-hover:scale-110 transition-all duration-700 font-light flex-shrink-0">
+              arrow_outward
+            </span>
           </h2>
-          <h2 className="text-7xl lg:text-[10rem] font-bold tracking-tighter text-white group-hover:text-[var(--sunlight-yellow)] transition-all duration-700 uppercase serif-font leading-none">
+
+          {/* "Movement" — same fluid size, solid white */}
+          <h2 className="font-bold tracking-tighter text-white group-hover:text-[var(--sunlight-yellow)] transition-all duration-700 uppercase serif-font leading-none text-[clamp(2.8rem,11vw,10rem)]">
             {t({ en: 'Movement', pcm: 'Di Movement', ig: 'Nnọkọ', ha: 'Cunkoso', yo: 'Egbe' })}
           </h2>
         </a>

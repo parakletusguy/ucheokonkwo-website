@@ -4,331 +4,138 @@ import React, { useState, useEffect } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const NAV_ITEMS = [
-  { en: "Home", href: "/", icon: "home" },
-  { en: "About Hon. Uchenna", href: "/about", icon: "person" },
-  { en: "The Constituency", href: "/constituency", icon: "location_on" },
-  { en: "Media & Blog", href: "/media", icon: "newspaper" },
-  { en: "Resources", href: "/resources", icon: "folder_open" },
-  { en: "Donate", href: "/donate", icon: "volunteer_activism" },
-  { en: "Feedback", href: "/feedback", icon: "feedback" },
-  { en: "Admin Portal", href: "/admin", icon: "lock" },
+  { en: "Home",                href: "/",              icon: "home"               },
+  { en: "About Hon. Uchenna",  href: "/about",         icon: "person"             },
+  { en: "The Constituency",    href: "/constituency",  icon: "location_on"        },
+  { en: "Media & Blog",        href: "/media",         icon: "newspaper"          },
+  { en: "Resources",           href: "/resources",     icon: "folder_open"        },
+  { en: "Donate",              href: "/donate",        icon: "volunteer_activism" },
+  { en: "Feedback",            href: "/feedback",      icon: "feedback"           },
+  { en: "Admin Portal",        href: "/admin",         icon: "lock"               },
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open,    setOpen]    = useState(false);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   return (
     <>
-      {/* ─── Top bar ─────────────────────────────── */}
-      <header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 100,
-          background: "#fff",
-          boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-        }}
-      >
+      {/* ─── Top bar ─────────────────────────────────────────── */}
+      <header className="fixed top-0 left-0 right-0 z-[100] bg-white shadow-sm">
         {/* Tricolor stripe */}
-        <div style={{ display: "flex", height: 6 }}>
-          <div style={{ flex: 1, background: "var(--midnight-green)" }} />
-          <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
-          <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
+        <div className="flex h-1.5">
+          <div className="flex-1 bg-[var(--midnight-green)]" />
+          <div className="flex-1 bg-[var(--sunlight-yellow)]" />
+          <div className="flex-1 bg-[var(--sunlight-yellow)]" />
         </div>
 
-        <div
-          style={{
-            maxWidth: "90rem",
-            margin: "0 auto",
-            padding: "0 1.5rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: 80,
-          }}
-        >
-          {/* Logo */}
-          <a
-            href="/"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              textDecoration: "none",
-            }}
-          >
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
+
+          {/* ── Logo ── */}
+          <a href="/" className="flex items-center gap-2.5 sm:gap-3 no-underline min-w-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="https://res.cloudinary.com/djh9qeaf6/image/upload/v1773862953/WhatsApp_Image_2026-03-17_at_12.52.14_PM_ahquhm.jpg"
-              alt="Logo"
-              width={46}
-              height={46}
+              alt="ADC Logo"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded flex-shrink-0 object-cover"
             />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                lineHeight: 1.2,
-              }}
-            >
-              <span
-                style={{
-                  fontWeight: 800,
-                  fontSize: 18,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "var(--midnight-green)",
-                }}
-              >
+            <div className="flex flex-col leading-tight min-w-0">
+              {/* Name — truncated on tiny screens */}
+              <span className="font-extrabold uppercase tracking-wide text-[var(--midnight-green)] text-[13px] sm:text-[16px] lg:text-[18px] leading-tight truncate">
                 Hon. Uchenna Okonkwo
               </span>
-              <span
-                style={{
-                  fontSize: 9,
-                  fontWeight: 600,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "var(--midnight-green)",
-                  opacity: 0.7,
-                }}
-              >
+              {/* Constituency — hidden on xs, shown from sm up */}
+              <span className="hidden sm:block text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.18em] text-[var(--midnight-green)] opacity-60 truncate">
                 Idemili North &amp; South Federal Constituency
+              </span>
+              {/* Short tag shown only on xs */}
+              <span className="block sm:hidden text-[8px] font-semibold uppercase tracking-[0.15em] text-[var(--midnight-green)] opacity-55">
+                Idemili N &amp; S
               </span>
             </div>
           </a>
 
-          {/* MENU button */}
+          {/* ── Menu button ── */}
           <button
             onClick={() => setOpen(true)}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "10px 18px",
-              border: "2px solid var(--midnight-green)",
-              background: "transparent",
-              color: "var(--midnight-green)",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              cursor: "pointer",
-              borderRadius: 4,
-            }}
+            aria-label="Open menu"
+            className="flex-shrink-0 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 border-2 border-[var(--midnight-green)] text-[var(--midnight-green)] font-bold text-[10px] sm:text-[11px] uppercase tracking-[0.18em] rounded hover:bg-[var(--midnight-green)] hover:text-white transition-all"
           >
-            <span style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-              <span
-                style={{
-                  display: "block",
-                  width: 20,
-                  height: 2,
-                  background: "currentColor",
-                }}
-              />
-              <span
-                style={{
-                  display: "block",
-                  width: 20,
-                  height: 2,
-                  background: "currentColor",
-                }}
-              />
-              <span
-                style={{
-                  display: "block",
-                  width: 13,
-                  height: 2,
-                  background: "currentColor",
-                }}
-              />
+            {/* Hamburger lines */}
+            <span className="flex flex-col gap-[4px] flex-shrink-0">
+              <span className="block w-4 sm:w-5 h-[2px] bg-current" />
+              <span className="block w-4 sm:w-5 h-[2px] bg-current" />
+              <span className="block w-3 sm:w-3.5 h-[2px] bg-current" />
             </span>
-            Menu
+            <span className="hidden xs:inline sm:inline">Menu</span>
           </button>
         </div>
       </header>
 
-      {/* ─── Overlay + Sidebar (only mounted when open) ──── */}
+      {/* ─── Sidebar + Backdrop ─────────────────────────────── */}
       {open && (
         <>
           {/* Backdrop */}
           <div
             onClick={() => setOpen(false)}
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: "rgba(0,0,0,0.5)",
-              zIndex: 9998,
-            }}
+            className="fixed inset-0 bg-black/50 z-[9998] backdrop-blur-sm"
           />
 
           {/* Sidebar */}
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              right: 0,
-              width: "min(340px, 90vw)",
-              height: "100%",
-              background: "#fff",
-              zIndex: 9999,
-              display: "flex",
-              flexDirection: "column",
-              boxShadow: "-8px 0 40px rgba(0,0,0,0.25)",
-              overflowY: "auto",
-            }}
-          >
+          <div className="fixed top-0 right-0 w-[min(340px,90vw)] h-full bg-white z-[9999] flex flex-col shadow-2xl overflow-y-auto">
             {/* Stripe */}
-            <div style={{ display: "flex", height: 6, flexShrink: 0 }}>
-              <div style={{ flex: 1, background: "var(--midnight-green)" }} />
-              <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
-              <div style={{ flex: 1, background: "var(--sunlight-yellow)" }} />
+            <div className="flex h-1.5 flex-shrink-0">
+              <div className="flex-1 bg-[var(--midnight-green)]" />
+              <div className="flex-1 bg-[var(--sunlight-yellow)]" />
+              <div className="flex-1 bg-[var(--sunlight-yellow)]" />
             </div>
 
             {/* Sidebar header */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "20px 24px",
-                borderBottom: "1px solid #f0f0f0",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: 10,
-                  fontWeight: 700,
-                  letterSpacing: "0.3em",
-                  textTransform: "uppercase",
-                  color: "#aaa",
-                }}
-              >
-                Navigation
-              </span>
+            <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">Navigation</p>
+                <p className="text-xs font-semibold text-[var(--midnight-green)] mt-0.5">Hon. Uchenna Okonkwo</p>
+              </div>
               <button
                 onClick={() => setOpen(false)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4,
-                  color: "var(--midnight-green)",
-                  fontWeight: 700,
-                  fontSize: 10,
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                }}
+                className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--midnight-green)] hover:text-red-500 transition-colors"
               >
-                <span
-                  className="material-symbols-outlined"
-                  style={{ fontSize: 20 }}
-                >
-                  close
-                </span>
+                <span className="material-symbols-outlined text-[20px]">close</span>
                 Close
               </button>
             </div>
 
             {/* Nav links */}
-            <nav
-              style={{
-                flex: 1,
-                padding: "16px",
-                display: "flex",
-                flexDirection: "column",
-                gap: 4,
-              }}
-            >
+            <nav className="flex-1 p-4 flex flex-col gap-0.5">
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 16,
-                    padding: "16px",
-                    borderRadius: 8,
-                    textDecoration: "none",
-                    color: "#444",
-                    fontWeight: 700,
-                    fontSize: 13,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    transition: "background 0.15s",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background =
-                      "var(--midnight-green)";
-                    (e.currentTarget as HTMLElement).style.color = "#fff";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background =
-                      "transparent";
-                    (e.currentTarget as HTMLElement).style.color = "#444";
-                  }}
+                  className="flex items-center gap-4 px-4 py-3.5 rounded-lg text-[#444] font-bold text-xs uppercase tracking-[0.1em] no-underline hover:bg-[var(--midnight-green)] hover:text-white transition-all group"
                 >
-                  <span
-                    className="material-symbols-outlined"
-                    style={{ fontSize: 22, color: "inherit", flexShrink: 0 }}
-                  >
+                  <span className="material-symbols-outlined text-[20px] flex-shrink-0">
                     {item.icon}
                   </span>
-                  {item.en}
-                  <span
-                    className="material-symbols-outlined"
-                    style={{ fontSize: 18, marginLeft: "auto", opacity: 0.3 }}
-                  >
+                  <span className="flex-1">{item.en}</span>
+                  <span className="material-symbols-outlined text-[16px] opacity-30 group-hover:opacity-60 transition-opacity">
                     chevron_right
                   </span>
                 </a>
               ))}
             </nav>
 
-            {/* Language switcher + CTA */}
-            <div
-              style={{
-                padding: "24px",
-                borderTop: "1px solid #f0f0f0",
-                display: "flex",
-                flexDirection: "column",
-                gap: 16,
-              }}
-            >
+            {/* Footer: language + CTA */}
+            <div className="p-6 border-t border-gray-100 flex flex-col gap-4">
               {mounted && <LanguageSwitcher variant="dropdown" />}
               <a
                 href="/get-involved"
                 onClick={() => setOpen(false)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  background: "var(--midnight-green)",
-                  color: "var(--sunlight-yellow)",
-                  padding: "16px 24px",
-                  fontWeight: 700,
-                  fontSize: 11,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  textDecoration: "none",
-                  borderRadius: 4,
-                }}
+                className="flex items-center justify-center gap-2 bg-[var(--midnight-green)] text-[var(--sunlight-yellow)] px-6 py-4 rounded font-bold text-[11px] uppercase tracking-[0.2em] no-underline hover:bg-[var(--obsidian)] transition-all"
               >
                 Get Involved
-                <span
-                  className="material-symbols-outlined"
-                  style={{ fontSize: 18 }}
-                >
-                  arrow_right_alt
-                </span>
+                <span className="material-symbols-outlined text-[18px]">arrow_right_alt</span>
               </a>
             </div>
           </div>
