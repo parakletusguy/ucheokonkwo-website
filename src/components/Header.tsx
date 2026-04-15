@@ -84,7 +84,7 @@ export default function Header() {
                   color: "var(--midnight-green)",
                 }}
               >
-                Hon. Uchenna Harris Okonkwo
+                Hon. Uchenna Okonkwo
               </span>
               <span
                 style={{
@@ -96,7 +96,7 @@ export default function Header() {
                   opacity: 0.7,
                 }}
               >
-                Idemili North &amp; South
+                Idemili North &amp; South Federal Constituency
               </span>
             </div>
           </a>
