@@ -379,7 +379,7 @@ export default function AdminSettingsPage() {
                     { label: 'Version',      value: 'v1.0.0'        },
                     { label: 'Campaign',     value: 'Uche Okonkwo'  },
                     { label: 'Party',        value: 'ADC'           },
-                    { label: 'Constituency', value: 'Idemili N & S' },
+                    { label: 'Constituency', value: 'Idemili North & South' },
                   ].map(row => (
                     <div key={row.label} className="flex items-center justify-between">
                       <span className="text-xs text-gray-400">{row.label}</span>

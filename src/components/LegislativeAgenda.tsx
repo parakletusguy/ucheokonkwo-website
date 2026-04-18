@@ -166,14 +166,17 @@ export default function LegislativeAgenda() {
 
                 {item.gallery && item.gallery.length > 0 && (
                   <div className="flex flex-col items-end gap-2">
-                    <div className="flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-                      <span className="material-symbols-outlined text-[10px] text-[var(--sunlight-yellow)] animate-pulse">
+                    <Link
+                      href={`/policy/${item.num}`}
+                      className="flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/20 hover:border-[var(--sunlight-yellow)]/50 transition-all cursor-pointer group/photo"
+                    >
+                      <span className="material-symbols-outlined text-[10px] text-[var(--sunlight-yellow)] animate-pulse group-hover/photo:scale-110 transition-transform">
                         photo_library
                       </span>
-                      <span className="text-[8px] font-bold uppercase tracking-widest text-white/70">
+                      <span className="text-[8px] font-bold uppercase tracking-widest text-white/70 group-hover/photo:text-white transition-colors">
                         Photo Evidence
                       </span>
-                    </div>
+                    </Link>
                   </div>
                 )}
               </div>

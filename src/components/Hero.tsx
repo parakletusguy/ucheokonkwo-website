@@ -4,13 +4,14 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useLanguageStore } from "@/store/useLanguageStore";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
+const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3001/api/v1";
 
 const STATIC_TICKER = [
-  'Nnobi-Alor Road Rehab Commences Phase 2',
-  'Obosi General Hospital Equipment Delivery Complete',
-  'Next Town Hall: Ideani Civic Center, Oct 15',
-  'Youth Tech Empowerment Drive Registration Opens',
+  "Nnobi-Alor Road Rehab Commences Phase 2",
+  "Obosi General Hospital Equipment Delivery Complete",
+  "Next Town Hall: Ideani Civic Center, Oct 15",
+  "Youth Tech Empowerment Drive Registration Opens",
 ];
 
 import QRCodeComponent from "@/components/QRCodeComponent";
@@ -21,13 +22,13 @@ export default function Hero() {
 
   useEffect(() => {
     fetch(`${API_BASE}/posts`)
-      .then(r => r.ok ? r.json() : null)
+      .then((r) => (r.ok ? r.json() : null))
       .then((data: unknown) => {
         if (!Array.isArray(data) || data.length === 0) return;
         const published = (data as { status: string; title: string }[])
-          .filter(p => p.status === 'PUBLISHED')
+          .filter((p) => p.status === "PUBLISHED")
           .slice(0, 6)
-          .map(p => p.title);
+          .map((p) => p.title);
         if (published.length > 0) setTickerItems(published);
       })
       .catch(() => {});
@@ -89,7 +90,10 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap items-center gap-8">
-            <a href="/resources" className="bg-[var(--midnight-green)] text-[var(--off-white)] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all flex items-center gap-3 group soft-shadow">
+            <a
+              href="/resources"
+              className="bg-[var(--midnight-green)] text-[var(--off-white)] px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] hover:bg-[var(--obsidian)] transition-all flex items-center gap-3 group soft-shadow"
+            >
               {t({
                 en: "Explore Agenda",
                 pcm: "See Wetin We Get",
@@ -120,8 +124,8 @@ export default function Hero() {
             </a>
 
             <div className="ml-auto hidden xl:block">
-              <QRCodeComponent 
-                value="https://www.uchennaokonkwo.com" 
+              <QRCodeComponent
+                value="https://www.uchennaokonkwo.com"
                 size={80}
                 label="Scan to Visit"
               />
@@ -137,7 +141,7 @@ export default function Hero() {
               priority=true on hero image to avoid LCP penalty.
             */}
             <Image
-              src="https://res.cloudinary.com/djh9qeaf6/image/upload/v1773862128/IMG_3165_gwdzkj.jpg"
+              src="https://res.cloudinary.com/djh9qeaf6/image/upload/v1773947223/posts/mhme6bvplaki2tocgi0p.jpg "
               alt="Hon. Uchenna Portrait"
               fill
               priority
@@ -164,7 +168,9 @@ export default function Hero() {
           <div className="ticker font-medium text-xs tracking-widest uppercase text-white/80">
             {tickerItems.map((item, i) => (
               <React.Fragment key={i}>
-                <span className="mx-8 text-[var(--sunlight-yellow)] opacity-50">•</span>{" "}
+                <span className="mx-8 text-[var(--sunlight-yellow)] opacity-50">
+                  •
+                </span>{" "}
                 {item}
               </React.Fragment>
             ))}

@@ -51,7 +51,7 @@ export default function Header() {
               </span>
               {/* Short tag shown only on xs */}
               <span className="block sm:hidden text-[8px] font-semibold uppercase tracking-[0.15em] text-[var(--midnight-green)] opacity-55">
-                Idemili N &amp; S
+                Idemili North &amp; South
               </span>
             </div>
           </a>
