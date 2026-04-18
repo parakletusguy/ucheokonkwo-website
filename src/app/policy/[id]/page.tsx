@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { agendaItems } from '@/data/achievements';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Props = {
   params: { id: string };
@@ -169,10 +170,12 @@ export default function PolicyDetailPage({ params }: Props) {
                     idx === 0 ? 'md:col-span-2 h-[400px]' : 'h-[300px]'
                   }`}>
                     {/* Performance: Using next/image for automatic compression & WebP conversion */}
-                    <img 
-                      src={img} 
+                    <Image
+                      src={img}
                       alt={`Impact visual for ${item.title}`}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
