@@ -2,12 +2,23 @@ import type { Metadata } from 'next';
 import PostDetailClient from './PostDetailClient';
 import type { Post } from '@/lib/types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://uchennaokonkwo.com';
+
+// Resolve the base URL for internal server-side fetching.
+// VERCEL_URL is injected automatically by Vercel. Fallback covers local dev.
+function siteBase(): string {
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  return 'http://localhost:3000';
+}
 
 async function fetchPost(id: string): Promise<Post | null> {
   try {
-    const res = await fetch(`${API_BASE}/posts/${id}`, { next: { revalidate: 60 } });
+    // Use the internal Next.js proxy route — works on any deployment without
+    // needing the backend to be directly reachable from the SSR server.
+    const res = await fetch(`${siteBase()}/api/posts/${id}`, {
+      next: { revalidate: 60 },
+    });
     if (!res.ok) return null;
     return res.json();
   } catch {
@@ -26,7 +37,11 @@ export async function generateMetadata(
   const post = await fetchPost(params.id);
 
   if (!post) {
-    return { title: 'Article Not Found | Hon. Uchenna Harris Okonkwo' };
+    return {
+      title: 'Article Not Found | Hon. Uchenna Harris Okonkwo',
+      openGraph: { title: 'Article Not Found', description: 'This article could not be found.', images: [] },
+      twitter:   { card: 'summary', title: 'Article Not Found' },
+    };
   }
 
   const title       = post.title;
