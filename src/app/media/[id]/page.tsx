@@ -2,21 +2,14 @@ import type { Metadata } from 'next';
 import PostDetailClient from './PostDetailClient';
 import type { Post } from '@/lib/types';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://uchennaokonkwo.com';
-
-// Resolve the base URL for internal server-side fetching.
-// VERCEL_URL is injected automatically by Vercel. Fallback covers local dev.
-function siteBase(): string {
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
-  return 'http://localhost:3000';
-}
+const SITE_URL   = process.env.NEXT_PUBLIC_SITE_URL   ?? 'https://uchennaokonkwo.com';
+// Call the backend directly — no self-referential proxy hop needed.
+const BACKEND    = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
 
 async function fetchPost(id: string): Promise<Post | null> {
   try {
-    // Use the internal Next.js proxy route — works on any deployment without
-    // needing the backend to be directly reachable from the SSR server.
-    const res = await fetch(`${siteBase()}/api/posts/${id}`, {
+    const res = await fetch(`${BACKEND}/posts/${id}`, {
+      // Cache on the server for 60 s so repeat social-crawler hits are fast.
       next: { revalidate: 60 },
     });
     if (!res.ok) return null;
@@ -27,12 +20,12 @@ async function fetchPost(id: string): Promise<Post | null> {
 }
 
 function excerpt(text: string, max = 160): string {
-  const clean = text.replace(/\s+/g, ' ').trim();
+  const clean = text.replace(/\*\*|__|\*|_|`|##+\s|>\s/g, '').replace(/\s+/g, ' ').trim();
   return clean.length <= max ? clean : clean.slice(0, max).replace(/\s\S*$/, '') + '…';
 }
 
 export async function generateMetadata(
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ): Promise<Metadata> {
   const post = await fetchPost(params.id);
 
@@ -44,7 +37,7 @@ export async function generateMetadata(
     };
   }
 
-  const title       = post.title;
+  const title       = post.title.trim();
   const description = post.subcontent ?? excerpt(post.content);
   const image       = post.Media?.[0]?.url ?? null;
   const url         = `${SITE_URL}/media/${post.id}`;
