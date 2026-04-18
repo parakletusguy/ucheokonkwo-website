@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import { useLanguageStore } from '@/store/useLanguageStore';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
 
@@ -19,7 +18,6 @@ const WARDS = [
 ];
 
 export default function GetInvolvedPage() {
-  const { t } = useLanguageStore();
 
   /* Volunteer form */
   const [vName, setVName] = useState('');

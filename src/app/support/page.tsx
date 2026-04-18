@@ -4,10 +4,8 @@ import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import QRCodeComponent from '@/components/QRCodeComponent';
-import { useLanguageStore } from '@/store/useLanguageStore';
 
 export default function SupportPage() {
-  const { t } = useLanguageStore();
   const [amount, setAmount] = useState('');
 
   const handleSupport = (e: React.FormEvent) => {

@@ -5,10 +5,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LegislativeAgenda from '@/components/LegislativeAgenda';
 import FAQSchema, { DEFAULT_FAQS } from '@/components/FAQSchema';
-import { useLanguageStore } from '@/store/useLanguageStore';
 
 export default function AgendaPage() {
-  const { t } = useLanguageStore();
 
   return (
     <>

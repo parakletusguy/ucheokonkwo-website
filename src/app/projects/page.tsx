@@ -6,7 +6,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TerritoryTracker from '@/components/TerritoryTracker';
 import FAQSchema, { DEFAULT_FAQS } from '@/components/FAQSchema';
-import { useLanguageStore } from '@/store/useLanguageStore';
 import type { Project, ProjectStatus } from '@/lib/types';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api/v1';
@@ -125,7 +124,6 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function ProjectsPage() {
-  const { t } = useLanguageStore();
   const [backendProjects, setBackendProjects] = useState<Project[]>([]);
   const [filter, setFilter] = useState('All');
   const [loadingProjects, setLoadingProjects] = useState(true);
