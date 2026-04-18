@@ -103,7 +103,6 @@ export default function DonatePage() {
           <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-xs mb-4">
             {t({
               en: "Empower Our Future",
-              pcm: "Support Di Movement",
               ig: "Kwado Ọhụụ Anyị",
               ha: "Tallafa Wa Hangen Nesa",
               yo: "Ṣe Àtìlẹyìn Ìran Naa",

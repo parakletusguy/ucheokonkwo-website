@@ -183,7 +183,6 @@ export default function ResourcesPage() {
           <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-xs mb-4">
             {t({
               en: "Knowledge & Assets",
-              pcm: "Information & Tools",
               ig: "Mmụta na Ngwa Ọrụ",
               ha: "Ilimi da Kayan Aiki",
               yo: "Imọ & Awọn Ohun-ini",

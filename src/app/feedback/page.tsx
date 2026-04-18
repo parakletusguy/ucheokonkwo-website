@@ -54,7 +54,6 @@ export default function FeedbackPage() {
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
           <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-xs mb-4">
-            {t({ en: 'Your Voice Matters', pcm: 'Talk Your Own', ig: 'Olu Gị Dị Mkpa', ha: 'Muryarka Tana Da Mutu', yo: 'Ohun Rẹ Ṣe Pataki' })}
           </p>
           <h1 className="text-5xl lg:text-7xl font-bold text-[var(--obsidian)] serif-font mb-6">
             Feedback & Suggestions

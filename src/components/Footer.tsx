@@ -23,12 +23,10 @@ export default function Footer() {
         {/* Big CTA */}
         <a href="/get-involved" className="text-center mb-24 lg:mb-32 group cursor-pointer inline-block w-full overflow-hidden">
           <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 lg:mb-8">
-            {t({ en: 'Take Action', pcm: 'Do Something', ig: 'Mee Ihe Obu', ha: 'Yi Aiki', yo: 'Ṣe Nkan' })}
           </p>
 
           {/* "Join The" + arrow — fluid font scales with viewport */}
           <h2 className="font-bold tracking-tighter text-transparent [-webkit-text-stroke:1px_rgba(255,215,0,0.3)] group-hover:text-[var(--sunlight-yellow)] group-hover:[-webkit-text-stroke:0px] transition-all duration-700 mb-1 uppercase flex justify-center items-center gap-3 sm:gap-6 lg:gap-8 serif-font leading-none text-[clamp(2.8rem,11vw,10rem)]">
-            {t({ en: 'Join The', pcm: 'Join', ig: 'Soro', ha: 'Shiga', yo: 'Dara' })}
             <span className="material-symbols-outlined text-[clamp(2rem,8vw,9rem)] text-[var(--sunlight-yellow)] transform group-hover:-translate-y-3 group-hover:translate-x-3 group-hover:scale-110 transition-all duration-700 font-light flex-shrink-0">
               arrow_outward
             </span>
@@ -36,7 +34,6 @@ export default function Footer() {
 
           {/* "Movement" — same fluid size, solid white */}
           <h2 className="font-bold tracking-tighter text-white group-hover:text-[var(--sunlight-yellow)] transition-all duration-700 uppercase serif-font leading-none text-[clamp(2.8rem,11vw,10rem)]">
-            {t({ en: 'Movement', pcm: 'Di Movement', ig: 'Nnọkọ', ha: 'Cunkoso', yo: 'Egbe' })}
           </h2>
         </a>
 
@@ -53,7 +50,6 @@ export default function Footer() {
             <p className="text-blue-200 text-sm max-w-sm leading-relaxed mb-8 font-light">
               {t({
                 en: 'Elevating Idemili North & South through accountable governance, inclusive policies, and a commitment to next-generation leadership.',
-                pcm: 'We dey carry Idemili up with open governance, correct policies and better leadership.',
                 ig: 'Na ebuli Idemili elu site na isochi anya nke oma, na idu ndu nke oma.',
                 ha: 'Ɗaukaka Idemili ta hanyar mulki mai lissafi da jagoranci na ƙarni mai zuwa.',
                 yo: 'Gbígbéga Idemili Àríwá àti Gúúsù nípasẹ ìjọba tí ó ṣe àkọọlẹ.',
@@ -68,13 +64,9 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4 text-xs font-bold uppercase tracking-[0.1em]">
               {[
-                { label: { en: 'About', pcm: 'Who Be Our Guy', ig: 'Nkọwa Ndụ', ha: 'Tarihin Rayuwa', yo: 'Igbesi Aye' }, href: '/about' },
-                { label: { en: 'The Constituency', pcm: 'Our Area', ig: 'Mpaghara Anyị', ha: 'Mazabar Mu', yo: 'Agbegbe Wa' }, href: '/constituency' },
-                { label: { en: 'Media & Blog', pcm: 'Tori & News', ig: 'Mgbasa Ozi na Akụkọ', ha: 'Labarai da Shafin yanar gizo', yo: 'Iroyin & Buloogi' }, href: '/media' },
                 { label: { en: 'Resources', href: '/resources' }, href: '/resources' },
                 { label: { en: 'Support Us', href: '/support' }, href: '/support' },
                 { label: { en: 'Feedback', href: '/feedback' }, href: '/feedback' },
-                { label: { en: 'Get Involved', pcm: 'Join Us', ig: 'Soro Anyị', ha: 'Shiga Mu', yo: 'Dara Wa' }, href: '/get-involved' },
               ].map((item, i) => (
                 <li key={i}>
                   <a href={item.href} className="text-blue-200 hover:text-[var(--sunlight-yellow)] transition-colors flex items-center gap-2 group">
@@ -113,7 +105,6 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row justify-between items-center mt-24 pt-8 border-t border-white/10 text-[10px] font-bold text-blue-300 tracking-[0.2em] uppercase">
-          <p>© {new Date().getFullYear()} HON. UCHENNA HARRIS OKONKWO. {t({ en: 'ALL RIGHTS RESERVED.', pcm: 'NA WE GET AM.', ig: 'IHE NILE BU NKE ANYỊ.', ha: 'HAƘƘIN KOWA NAMU NE.', yo: 'GBOGBO ENI NI AWA.' })}</p>
           <div className="flex gap-8 mt-6 md:mt-0">
             <a href="#" className="hover:text-[var(--sunlight-yellow)] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[var(--sunlight-yellow)] transition-colors">Terms of Service</a>

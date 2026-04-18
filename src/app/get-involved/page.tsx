@@ -88,13 +88,10 @@ export default function GetInvolvedPage() {
         <div className="max-w-3xl mx-auto relative z-10">
           <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 flex items-center gap-4">
             <span className="w-8 h-px bg-[var(--sunlight-yellow)]"/>
-            {t({ en: 'Join The Movement', pcm: 'Join Di Movement', ig: 'Soro N\'ụlọ Mmuta', ha: 'Shiga Cikin Motsi', yo: 'Darapọ Mọ Egbe' })}
           </p>
           <h1 className="text-5xl lg:text-7xl font-bold serif-font leading-tight mb-6">
-            {t({ en: 'Get\nInvolved', pcm: 'Join\nUs', ig: 'Soro\nAnyị', ha: 'Shiga\nCiki', yo: 'Dara\nPọ' })}
           </h1>
           <p className="text-blue-200 text-lg max-w-xl leading-relaxed">
-            {t({ en: 'Together, we can build a better Idemili. Sign up as a volunteer, or send a constituency petition directly to the office.', pcm: 'Together we go build better Idemili. Sign up as volunteer or send your message to di office.', ig: 'Ọnye ọ bụla na-enyere aka ka Idemili dị mma. Deere aha gị dịka onye ọrụ nnọchite anya.', ha: 'Tare, za a gina Idemili mafi kyau. Yi rijista a matsayin mai ba da kai.', yo: 'Papọ, a o kọ Idemili to dara. Forukọsilẹ gẹgẹbi oluyọọda.' })}
           </p>
         </div>
       </section>
@@ -107,15 +104,12 @@ export default function GetInvolvedPage() {
               <span className="material-symbols-outlined text-[var(--midnight-green)]">group_add</span>
             </span>
             <div>
-              <h2 className="text-2xl font-bold serif-font text-[var(--obsidian)]">{t({ en: 'Volunteer Portal', pcm: 'Join As Volunteer', ig: 'Deere Aha Dị Ka Onye Ọrụ Nnọchite Anya', ha: 'Portal na Masu Ba Da Kai', yo: 'Portal Oluyọọda' })}</h2>
-              <p className="text-xs text-gray-400">{t({ en: 'Join the ADC campaign trail', pcm: 'Join ADC for dem campaign', ig: 'Soro ADC n\'oge ọchịchọ', ha: 'Shiga cikin yakin neman zabe na ADC', yo: 'Dara pọ mọ irin-ajo ipolongo ADC' })}</p>
             </div>
           </div>
 
           {vSuccess ? (
             <div className="bg-[var(--midnight-green)]/10 border border-[var(--midnight-green)]/20 rounded-xl p-6 text-center">
               <span className="material-symbols-outlined text-[var(--midnight-green)] text-4xl block mb-2">check_circle</span>
-              <p className="font-bold text-[var(--midnight-green)]">{t({ en: 'Thank you! We\'ll be in touch.', pcm: 'E don do! We go call you.', ig: 'Daalụ! Anyị ga-akpọtụ gị.', ha: 'Nagode! Za mu tuntube ku.', yo: 'E dupe! A o kan si ọ.' })}</p>
             </div>
           ) : (
             <form onSubmit={handleVolunteer} className="space-y-4">
@@ -139,7 +133,6 @@ export default function GetInvolvedPage() {
               {vError && <p className="text-xs text-[var(--sunlight-yellow)]">{vError}</p>}
               <button type="submit" disabled={vLoading} className="w-full bg-[var(--midnight-green)] text-white py-3 rounded-xl text-xs font-bold uppercase tracking-widest disabled:opacity-50 flex items-center justify-center gap-2">
                 {vLoading ? <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"/> : null}
-                {t({ en: 'Sign Me Up', pcm: 'Add My Name', ig: 'Deere Aha M', ha: 'Yi Rijista', yo: 'Forukọsilẹ Mi' })}
               </button>
             </form>
           )}
@@ -152,15 +145,12 @@ export default function GetInvolvedPage() {
               <span className="material-symbols-outlined text-[var(--midnight-green)]">mail</span>
             </span>
             <div>
-              <h2 className="text-2xl font-bold serif-font text-[var(--obsidian)]">{t({ en: 'Constitution Petition', pcm: 'Send Your Complaint', ig: 'Zipu Nkwupụta Gị', ha: 'Aika Koke', yo: 'Firanṣẹ Ẹbẹ' })}</h2>
-              <p className="text-xs text-gray-400">{t({ en: 'Your voice goes directly to the office', pcm: 'Your message reach di office directly', ig: 'Nkwupụta gị ga-aga n\'ụlọ ọchịchọ', ha: 'Sakon ku zai isa ofishin kai tsaye', yo: 'Ohun rẹ lọ taara si ọfiisi' })}</p>
             </div>
           </div>
 
           {pSuccess ? (
             <div className="bg-[var(--midnight-green)]/5 border border-[var(--midnight-green)]/10 rounded-xl p-6 text-center">
               <span className="material-symbols-outlined text-[var(--midnight-green)] text-4xl block mb-2">mark_email_read</span>
-              <p className="font-bold text-[var(--midnight-green)]">{t({ en: 'Petition received. Thank you for speaking up.', pcm: 'We don receive am. Dank you!', ig: 'Anyị natara nkwupụta gị. Daalụ.', ha: 'An karɓi kokinku. Nagode.', yo: 'A ti gba ẹbẹ kini. E dupe.' })}</p>
             </div>
           ) : (
             <form onSubmit={handlePetition} className="space-y-4">
@@ -181,12 +171,10 @@ export default function GetInvolvedPage() {
               </div>
               <div>
                 <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Your Petition / Message</label>
-                <textarea required value={pMessage} onChange={(e) => setPMessage(e.target.value)} rows={5} placeholder={t({ en: 'Describe your concern or request…', pcm: 'Write your matter here…', ig: 'Dee ihe ịchọ ịkọ…', ha: 'Rubuta buƙatarka…', yo: 'Ṣapejuwe ibakẹjẹ rẹ…' })} className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm text-[var(--obsidian)] focus:outline-none focus:border-[var(--midnight-green)] resize-none" />
               </div>
               {pError && <p className="text-xs text-[var(--sunlight-yellow)]">{pError}</p>}
               <button type="submit" disabled={pLoading} className="w-full bg-[var(--midnight-green)] text-[var(--sunlight-yellow)] py-3 rounded-xl text-xs font-bold uppercase tracking-widest disabled:opacity-50 flex items-center justify-center gap-2">
                 {pLoading ? <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"/> : null}
-                {t({ en: 'Send Petition', pcm: 'Send Am', ig: 'Zipu Nkwupụta', ha: 'Aika Koke', yo: 'Firanṣẹ Ẹbẹ' })}
               </button>
             </form>
           )}

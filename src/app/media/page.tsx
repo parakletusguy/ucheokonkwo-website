@@ -64,14 +64,12 @@ export default function MediaPage() {
         id: '1',
         title: t({
           en: '100 Youth Empowered in Idemili Tech Initiative',
-          pcm: '100 Youth Don Get Tech Power for Idemili',
           ig: 'Akwadebere Ndị Ntorobịa 100 na Ịmụ Ọrụ Nkà na Ụzụ',
           ha: 'An Bawa Matasa 100 Ikon Fasaha a Idemili',
           yo: 'Awọn Ọdọ 100 Gba Agbara Imọ-ẹrọ ni Idemili',
         }),
         excerpt: t({
           en: 'The first cohort of the Hon. Uchenna Harris Okonkwo Digital Skills program has graduated...',
-          pcm: 'Di first set of people wey do Hon. Uchenna Harris Okonkwo tech program don finish...',
           ig: 'Ndị mbụ gụchara mmemme nka nke Hon. Uchenna Harris Okonkwo a gụchala...',
           ha: 'Rukuni na farko na shirin fasaha na Hon. Uchenna Harris Okonkwo sun yaye...',
           yo: 'Ẹgbẹ akọkọ ti eto imọ-ẹrọ Hon. Uchenna Harris Okonkwo ti pari...',
@@ -87,14 +85,12 @@ export default function MediaPage() {
         id: '2',
         title: t({
           en: 'Phase 2: Rural Road Intervention Commences',
-          pcm: 'Phase 2: Work on Top Village Roads Don Start',
           ig: 'Nke Abụọ: Ọrụ Ụzọ Ime Obodo Ebidola',
           ha: 'Sashe na 2: An Fara Aikin Hanyoyin Karkara',
           yo: 'Ipele Keji: Iṣẹ Awọn Ọna Igberiko Ti Bẹrẹ',
         }),
         excerpt: t({
           en: 'Heavy duty equipment arrived today to commence the grading of internal roads in Obosi...',
-          pcm: 'Big big machine don reach today to start to dey arrange roads for Obosi...',
           ig: 'Ngwongwo dị arọ abịala taa iji mebie ụzọ ime obodo na Obosi...',
           ha: 'Manyan injina sun iso a yau domin fara aikin titunan cikin gida a Obosi...',
           yo: 'Awọn ẹrọ nla ti de loni lati bẹrẹ atunṣe awọn ọna inu ni Obosi...',
@@ -165,15 +161,12 @@ export default function MediaPage() {
         {/* Header */}
         <div className="mb-16">
           <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-xs mb-4">
-            {t({ en: 'News & Updates', pcm: 'As E Dey Hot', ig: 'Akụkọ na Nkwupụta', ha: 'Labarai da Sabuntawa', yo: 'Iroyin & Awọn Imudojuiwọn' })}
           </p>
           <h1 className="text-5xl lg:text-7xl font-bold text-[var(--obsidian)] serif-font">
-            {t({ en: 'Media Hub', pcm: 'Media Block', ig: 'Ogige Mgbasa Ozi', ha: 'Cibiyar Yada Labarai', yo: 'Agbegbe Iroyin' })}
           </h1>
           <p className="mt-6 text-xl text-gray-500 font-light max-w-2xl">
             {t({
               en: 'Stay informed with the latest press releases, legislative updates, and grassroots interventions.',
-              pcm: 'Hear di latest tori, wetin dey happen for house of assembly, and community work.',
               ig: 'Nọrọ na njikere na akụkọ kachasị ọhụrụ banyereiwu, na nkwado ndị nọ na ime obodo.',
               ha: 'Kasance da sanin sabbin sanarwar manema labarai, sabunta tsarin majalisa, da ayyukan karkara.',
               yo: 'Duro ni iwifun pẹlu awọn atẹjade iroyin tuntun, awọn imudojuiwọn isofin, ati awọn iṣẹ agbegbe.',

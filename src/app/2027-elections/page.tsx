@@ -16,7 +16,6 @@ export default function ElectionsPage() {
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6 text-center mb-16">
           <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-xs mb-4">
-            {t({ en: 'The Road Ahead', pcm: 'As E Dey Go', ig: 'Njem Anyị', ha: 'Hanyar Gaba', yo: 'Ona Tuntun' })}
           </p>
           <h1 className="text-5xl lg:text-7xl font-bold text-[var(--obsidian)] serif-font mb-6">
             2027 General Elections

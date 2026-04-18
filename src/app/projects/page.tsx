@@ -149,7 +149,6 @@ export default function ProjectsPage() {
       <main className="pt-32 pb-24">
         <div className="max-w-7xl mx-auto px-6 mb-8 text-center">
           <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-xs mb-4">
-            {t({ en: 'Development Tracker', pcm: 'Project Tracker', ig: 'Ndekọ Ọrụ', ha: 'Bibiyar Ayyuka', yo: 'Itopase Ise' })}
           </p>
           <h1 className="text-5xl lg:text-7xl font-bold text-[var(--obsidian)] serif-font mb-6">
             Constituency Projects

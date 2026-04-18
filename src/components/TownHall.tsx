@@ -55,16 +55,12 @@ export default function TownHall() {
             <div className="relative z-10">
               <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-6 flex items-center gap-4">
                 <span className="w-8 h-[1px] bg-[var(--sunlight-yellow)]"></span>
-                {t({ en: 'Direct Access', pcm: 'Direct Line', ig: 'Ohere Nkwurịta', ha: 'Hanya Kai Tsaye', yo: 'Ayewo Taarata' })}
               </p>
               <h2 className="text-5xl lg:text-[5rem] font-bold mb-8 serif-font leading-[0.9] tracking-tighter">
-                {t({ en: 'The Town Hall', pcm: 'Di Town Hall', ig: 'Ụlọ Nzukọ Ahụ', ha: 'Dakin Taron', yo: 'Gbọngàn Ilu' })}<br/>
-                <span className="italic font-light text-[var(--sunlight-yellow)]">{t({ en: 'Is Open.', pcm: 'Don Open.', ig: 'Emegheela.', ha: 'A Bude Yake.', yo: 'Ti Ṣii.' })}</span>
               </h2>
               <p className="text-gray-400 text-lg mb-12 leading-relaxed font-light max-w-md">
                 {t({
                   en: 'Skip the bureaucracy. Send a direct message to the constituency office. We review and tag every submission for action.',
-                  pcm: 'Write us directly, no protocol. We dey check everything wey concern you.',
                   ig: 'Ziga ozi n\'ọfịs obodo ozugbo. Anyị na-elegide anya n\'arịrịọ niile.'
                 })}
               </p>
@@ -98,16 +94,13 @@ export default function TownHall() {
                  <div className="flex flex-col items-center justify-center py-12 gap-4 text-center">
                    <span className="material-symbols-outlined text-[var(--sunlight-yellow)] text-5xl">mark_email_read</span>
                    <p className="font-bold text-white text-lg serif-font">
-                     {t({ en: 'Petition received!', pcm: 'We don receive am!', ig: 'Anyị natara nkwupụta gị!' })}
                    </p>
                    <p className="text-gray-400 text-sm">
-                     {t({ en: 'We\'ll review and respond within 48 hours.', pcm: 'We go check am within 48 hours.', ig: 'Anyị ga-enyocha ma zaa n\'ime awa 48.' })}
                    </p>
                    <button
                      onClick={() => setSuccess(false)}
                      className="mt-4 text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-white transition-colors"
                    >
-                     {t({ en: 'Send another', pcm: 'Send another one', ig: 'Zipu ọzọ' })}
                    </button>
                  </div>
                ) : (
@@ -115,7 +108,6 @@ export default function TownHall() {
                  {/* Name */}
                  <div className="relative group">
                    <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">
-                     {t({ en: 'Your Name', pcm: 'Your Name', ig: 'Aha Gị' })}
                    </label>
                    <input
                      type="text"
@@ -129,7 +121,6 @@ export default function TownHall() {
 
                  <div className="grid grid-cols-2 gap-8">
                    <div className="relative group">
-                     <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">{t({ en: 'Your Location', pcm: 'Your Area', ig: 'Ebe Ị Nọ' })}</label>
                      <select
                        value={ward}
                        onChange={(e) => setWard(e.target.value)}
@@ -170,7 +161,6 @@ export default function TownHall() {
                      <span className="material-symbols-outlined absolute right-0 bottom-3 text-gray-500 text-sm pointer-events-none group-focus-within:text-[var(--sunlight-yellow)] transition-colors">expand_more</span>
                    </div>
                    <div className="relative group">
-                     <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">{t({ en: 'Topic', pcm: 'Wetin Concern You', ig: 'Ihe Obu' })}</label>
                      <select
                        required
                        value={topic}
@@ -187,7 +177,6 @@ export default function TownHall() {
                  </div>
 
                  <div className="relative group mt-8">
-                   <label className="block text-[9px] text-gray-500 mb-1 font-mono uppercase tracking-widest group-focus-within:text-[var(--sunlight-yellow)] transition-colors">{t({ en: 'Message', pcm: 'Message', ig: 'Ozi' })}</label>
                    <textarea
                      required
                      value={message}
@@ -214,7 +203,6 @@ export default function TownHall() {
                        ? <span className="w-4 h-4 border-2 border-[var(--obsidian)] border-t-transparent rounded-full animate-spin"/>
                        : null
                      }
-                     {t({ en: 'Send Message', pcm: 'Send Am', ig: 'Zipụ Ozi' })} <span className="material-symbols-outlined text-sm">send</span>
                    </button>
                  </div>
                </form>

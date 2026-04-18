@@ -35,19 +35,15 @@ export default function TerritoryTracker() {
           <div className="space-y-8 mb-16">
             <p className="text-[var(--midnight-green)] font-bold tracking-[0.3em] uppercase text-[10px] flex items-center justify-center gap-4">
               <span className="w-8 h-[1px] bg-[var(--midnight-green)]"/>
-              {t({ en: 'Development Tracking', pcm: 'Look Di Work', ig: 'Ndekọ Ọrụ', ha: 'Bibiyar Aiki', yo: 'Itopase Iṣẹ' })}
               <span className="w-8 h-[1px] bg-[var(--midnight-green)]"/>
             </p>
             <h2 className="text-5xl lg:text-[5.5rem] font-bold leading-[0.9] tracking-tighter serif-font text-[var(--obsidian)]">
-              {t({ en: 'TERRITORY', pcm: 'OUR AREA', ig: 'Mpaghara', ha: 'YANKI', yo: 'AGBEGBE' })}<br/>
               <span className="italic font-light text-gray-400">
-                {t({ en: 'Tracker', pcm: 'Tracker', ig: 'Ebe Nlele', ha: 'Mai Bincike', yo: 'Oluṣawari' })}
               </span>
             </h2>
             <p className="text-base lg:text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto font-light">
               {t({
                 en: 'Monitor ongoing developments, budget allocations, and project milestones in real-time. Radical transparency for Idemili.',
-                pcm: 'Check all di work, how dem dey spend money, and how far di projects don reach. Openness for our Idemili people.',
                 ig: 'Jiri anya gị hụ mmepe na-aga n\'ihu, ịkwụ ụgwọ mmepụta, na ihe ịga nke ọma n\'ezigbo oge. Izizi anya maka Idemili.',
                 ha: 'Saka idanu kan ci gaban da ake ciki da gaskiya don al\'ummar mu.',
                 yo: 'Ṣe atẹle awọn idagbasoke to n tẹsiwaju ati awọn iṣẹ agbegbe ni akoko gidi fun ilọsiwaju.',
@@ -78,7 +74,6 @@ export default function TerritoryTracker() {
                     {project.title}
                   </h4>
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                    {project.count} {t({ en: 'Active Sites', pcm: 'Places Wey Work Dey', ig: "Ebe Ọrụ Na-aga N'ihu", ha: 'Wuraren Aiki', yo: 'Awọn Aaye Ṣiṣẹ' })}
                   </p>
                 </div>
               </Link>
