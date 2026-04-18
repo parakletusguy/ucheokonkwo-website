@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type LanguageCode = 'en' | 'pcm' | 'ig' | 'ha' | 'yo';
+export type LanguageCode = 'en' | 'ig' | 'ha' | 'yo';
 
 type TranslationDictionary = {
   [key in LanguageCode]?: string;

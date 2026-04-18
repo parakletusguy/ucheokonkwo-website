@@ -1,8 +1,7 @@
-export type LanguageCode = 'en' | 'pcm' | 'ig' | 'ha' | 'yo';
+export type LanguageCode = 'en' | 'ig' | 'ha' | 'yo';
 
 const MYMEMORY_LANG_MAP: Record<LanguageCode, string> = {
   en: 'en',
-  pcm: 'en',
   ig: 'ig',
   ha: 'ha',
   yo: 'yo',
@@ -27,8 +26,6 @@ export async function translateText(
 
     const translated: string = json.responseData?.translatedText ?? text;
 
-    if (targetLang === 'pcm') return `[Pidgin Draft] ${translated}`;
-
     return translated;
   } catch {
     return text;
@@ -39,7 +36,7 @@ export async function translateArticle(
   title: string,
   content: string
 ): Promise<Record<LanguageCode, { title: string; content: string }>> {
-  const targetLangs: LanguageCode[] = ['pcm', 'ig', 'ha', 'yo'];
+  const targetLangs: LanguageCode[] = ['ig', 'ha', 'yo'];
 
   const results = await Promise.all(
     targetLangs.map(async (lang) => {

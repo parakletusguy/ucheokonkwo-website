@@ -45,7 +45,6 @@ export default function Hero() {
             <span className="w-8 h-[1px] bg-[var(--sunlight-yellow)]"></span>
             {t({
               en: "Idemili North & South",
-              pcm: "Idemili North & South Na Here",
               ig: "Idemili Ugwu na Ndịda",
               ha: "Idemili Arewa da Kudu",
               yo: "Idemili Ariwa ati Guusu",
@@ -56,7 +55,6 @@ export default function Hero() {
           <h1 className="text-7xl lg:text-[10rem] font-bold leading-[0.8] tracking-[-0.04em] text-[var(--obsidian)] mb-8 mix-blend-multiply serif-font">
             {t({
               en: "OUR",
-              pcm: "OUR",
               ig: "NKE ANYỊ",
               ha: "NAMU",
               yo: "TIWA",
@@ -65,7 +63,6 @@ export default function Hero() {
             <span className="italic font-light text-[var(--midnight-green)] pr-4">
               {t({
                 en: "Shared",
-                pcm: "Together",
                 ig: "Kekọrịta",
                 ha: "Raba",
                 yo: "Pín",
@@ -74,7 +71,6 @@ export default function Hero() {
             <br />
             {t({
               en: "VISION",
-              pcm: "VISION",
               ig: "ỌHỤỤ",
               ha: "HANGEN NESA",
               yo: "IRAN",
@@ -84,7 +80,6 @@ export default function Hero() {
           <p className="text-xl lg:text-2xl text-gray-500 max-w-xl font-light leading-relaxed mb-12 pl-6 border-l border-[var(--midnight-green)]/20">
             {t({
               en: "Progress You Can See. Leadership You Can Trust. Hon. Uchenna Harris Okonkwo is redefining representation through transparency and inclusive development.",
-              pcm: "Progress wey you fit see. Leadership wey you fit trust. Hon. Uchenna Harris Okonkwo dey change how dem dey represent us.",
               ig: "Nke a bụ ọganihu anyị nwere ike ịhụ. Ọchịchị ị pụrụ ịtụkwasị obi.",
             })}
           </p>
@@ -96,7 +91,6 @@ export default function Hero() {
             >
               {t({
                 en: "Explore Agenda",
-                pcm: "See Wetin We Get",
                 ig: "Lelee Atụmatụ",
                 ha: "Bincika Ajanda",
                 yo: "Ṣawari Eto",
@@ -116,7 +110,6 @@ export default function Hero() {
               </div>
               {t({
                 en: "Watch Video",
-                pcm: "Watch Di Video",
                 ig: "Lekwaa Vidiyo",
                 ha: "Kalli Bidiyo",
                 yo: "Wo Fidio",
@@ -158,7 +151,6 @@ export default function Hero() {
         <div className="bg-[var(--sunlight-yellow)] text-[var(--obsidian)] font-bold uppercase tracking-[0.2em] text-[10px] px-6 py-3 absolute left-0 z-40 whitespace-nowrap h-full flex items-center border-r border-black/10">
           {t({
             en: "LIVE UPDATES",
-            pcm: "AS E DEY HOT",
             ig: "IHE NA EME UGBUA",
             ha: "SABBIN LABARAI",
             yo: "AWON IROYIN TUNTUN",

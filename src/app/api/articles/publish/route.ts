@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       if (!content) {
         return NextResponse.json({ error: 'Content is required for translation.' }, { status: 400 });
       }
-      // translateArticle returns { en: { title, content }, pcm: { title, content }, ... }
+      // translateArticle returns { en: { title, content }, ig: { title, content }, ... }
       const translationResults = await translateArticle(title, content);
       
       // We only want the content translations for the review UI

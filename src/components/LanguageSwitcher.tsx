@@ -5,7 +5,6 @@ import { useLanguageStore, LanguageCode } from '@/store/useLanguageStore';
 
 const LANGUAGES: { code: LanguageCode; label: string; native: string; flag: string }[] = [
   { code: 'en',  label: 'English',        native: 'English',  flag: '🇬🇧' },
-  { code: 'pcm', label: 'Pidgin',         native: 'Naija',    flag: '🇳🇬' },
   { code: 'ig',  label: 'Igbo',           native: 'Ịgbo',     flag: '🟢' },
   { code: 'ha',  label: 'Hausa',          native: 'Hausa',    flag: '🟡' },
   { code: 'yo',  label: 'Yoruba',         native: 'Yorùbá',   flag: '🔴' },
@@ -23,7 +22,7 @@ export default function LanguageSwitcher({ variant = 'bar' }: Props) {
     setLanguage(lang);
     // Update the html lang attribute for screen readers & SEO
     if (typeof document !== 'undefined') {
-      document.documentElement.lang = lang === 'pcm' ? 'pcm' : lang;
+      document.documentElement.lang = lang;
     }
   };
 

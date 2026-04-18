@@ -20,7 +20,6 @@ interface ArticleDetail {
 
 const LANG_LABELS: Record<LanguageCode, string> = {
   en: 'English',
-  pcm: 'Pidgin',
   ig: 'Igbo',
   ha: 'Hausa',
   yo: 'Yoruba',

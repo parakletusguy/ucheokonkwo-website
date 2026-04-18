@@ -70,7 +70,7 @@ export interface PostAuthor {
 }
 
 export interface MultilingualContentItem {
-  language: string; // e.g. "ENGLISH", "YORUBA", "IGBO", "HAUSA", "PIDGIN"
+  language: string; // e.g. "ENGLISH", "YORUBA", "IGBO", "HAUSA"
   title: string;
   content: string;
 }

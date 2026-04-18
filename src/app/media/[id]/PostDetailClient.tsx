@@ -99,7 +99,7 @@ function ImageGallery({ images }: { images: MediaItem[] }) {
 }
 
 const LANG_LABELS: Record<string, string> = {
-  ENGLISH: 'English', PIDGIN: 'Pidgin', IGBO: 'Igbo', HAUSA: 'Hausa', YORUBA: 'Yoruba',
+  ENGLISH: 'English', IGBO: 'Igbo', HAUSA: 'Hausa', YORUBA: 'Yoruba',
 };
 
 /* ── Detail Client ────────────────────────────────────────────────────────── */

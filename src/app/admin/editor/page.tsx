@@ -18,14 +18,12 @@ interface TranslationPreview {
 
 const LANG_TABS = [
   { key: 'en',  label: 'English' },
-  { key: 'pcm', label: 'Pidgin'  },
   { key: 'ig',  label: 'Igbo'    },
   { key: 'ha',  label: 'Hausa'   },
   { key: 'yo',  label: 'Yoruba'  },
 ];
 
 const LANG_META = [
-  { lang: 'pcm', label: 'Pidgin', flag: '🇳🇬', backendLang: 'PIDGIN' },
   { lang: 'ig',  label: 'Igbo',   flag: '🟢',  backendLang: 'IGBO'   },
   { lang: 'ha',  label: 'Hausa',  flag: '🟡',  backendLang: 'HAUSA'  },
   { lang: 'yo',  label: 'Yoruba', flag: '🔴',  backendLang: 'YORUBA' },
@@ -321,7 +319,7 @@ function EditorForm() {
           {isTranslating && (
             <div className="mx-4 lg:mx-8 mt-4 bg-gradient-to-r from-[var(--midnight-green)]/8 to-transparent border border-[var(--midnight-green)]/15 rounded-xl px-4 py-3 flex items-center gap-3">
               <span className="w-4 h-4 border-2 border-[var(--midnight-green)]/30 border-t-[var(--midnight-green)] rounded-full animate-spin flex-shrink-0" />
-              <p className="text-xs text-[var(--midnight-green)] font-semibold">Generating Pidgin, Igbo, Hausa & Yoruba translations…</p>
+              <p className="text-xs text-[var(--midnight-green)] font-semibold">Generating Igbo, Hausa & Yoruba translations…</p>
             </div>
           )}
 
@@ -638,7 +636,7 @@ function TranslationReview({
         </button>
         <div className="text-center">
           <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">Translation Review</p>
-          <p className="text-xs font-bold text-[var(--midnight-green)]">{confirmedCount} / 4 confirmed</p>
+          <p className="text-xs font-bold text-[var(--midnight-green)]">{confirmedCount} / 3 confirmed</p>
         </div>
         <button
           onClick={handlePublish}
