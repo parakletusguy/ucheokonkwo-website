@@ -1,3 +1,8 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // ── Security ──────────────────────────────────────────────────────────────
@@ -18,24 +23,27 @@ const nextConfig = {
   // ── Image Optimization ─────────────────────────────────────────────────────
   images: {
     // Support WebP/AVIF for ~60-70% smaller images on 3G
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     // Remote image domains used by Stitch AI-generated content
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
       },
     ],
     // Reduce quality slightly for much smaller file sizes on mobile
     deviceSizes: [375, 640, 750, 828, 1080],
     imageSizes: [48, 96, 128, 256],
   },
+
+  // ── Webpack — pin React to a single instance ──────────────────────────────
+  // Prevents "ReactCurrentDispatcher undefined" when any dep bundles its own React
 
   // ── Experimental ──────────────────────────────────────────────────────────
   experimental: {
@@ -48,23 +56,33 @@ const nextConfig = {
     return [
       {
         // Global SEO Robots Tag
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
-          { key: 'X-Robots-Tag', value: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' },
+          {
+            key: "X-Robots-Tag",
+            value:
+              "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+          },
         ],
       },
       {
         // Cache all static assets aggressively (JS, CSS, fonts)
-        source: '/_next/static/(.*)',
+        source: "/_next/static/(.*)",
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
       {
         // Cache hero portrait image (rarely changes)
-        source: '/images/(.*)',
+        source: "/images/(.*)",
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=86400' },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=86400",
+          },
         ],
       },
     ];

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { useLanguageStore } from '@/store/useLanguageStore';
-import Link from 'next/link';
-import { agendaItems } from '@/data/achievements';
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { useLanguageStore } from "@/store/useLanguageStore";
+import Link from "next/link";
+import Image from "next/image";
+import { agendaItems } from "@/data/achievements";
 
-const AUTO_INTERVAL = 2000;
+const AUTO_INTERVAL = 2500;
 
 export default function LegislativeAgenda() {
   const { t } = useLanguageStore();
@@ -16,19 +17,31 @@ export default function LegislativeAgenda() {
   const total = agendaItems.length;
 
   // Scroll to a card by reading its actual DOM position
-  const scrollTo = useCallback((index: number) => {
-    const container = scrollRef.current;
-    if (!container) return;
-    const clamped = Math.max(0, Math.min(index, total - 1));
-    const card = container.children[clamped] as HTMLElement | undefined;
-    if (card) {
-      container.scrollTo({ left: card.offsetLeft - container.offsetLeft, behavior: 'smooth' });
-    }
-    setCurrent(clamped);
-  }, [total]);
+  const scrollTo = useCallback(
+    (index: number) => {
+      const container = scrollRef.current;
+      if (!container) return;
+      const clamped = Math.max(0, Math.min(index, total - 1));
+      const card = container.children[clamped] as HTMLElement | undefined;
+      if (card) {
+        container.scrollTo({
+          left: card.offsetLeft - container.offsetLeft,
+          behavior: "smooth",
+        });
+      }
+      setCurrent(clamped);
+    },
+    [total],
+  );
 
-  const next = useCallback(() => scrollTo((current + 1) % total), [current, scrollTo, total]);
-  const prev = useCallback(() => scrollTo((current - 1 + total) % total), [current, scrollTo, total]);
+  const next = useCallback(
+    () => scrollTo((current + 1) % total),
+    [current, scrollTo, total],
+  );
+  const prev = useCallback(
+    () => scrollTo((current - 1 + total) % total),
+    [current, scrollTo, total],
+  );
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -37,7 +50,9 @@ export default function LegislativeAgenda() {
 
   useEffect(() => {
     resetTimer();
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, [resetTimer]);
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -47,14 +62,16 @@ export default function LegislativeAgenda() {
     if (touchStart.current === null) return;
     const delta = touchStart.current - e.changedTouches[0].clientX;
     if (Math.abs(delta) > 40) {
-      if (delta > 0) next(); else prev();
+      if (delta > 0) next();
+      else prev();
       resetTimer();
     }
     touchStart.current = null;
   };
 
-  const handleArrow = (dir: 'left' | 'right') => {
-    if (dir === 'left') prev(); else next();
+  const handleArrow = (dir: "left" | "right") => {
+    if (dir === "left") prev();
+    else next();
     resetTimer();
   };
 
@@ -67,30 +84,53 @@ export default function LegislativeAgenda() {
         <div>
           <p className="text-[var(--sunlight-yellow)] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 md:mb-6 flex items-center gap-4">
             <span className="w-8 h-[1px] bg-[var(--sunlight-yellow)]" />
-            {t({ en: 'The Pillars', pcm: 'Di Main Things', ig: 'Ogidi Nke', ha: 'Ginshikan', yo: 'Awọn Ọwọn' })}
+            {t({
+              en: "The Pillars",
+              pcm: "Di Main Things",
+              ig: "Ogidi Nke",
+              ha: "Ginshikan",
+              yo: "Awọn Ọwọn",
+            })}
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-[6rem] font-bold leading-[0.9] tracking-tighter text-white serif-font">
-            {t({ en: 'LEGISLATIVE', pcm: 'LAWMAKER', ig: 'IHE OMUME', ha: 'DOKA', yo: 'ASE' })}<br />
+            {t({
+              en: "LEGISLATIVE",
+              pcm: "LAWMAKER",
+              ig: "IHE OMUME",
+              ha: "DOKA",
+              yo: "ASE",
+            })}
+            <br />
             <span className="italic font-light text-white/50">
-              {t({ en: 'Agenda', pcm: 'Plan', ig: 'Atụmatụ', ha: 'Ajanda', yo: 'Eto' })}
+              {t({
+                en: "Agenda",
+                pcm: "Plan",
+                ig: "Atụmatụ",
+                ha: "Ajanda",
+                yo: "Eto",
+              })}
             </span>
           </h2>
         </div>
 
         <div className="flex gap-3 md:gap-4">
           <button
-            onClick={() => handleArrow('left')}
+            onClick={() => handleArrow("left")}
             aria-label="Previous"
             className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--sunlight-yellow)] hover:text-[var(--midnight-green)] hover:border-[var(--sunlight-yellow)] transition-all"
           >
-            <span className="material-symbols-outlined text-base md:text-lg">west</span>
+            <span className="material-symbols-outlined text-base md:text-lg">
+              west
+            </span>
           </button>
           <button
-            onClick={() => handleArrow('right')}
+            onClick={() => handleArrow("right")}
             aria-label="Next"
             className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-[var(--sunlight-yellow)] hover:text-[var(--midnight-green)] hover:border-[var(--sunlight-yellow)] transition-all"
           >
-            <span className="material-symbols-outlined text-base md:text-lg">east</span>
+            <span className="material-symbols-outlined text-base md:text-lg">
+              east
+            </span>
           </button>
         </div>
       </div>
@@ -101,38 +141,49 @@ export default function LegislativeAgenda() {
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
         className="px-6 lg:pl-12 lg:pr-0 pb-4 flex gap-4 md:gap-8 overflow-x-auto no-scrollbar relative z-10"
-        style={{ scrollSnapType: 'x mandatory' }}
+        style={{ scrollSnapType: "x mandatory" }}
       >
         {agendaItems.map((item) => (
           <div
             key={item.num}
             className={`p-8 md:p-10 rounded-sm flex-shrink-0 relative overflow-hidden group
               w-[calc(100vw-3rem)] md:min-w-[420px] md:w-[420px]
-              ${item.highlighted
-                ? 'bg-[var(--sunlight-yellow)] text-[var(--obsidian)]'
-                : 'text-white'
+              ${
+                item.highlighted
+                  ? "bg-[var(--sunlight-yellow)] text-[var(--obsidian)]"
+                  : "text-white"
               }`}
-            style={{ scrollSnapAlign: 'start' }}
+            style={{ scrollSnapAlign: "start" }}
           >
             <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-bl-full -z-0 transition-transform group-hover:scale-125 duration-700" />
             <div className="relative z-10 flex flex-col h-full justify-between min-h-[300px] md:min-h-[350px]">
               <div className="flex justify-between items-start mb-8 md:mb-12">
-                <span className={`text-6xl md:text-7xl font-serif font-light italic ${item.highlighted ? 'text-[var(--midnight-green)]/20' : 'text-white/20'}`}>
+                <span
+                  className={`text-6xl md:text-7xl font-serif font-light italic ${item.highlighted ? "text-[var(--midnight-green)]/20" : "text-white/20"}`}
+                >
                   {item.num}
                 </span>
-                <button className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all group/btn ${
-                  item.highlighted
-                    ? 'bg-[var(--midnight-green)] shadow-xl hover:bg-[var(--obsidian)]'
-                    : 'audio-btn'
-                }`}>
-                  <span className="material-symbols-outlined text-lg md:text-xl text-[var(--sunlight-yellow)] group-hover/btn:scale-110 transition-transform">play_arrow</span>
-                </button>
+
+                {item.gallery && item.gallery.length > 0 && (
+                  <div className="flex flex-col items-end gap-2">
+                    <div className="flex items-center gap-1.5 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+                      <span className="material-symbols-outlined text-[10px] text-[var(--sunlight-yellow)] animate-pulse">
+                        photo_library
+                      </span>
+                      <span className="text-[8px] font-bold uppercase tracking-widest text-white/70">
+                        Photo Evidence
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-3 md:mb-4">
                   {item.urgent && <span className="badge-urgent">Urgent</span>}
                   {item.tag && (
-                    <span className={`px-2 py-1 text-[10px] font-bold uppercase tracking-widest rounded-sm ${item.tagColor}`}>
+                    <span
+                      className={`px-2 py-1 text-[10px] font-bold uppercase tracking-widest rounded-sm ${item.tagColor}`}
+                    >
                       {item.tag}
                     </span>
                   )}
@@ -140,23 +191,43 @@ export default function LegislativeAgenda() {
                 <h3 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 serif-font leading-tight whitespace-pre-line">
                   {item.title}
                 </h3>
-                <p className={`text-sm mb-6 md:mb-8 font-light leading-relaxed ${item.highlighted ? 'text-[var(--midnight-green)]/80' : 'text-gray-400'}`}>
+                <p
+                  className={`text-sm mb-6 md:mb-8 font-light leading-relaxed ${item.highlighted ? "text-[var(--midnight-green)]/80" : "text-gray-400"}`}
+                >
                   {item.desc}
                 </p>
                 <Link
                   href={`/policy/${item.num}`}
                   className={`inline-flex items-center text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-3 transition-all ${
-                    item.highlighted ? 'text-[var(--midnight-green)]' : 'text-[var(--sunlight-yellow)]'
+                    item.highlighted
+                      ? "text-[var(--midnight-green)]"
+                      : "text-[var(--sunlight-yellow)]"
                   }`}
                 >
-                  Read Policy <span className="material-symbols-outlined ml-2 text-sm">arrow_right_alt</span>
+                  Read Policy{" "}
+                  <span className="material-symbols-outlined ml-2 text-sm">
+                    arrow_right_alt
+                  </span>
                 </Link>
               </div>
             </div>
+
+            {/* Background Image Placeholder for Performance & Proof */}
+            {item.gallery && item.gallery.length > 0 && (
+              <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-10 transition-opacity duration-700">
+                <Image
+                  src={item.gallery[0]}
+                  alt=""
+                  fill
+                  sizes="420px"
+                  className="object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+                  loading="lazy"
+                />
+              </div>
+            )}
           </div>
         ))}
       </div>
-
     </section>
   );
 }

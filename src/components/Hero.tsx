@@ -1,13 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useLanguageStore } from "@/store/useLanguageStore";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
+
+const STATIC_TICKER = [
+  'Nnobi-Alor Road Rehab Commences Phase 2',
+  'Obosi General Hospital Equipment Delivery Complete',
+  'Next Town Hall: Ideani Civic Center, Oct 15',
+  'Youth Tech Empowerment Drive Registration Opens',
+];
 
 import QRCodeComponent from "@/components/QRCodeComponent";
 
 export default function Hero() {
   const { t } = useLanguageStore();
+  const [tickerItems, setTickerItems] = useState<string[]>(STATIC_TICKER);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/posts`)
+      .then(r => r.ok ? r.json() : null)
+      .then((data: unknown) => {
+        if (!Array.isArray(data) || data.length === 0) return;
+        const published = (data as { status: string; title: string }[])
+          .filter(p => p.status === 'PUBLISHED')
+          .slice(0, 6)
+          .map(p => p.title);
+        if (published.length > 0) setTickerItems(published);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="relative pt-32 min-h-screen flex items-center bg-[var(--off-white)] overflow-hidden">
@@ -58,11 +82,9 @@ export default function Hero() {
 
           <p className="text-xl lg:text-2xl text-gray-500 max-w-xl font-light leading-relaxed mb-12 pl-6 border-l border-[var(--midnight-green)]/20">
             {t({
-              en: "Redefining representation through radical transparency, community-driven development, and inclusive dialogue.",
-              pcm: "We dey change the way dem dey represent us. Everything open, we build our community together.",
-              ig: "Ịkọwapụta nnọchite anya site n'izizi anya, mmepe nke obodo, na mkparịta ụka gụnyere mmadụ niile.",
-              ha: "Sake fasalin wakilci ta hanyar bayyana gaskiya, cigaban al'umma, da tattaunawa.",
-              yo: "Atunse asoju nipasẹ ifarahan kikan, idagbasoke agbegbe, ati ijiroro to kun fun gbogbo eniyan.",
+              en: "Progress You Can See. Leadership You Can Trust. Hon. Uchenna Harris Okonkwo is redefining representation through transparency and inclusive development.",
+              pcm: "Progress wey you fit see. Leadership wey you fit trust. Hon. Uchenna Harris Okonkwo dey change how dem dey represent us.",
+              ig: "Nke a bụ ọganihu anyị nwere ike ịhụ. Ọchịchị ị pụrụ ịtụkwasị obi.",
             })}
           </p>
 
@@ -140,38 +162,12 @@ export default function Hero() {
         </div>
         <div className="ticker-wrap ml-32 py-1">
           <div className="ticker font-medium text-xs tracking-widest uppercase text-white/80">
-            <span className="mx-8 text-[var(--sunlight-yellow)] opacity-50">
-              •
-            </span>{" "}
-            {t({
-              en: "Nnobi-Alor Road Rehab Commences Phase 2",
-              pcm: "Nnobi-Alor Road Work Don Start Phase 2",
-              ig: "Arụmọrụ Ụzọ Nnobi-Alor Ebidiwo Nke Abụọ",
-            })}
-            <span className="mx-8 text-[var(--sunlight-yellow)] opacity-50">
-              •
-            </span>{" "}
-            {t({
-              en: "Obosi General Hospital Equipment Delivery Complete",
-              pcm: "Obosi Hospital Equipments Don Arrive Complete",
-              ig: "Ngwongwo Ụlọ Ọgwụ Obosi Eruola N'uju",
-            })}
-            <span className="mx-8 text-[var(--sunlight-yellow)] opacity-50">
-              •
-            </span>{" "}
-            {t({
-              en: "Next Town Hall: Ideani Civic Center, Oct 15",
-              pcm: "Next Meeting: Ideani Civic Center, Oct 15",
-              ig: "Nzukọ Ọzọ: Ideani Civic Center, Ọktọba 15",
-            })}
-            <span className="mx-8 text-[var(--sunlight-yellow)] opacity-50">
-              •
-            </span>{" "}
-            {t({
-              en: "Youth Tech Empowerment Drive Registration Opens",
-              pcm: "Youth Tech Registration Don Open",
-              ig: "Ndebanye Aha Nkwado Ndị Ntorobịa Ebidola",
-            })}
+            {tickerItems.map((item, i) => (
+              <React.Fragment key={i}>
+                <span className="mx-8 text-[var(--sunlight-yellow)] opacity-50">•</span>{" "}
+                {item}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>

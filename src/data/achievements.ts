@@ -7,6 +7,8 @@ export type Achievement = {
   urgent: boolean;
   highlighted?: boolean;
   lga: 'north' | 'south' | 'general';
+  gallery?: string[];
+  videoUrl?: string;
 };
 
 export const agendaItems: Achievement[] = [
@@ -240,6 +242,12 @@ export const agendaItems: Achievement[] = [
     desc: 'Construction and rehabilitation of community road at Abatete (ongoing).',
     urgent: false,
     lga: 'north',
+    gallery: [
+      '/Legislative Agenda pictures/Construction-Rehabitation of Community road at Abatete (Ongoing)/IMG-20241003-WA0190.jpg',
+      '/Legislative Agenda pictures/Construction-Rehabitation of Community road at Abatete (Ongoing)/IMG-20241003-WA0192.jpg',
+      '/Legislative Agenda pictures/Construction-Rehabitation of Community road at Abatete (Ongoing)/IMG-20241003-WA0194.jpg',
+      '/Legislative Agenda pictures/Construction-Rehabitation of Community road at Abatete (Ongoing)/IMG-20241003-WA0199.jpg'
+    ],
   },
   {
     num: '26',
@@ -249,6 +257,12 @@ export const agendaItems: Achievement[] = [
     desc: 'Construction of a brand new six-classroom block at UPS Amafor Nkpor.',
     urgent: false,
     lga: 'north',
+    gallery: [
+      '/Legislative Agenda pictures/Construction of Six Classrooms blocks at UPS Amafor Nkpor/DSC_6892.jpg',
+      '/Legislative Agenda pictures/Construction of Six Classrooms blocks at UPS Amafor Nkpor/DSC_6896.jpg',
+      '/Legislative Agenda pictures/Construction of Six Classrooms blocks at UPS Amafor Nkpor/DSC_7017.jpg',
+      '/Legislative Agenda pictures/Construction of Six Classrooms blocks at UPS Amafor Nkpor/DSC_7034.jpg'
+    ],
   },
   {
     num: '27',
@@ -258,6 +272,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Renovation of Block C building at Notre Dame High School, Abatete.',
     urgent: false,
     lga: 'north',
+    gallery: [
+      '/Legislative Agenda pictures/Renovation of Block C Building at Notre Dame High School, Abatete/1724362901526.jpg',
+      '/Legislative Agenda pictures/Renovation of Block C Building at Notre Dame High School, Abatete/1724362909857.jpg',
+      '/Legislative Agenda pictures/Renovation of Block C Building at Notre Dame High School, Abatete/IMG-20240821-WA0222.jpg'
+    ],
   },
   {
     num: '28',
@@ -267,6 +286,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Scheduled maintenance of the Administrative Block at Community Primary School, Obosi.',
     urgent: false,
     lga: 'north',
+    gallery: [
+      '/Legislative Agenda pictures/Scheduled Maintenance of administrative block at Ugamuma Community Primary School, Obosi/1724362918145.jpg',
+      '/Legislative Agenda pictures/Scheduled Maintenance of administrative block at Ugamuma Community Primary School, Obosi/1724362928164.jpg',
+      '/Legislative Agenda pictures/Scheduled Maintenance of administrative block at Ugamuma Community Primary School, Obosi/IMG_2641.JPG'
+    ],
   },
   {
     num: '29',
@@ -285,6 +309,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Construction of a state-of-the-art Cassava Processing Plant at Ojoto.',
     urgent: false,
     lga: 'south',
+    gallery: [
+      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG-20241219-WA0053.jpg',
+      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG-20241219-WA0054.jpg',
+      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG-20241219-WA0057.jpg'
+    ],
   },
   {
     num: '31',
@@ -303,6 +332,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Construction of solar powered borehole at Nnobi to provide clean water.',
     urgent: false,
     lga: 'south',
+    gallery: [
+      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/IMG-20241219-WA0104.jpg',
+      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/IMG-20241219-WA0105.jpg',
+      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/IMG-20241219-WA0107.jpg'
+    ],
   },
   // --- EDUCATION ---
   {
@@ -313,6 +347,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Full payment of registration fees for 250 JAMB candidates.',
     urgent: false,
     lga: 'general',
+    gallery: [
+      '/Legislative Agenda pictures/Payment of Jamb Fee for 250 Candidates/IMG-20241122-WA0055.jpg',
+      '/Legislative Agenda pictures/Payment of Jamb Fee for 250 Candidates/IMG-20241122-WA0056.jpg',
+      '/Legislative Agenda pictures/Payment of Jamb Fee for 250 Candidates/IMG-20241123-WA0029.jpg'
+    ],
   },
   {
     num: '34',
@@ -322,6 +361,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Merit-based scholarships for 500 bright Anambra students.',
     urgent: false,
     lga: 'general',
+    gallery: [
+      '/Legislative Agenda pictures/Scholarship for 500 Anambra students/IMG-20241122-WA0032.jpg',
+      '/Legislative Agenda pictures/Scholarship for 500 Anambra students/IMG-20241122-WA0037.jpg',
+      '/Legislative Agenda pictures/Scholarship for 500 Anambra students/IMG-20241122-WA0045.jpg'
+    ],
   },
   {
     num: '35',
@@ -331,6 +375,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Attraction of a modern ICT centre at Boys Secondary School, Ojoto.',
     urgent: false,
     lga: 'south',
+    gallery: [
+      '/Legislative Agenda pictures/Attraction of modern ICT Centre at Boys Secondary School, Ojoto/IMG20250101161246.jpg',
+      '/Legislative Agenda pictures/Attraction of modern ICT Centre at Boys Secondary School, Ojoto/IMG20250101161301.jpg',
+      '/Legislative Agenda pictures/Attraction of modern ICT Centre at Boys Secondary School, Ojoto/IMG20250101161407.jpg'
+    ],
   },
   {
     num: '36',
@@ -340,6 +389,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Successful attraction of student grants for university undergraduates.',
     urgent: false,
     lga: 'general',
+    gallery: [
+      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20250205-WA0184.jpg',
+      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20250205-WA0205.jpg',
+      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20250205-WA0229.jpg'
+    ],
   },
   // --- SOCIAL AMENITIES ---
   {
@@ -350,6 +404,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Installation of solar street lights across Ogidi, Nkpor, Obosi, Ojoto, Oba, etc.',
     urgent: false,
     lga: 'general',
+    gallery: [
+      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20241219-WA0085.jpg',
+      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20241219-WA0088.jpg',
+      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20241219-WA0092.jpg'
+    ],
   },
   {
     num: '38',
@@ -359,6 +418,11 @@ export const agendaItems: Achievement[] = [
     desc: 'Food items delivered to 5,000 households (elderly, widows, and PWDs).',
     urgent: false,
     lga: 'general',
+    gallery: [
+      '/Legislative Agenda pictures/Supply of food items to 5000 Household including elderly and people living with disabilities/1714465858161.jpg',
+      '/Legislative Agenda pictures/Supply of food items to 5000 Household including elderly and people living with disabilities/1714466333988.jpg',
+      '/Legislative Agenda pictures/Supply of food items to 5000 Household including elderly and people living with disabilities/1723481547842.jpg'
+    ],
   },
   {
     num: '39',
@@ -413,6 +477,21 @@ export const agendaItems: Achievement[] = [
     desc: 'Attraction of relief materials for people affected by floods and gully erosion.',
     urgent: true,
     lga: 'general',
+    gallery: [
+      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG-20241011-WA0045.jpg',
+      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG-20241011-WA0046.jpg',
+      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG-20241011-WA0048.jpg'
+    ],
+  },
+  {
+    num: '59',
+    tag: 'ICT/Education',
+    tagColor: 'bg-[var(--midnight-green)]/20 text-[var(--midnight-green)]',
+    title: 'Digital Nigeria\nCentre, Obosi',
+    desc: 'Attraction of Digital Nigeria Centre at Awada primary and secondary school, Obosi.',
+    urgent: false,
+    highlighted: true,
+    lga: 'north',
   },
   // --- EMPOWERMENT ---
   {
@@ -446,8 +525,8 @@ export const agendaItems: Achievement[] = [
     num: '48',
     tag: 'Empowerment',
     tagColor: 'bg-[var(--sunlight-yellow)]/20 text-[var(--sunlight-yellow)]',
-    title: 'Artisan\nTools Grant',
-    desc: 'Sewing, grinding, POS machines, and cash grants for local artisans.',
+    title: 'GEF Artisan\nTools Grant',
+    desc: 'Get Empowered Foundation (GEF) initiative: Sewing, grinding, and cash grants for local artisans.',
     urgent: false,
     highlighted: true,
     lga: 'general',

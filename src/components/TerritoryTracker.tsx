@@ -1,11 +1,31 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLanguageStore } from '@/store/useLanguageStore';
+import { agendaItems } from '@/data/achievements';
+
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:3001/api/v1';
+
+const STATIC_NORTH = agendaItems.filter(i => i.lga === 'north').length;
+const STATIC_SOUTH = agendaItems.filter(i => i.lga === 'south').length;
 
 export default function TerritoryTracker() {
   const { t } = useLanguageStore();
+  const [extra, setExtra] = useState({ north: 0, south: 0 });
+
+  useEffect(() => {
+    fetch(`${API_BASE}/projects`)
+      .then(r => r.ok ? r.json() : null)
+      .then((data: unknown) => {
+        if (!Array.isArray(data) || data.length === 0) return;
+        const projects = data as { consituentName?: string }[];
+        const north = projects.filter(p => /north/i.test(p.consituentName ?? '')).length;
+        const south = projects.filter(p => /south/i.test(p.consituentName ?? '')).length;
+        setExtra({ north, south });
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="py-32 bg-white relative">
@@ -38,8 +58,8 @@ export default function TerritoryTracker() {
           {/* Project List / Cards Grid */}
           <div className="grid md:grid-cols-2 gap-8 w-full text-left">
             {[
-              { title: 'Idemili North Projects', count: '12', href: '/projects/idemili-north' },
-              { title: 'Idemili South Projects', count: '8', href: '/projects/idemili-south' },
+              { title: 'Idemili North Projects', count: STATIC_NORTH + extra.north, href: '/projects/idemili-north' },
+              { title: 'Idemili South Projects', count: STATIC_SOUTH + extra.south, href: '/projects/idemili-south' },
             ].map((project, i) => (
               <Link key={i} href={project.href} className="group block cursor-pointer bg-[var(--off-white)] p-10 rounded-3xl border border-gray-100 hover:border-[var(--midnight-green)]/20 hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--sunlight-yellow)]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
@@ -58,7 +78,7 @@ export default function TerritoryTracker() {
                     {project.title}
                   </h4>
                   <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                    {project.count} {t({ en: 'Active Sites', pcm: 'Places Wey Work Dey', ig: 'Ebe Ọrụ Na-aga N\'ihu', ha: 'Wuraren Aiki', yo: 'Awọn Aaye Ṣiṣẹ' })}
+                    {project.count} {t({ en: 'Active Sites', pcm: 'Places Wey Work Dey', ig: "Ebe Ọrụ Na-aga N'ihu", ha: 'Wuraren Aiki', yo: 'Awọn Aaye Ṣiṣẹ' })}
                   </p>
                 </div>
               </Link>

@@ -18,9 +18,12 @@ const personSchema = {
   familyName: 'Okonkwo',
   jobTitle: 'Federal Representative, Idemili North and South Federal Constituency',
   description:
-    "Hon. Uchenna 'Harris' Okonkwo is the Federal House of Representatives member for Idemili North and South Federal Constituency, Anambra State, serving in the 10th National Assembly under the African Democratic Congress (ADC).",
+    "Hon. Uchenna Harris Okonkwo is the Federal House of Representatives member (ADC) for Idemili North and South, a University of Toronto alumnus, and a leader in community-driven development.",
   nationality: { '@type': 'Country', name: 'Nigeria' },
-  parent: { '@type': 'Person', name: 'Annie Okonkwo' },
+  parent: [
+    { '@type': 'Person', name: 'Senator Annie Okonkwo' },
+    { '@type': 'Person', name: 'Lady Chinyere Okonkwo' }
+  ],
   affiliation: {
     '@type': 'Organization',
     name: 'African Democratic Congress',

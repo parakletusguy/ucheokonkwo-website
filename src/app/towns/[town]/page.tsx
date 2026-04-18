@@ -78,7 +78,11 @@ const townImpactData: Record<string, string[]> = {
     "Installation of solar-powered street lights"
   ],
   ideani: ["Installation of solar-powered street lights"],
-  abacha: ["Installation of solar-powered street lights"]
+  abacha: ["Installation of solar-powered street lights"],
+  oraukwu: ["Installation of solar-powered street lights"],
+  uke: ["Installation of solar-powered street lights"],
+  alor: ["Installation of solar-powered street lights"],
+  "akwu-ukwu": ["Installation of solar-powered street lights"]
 };
 
 export default function TownDynamicPage({ params }: Props) {

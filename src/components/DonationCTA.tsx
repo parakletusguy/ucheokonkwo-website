@@ -26,15 +26,15 @@ export default function DonationCTA() {
           <p className="text-white/60 font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
             Every contribution — big or small — powers the community programmes,
             youth empowerment initiatives, and grassroots campaigns that are
-            transforming Orumba North.
+            driving shared prosperity across Idemili North & South.
           </p>
 
           {/* Quick impact stats */}
           <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-8">
             {[
-              { value: "₦10K", label: "Empowers a youth" },
-              { value: "₦50K", label: "Funds a health drive" },
-              { value: "₦100K", label: "Sponsors a scholarship" },
+              { value: "₦10K", label: "Empowers an Idemili youth" },
+              { value: "₦50K", label: "Funds a local health drive" },
+              { value: "₦100K", label: "Sponsors a local scholarship" },
             ].map((stat) => (
               <div key={stat.label} className="text-center lg:text-left">
                 <p className="text-[var(--sunlight-yellow)] text-2xl font-bold serif-font">
@@ -51,10 +51,10 @@ export default function DonationCTA() {
         {/* Right CTA card */}
         <div className="flex-shrink-0 w-full lg:w-auto">
           <div className="bg-white/5 border border-white/10 backdrop-blur-sm rounded-3xl p-8 flex flex-col items-center gap-6 text-center">
-            {/* Icon */}
+            {/* Icon - Updated to Handshake for ADC Trust Emblem */}
             <div className="w-16 h-16 rounded-2xl bg-[var(--sunlight-yellow)]/20 flex items-center justify-center">
               <span className="material-symbols-outlined text-3xl text-[var(--sunlight-yellow)]">
-                volunteer_activism
+                handshake
               </span>
             </div>
 

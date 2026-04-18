@@ -91,6 +91,35 @@ function EditorForm() {
   const [newImages, setNewImages]         = useState<File[]>([]);
   const [deletingId, setDeletingId]       = useState<string | null>(null);
   const fileInputRef                      = useRef<HTMLInputElement>(null);
+  const textareaRef                       = useRef<HTMLTextAreaElement>(null);
+
+  const FORMAT_MAP: Record<string, { before: string; after: string }> = {
+    format_bold:           { before: '**', after: '**' },
+    format_italic:         { before: '_', after: '_' },
+    format_underlined:     { before: '<u>', after: '</u>' },
+    format_list_bulleted:  { before: '\n- ', after: '' },
+    format_list_numbered:  { before: '\n1. ', after: '' },
+    format_quote:          { before: '\n> ', after: '' },
+    link:                  { before: '[', after: '](url)' },
+    code:                  { before: '`', after: '`' },
+  };
+
+  const applyFormat = (icon: string) => {
+    const ta = textareaRef.current;
+    if (!ta) return;
+    const fmt = FORMAT_MAP[icon];
+    if (!fmt) return;
+    const start = ta.selectionStart;
+    const end   = ta.selectionEnd;
+    const sel   = content.substring(start, end);
+    const next  = content.substring(0, start) + fmt.before + sel + fmt.after + content.substring(end);
+    setContent(next);
+    requestAnimationFrame(() => {
+      ta.focus();
+      const cur = start + fmt.before.length;
+      ta.setSelectionRange(cur, cur + sel.length);
+    });
+  };
 
   const wordCount  = content.trim() ? content.trim().split(/\s+/).length : 0;
   const charCount  = content.length;
@@ -349,6 +378,7 @@ function EditorForm() {
                           key={btn.icon}
                           title={btn.label}
                           type="button"
+                          onMouseDown={e => { e.preventDefault(); applyFormat(btn.icon); }}
                           className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-[var(--obsidian)] transition-colors"
                         >
                           <span className="material-symbols-outlined text-[18px]">{btn.icon}</span>
@@ -366,6 +396,7 @@ function EditorForm() {
                 <div className="p-6 lg:p-8 min-h-[22rem]">
                   {activeLang === 'en' ? (
                     <textarea
+                      ref={textareaRef}
                       value={content}
                       onChange={e => setContent(e.target.value)}
                       placeholder="Write your article in English. Other languages will be auto-translated when you click Review & Publish…"
@@ -598,7 +629,7 @@ function TranslationReview({
   };
 
   return (
-    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2]" style={{ top: 0, bottom: 0, left: 256, right: 0 }}>
+    <div className="fixed z-[35] flex flex-col bg-[#f4f4f2] inset-x-0 bottom-0 top-14 lg:top-0 lg:left-64">
       {/* Bar */}
       <div className="flex-shrink-0 bg-white border-b border-gray-200 px-4 lg:px-8 h-14 flex items-center justify-between shadow-sm">
         <button onClick={onBack} className="flex items-center gap-1.5 text-xs font-bold text-gray-500 hover:text-[var(--obsidian)] transition-colors">
@@ -650,20 +681,20 @@ function TranslationReview({
 
           {translations.map((t, i) => (
             <div key={t.lang} className={`bg-white rounded-2xl border-2 transition-all overflow-hidden ${t.confirmed ? 'border-[var(--midnight-green)] shadow-md shadow-[var(--midnight-green)]/10' : 'border-gray-100 shadow-sm'}`}>
-              <div className="flex items-center justify-between px-5 py-4 border-b border-gray-50">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl leading-none">{t.flag}</span>
-                  <div>
+              <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-gray-50">
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="text-2xl leading-none flex-shrink-0">{t.flag}</span>
+                  <div className="min-w-0">
                     <p className="font-bold text-sm text-[var(--obsidian)]">{t.label}</p>
                     <p className="text-[9px] font-mono text-gray-400 uppercase">{t.lang}</p>
                   </div>
                   {t.confirmed && (
-                    <span className="flex items-center gap-0.5 text-[9px] font-bold text-[var(--midnight-green)] bg-[var(--midnight-green)]/10 px-2 py-0.5 rounded-full">
+                    <span className="flex items-center gap-0.5 text-[9px] font-bold text-[var(--midnight-green)] bg-[var(--midnight-green)]/10 px-2 py-0.5 rounded-full whitespace-nowrap">
                       <span className="material-symbols-outlined text-[10px]">check</span> APPROVED
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-shrink-0">
                   <button
                     onClick={() => setEditingIndex(editingIndex === i ? null : i)}
                     className="text-[10px] font-bold uppercase tracking-wider text-gray-400 px-3 py-1.5 rounded-lg border border-gray-200 hover:border-gray-400 hover:text-gray-600 transition-all"

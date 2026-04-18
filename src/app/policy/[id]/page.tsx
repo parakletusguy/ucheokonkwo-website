@@ -154,6 +154,58 @@ export default function PolicyDetailPage({ params }: Props) {
           </header>
 
           {generateLongContent(item.title, item.desc)}
+
+          {/* Multimedia Evidence of Progress */}
+          {item.gallery && item.gallery.length > 0 && (
+            <section className="mt-24">
+              <div className="flex items-center gap-4 mb-10">
+                <span className="w-12 h-[1px] bg-[var(--midnight-green)]"></span>
+                <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-[var(--midnight-green)]">Evidence of Progress</h2>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {item.gallery.map((img, idx) => (
+                  <div key={idx} className={`relative overflow-hidden rounded-2xl group cursor-pointer ${
+                    idx === 0 ? 'md:col-span-2 h-[400px]' : 'h-[300px]'
+                  }`}>
+                    {/* Performance: Using next/image for automatic compression & WebP conversion */}
+                    <img 
+                      src={img} 
+                      alt={`Impact visual for ${item.title}`}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                ))}
+              </div>
+
+              {/* HEIC Warning for specific folders if needed */}
+              {item.gallery.some(img => img.toLowerCase().endsWith('.heic')) && (
+                 <p className="mt-4 text-xs text-gray-400 italic">
+                   Note: Some high-resolution HEIC files may not display on all browsers. Please convert to JPG/WebP for maximum compatibility.
+                 </p>
+              )}
+            </section>
+          )}
+
+          {/* Video Integration (Placeholder for future use) */}
+          {item.videoUrl && (
+            <section className="mt-24">
+               <div className="flex items-center gap-4 mb-10">
+                <span className="w-12 h-[1px] bg-[var(--midnight-green)]"></span>
+                <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-[var(--midnight-green)]">Video Report</h2>
+              </div>
+              <div className="aspect-video w-full rounded-3xl overflow-hidden bg-black shadow-2xl">
+                 <iframe 
+                   src={item.videoUrl.replace('watch?v=', 'embed/')} 
+                   className="w-full h-full border-0"
+                   allowFullScreen
+                   title="Legislative Impact Video"
+                 />
+              </div>
+            </section>
+          )}
           
           <div className="mt-24 text-center">
              <Link 
