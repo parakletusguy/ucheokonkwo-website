@@ -86,7 +86,6 @@ export default function LegislativeAgenda() {
             <span className="w-8 h-[1px] bg-[var(--sunlight-yellow)]" />
             {t({
               en: "The Pillars",
-              pcm: "Di Main Things",
               ig: "Ogidi Nke",
               ha: "Ginshikan",
               yo: "Awọn Ọwọn",
@@ -95,7 +94,6 @@ export default function LegislativeAgenda() {
           <h2 className="text-4xl md:text-5xl lg:text-[6rem] font-bold leading-[0.9] tracking-tighter text-white serif-font">
             {t({
               en: "LEGISLATIVE",
-              pcm: "LAWMAKER",
               ig: "IHE OMUME",
               ha: "DOKA",
               yo: "ASE",
@@ -104,7 +102,6 @@ export default function LegislativeAgenda() {
             <span className="italic font-light text-white/50">
               {t({
                 en: "Agenda",
-                pcm: "Plan",
                 ig: "Atụmatụ",
                 ha: "Ajanda",
                 yo: "Eto",
