@@ -310,9 +310,9 @@ export const agendaItems: Achievement[] = [
     urgent: false,
     lga: 'south',
     gallery: [
-      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG-20241219-WA0053.jpg',
-      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG-20241219-WA0054.jpg',
-      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG-20241219-WA0057.jpg'
+      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG20250508150006.jpg',
+      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG20250508150011.jpg',
+      '/Legislative Agenda pictures/Construction of Casava Processing Plant at Ojoto/IMG20250508150021.jpg'
     ],
   },
   {
@@ -333,9 +333,8 @@ export const agendaItems: Achievement[] = [
     urgent: false,
     lga: 'south',
     gallery: [
-      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/IMG-20241219-WA0104.jpg',
-      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/IMG-20241219-WA0105.jpg',
-      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/IMG-20241219-WA0107.jpg'
+      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/1745960535636.jpg',
+      '/Legislative Agenda pictures/Construction of Solar Powered borehole at Nnobi/1745960543584.jpg'
     ],
   },
   // --- EDUCATION ---
@@ -390,9 +389,9 @@ export const agendaItems: Achievement[] = [
     urgent: false,
     lga: 'general',
     gallery: [
-      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20250205-WA0184.jpg',
-      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20250205-WA0205.jpg',
-      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20250205-WA0229.jpg'
+      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20241108-WA0075.jpg',
+      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20241108-WA0081.jpg',
+      '/Legislative Agenda pictures/Attraction of Students grants for University Students/IMG-20241108-WA0106.jpg'
     ],
   },
   // --- SOCIAL AMENITIES ---
@@ -405,9 +404,9 @@ export const agendaItems: Achievement[] = [
     urgent: false,
     lga: 'general',
     gallery: [
-      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20241219-WA0085.jpg',
-      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20241219-WA0088.jpg',
-      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20241219-WA0092.jpg'
+      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20241011-WA0472.jpg',
+      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20250205-WA0213.jpg',
+      '/Legislative Agenda pictures/Installation of Solar Powered Streetlights in Idemili North and South/IMG-20250205-WA0230.jpg'
     ],
   },
   {
@@ -478,9 +477,9 @@ export const agendaItems: Achievement[] = [
     urgent: true,
     lga: 'general',
     gallery: [
-      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG-20241011-WA0045.jpg',
-      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG-20241011-WA0046.jpg',
-      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG-20241011-WA0048.jpg'
+      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG-20251122-WA0035.jpg',
+      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG20240405130953.jpg',
+      '/Legislative Agenda pictures/Attraction of Relief Materials for people affected by gully Erosion/IMG20240405134358.jpg'
     ],
   },
   {

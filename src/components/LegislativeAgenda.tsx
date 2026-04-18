@@ -216,7 +216,7 @@ export default function LegislativeAgenda() {
             {item.gallery && item.gallery.length > 0 && (
               <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-10 transition-opacity duration-700">
                 <Image
-                  src={item.gallery[0]}
+                  src={encodeURI(item.gallery[0])}
                   alt=""
                   fill
                   sizes="420px"
