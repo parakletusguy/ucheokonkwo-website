@@ -171,7 +171,7 @@ export default function PostDetailClient({ id, initialPost }: { id: string; init
     </>
   );
 
-  const mc = post.multilingualContent ?? [];
+  const mc = (post.multilingualContent ?? []).filter(m => m.language !== 'PIDGIN');
   const activeContent  = mc.find(m => m.language === activeLang);
   const displayTitle   = activeContent?.title   ?? post.title;
   const displayContent = activeContent?.content ?? post.content;
