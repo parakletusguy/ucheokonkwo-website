@@ -4,8 +4,10 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FAQSchema, { DEFAULT_FAQS } from '@/components/FAQSchema';
+import { useLanguageStore } from '@/store/useLanguageStore';
 
 export default function ElectionsPage() {
+  const { t } = useLanguageStore();
 
   return (
     <>

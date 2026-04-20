@@ -5,11 +5,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FAQSchema, { DEFAULT_FAQS } from '@/components/FAQSchema';
 import Link from 'next/link';
+import { useLanguageStore } from '@/store/useLanguageStore';
 
 const TOWNS_NORTH = ['Abacha', 'Abatete', 'Eziowelle', 'Ideani', 'Nkpor', 'Obosi', 'Ogidi', 'Oraukwu', 'Uke', 'Umuoji'];
 const TOWNS_SOUTH = ['Akwukwu', 'Alor', 'Awka-Etiti', 'Ojoto', 'Nnokwa', 'Oba', 'Nnobi'];
 
 export default function TownsIndexPage() {
+  const { t } = useLanguageStore();
 
   return (
     <>

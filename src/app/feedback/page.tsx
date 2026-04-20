@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import QRCodeComponent from '@/components/QRCodeComponent';
+import { useLanguageStore } from '@/store/useLanguageStore';
 import { apiClient } from '@/lib/apiClient';
 import type { FeedbackType } from '@/lib/types';
 
@@ -14,6 +15,7 @@ const TYPE_OPTIONS: { label: string; value: FeedbackType; icon: string }[] = [
 ];
 
 export default function FeedbackPage() {
+  const { t } = useLanguageStore();
   const [type,      setType]      = useState<FeedbackType>('SUGGESTION');
   const [message,   setMessage]   = useState('');
   const [submitting, setSubmitting] = useState(false);
